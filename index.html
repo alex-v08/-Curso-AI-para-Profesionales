@@ -1,0 +1,2554 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos de Machine Learning - Presentación Clase 2</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .slide-transition {
+            transition: all 0.5s ease-in-out;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .gradient-text {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Mejores estilos para títulos */
+        .enhanced-title {
+            color: #ffffff !important;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 255, 255, 0.3);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .clickable-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .clickable-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .clickable-card:hover::before {
+            left: 100%;
+        }
+        
+        .clickable-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .info-indicator {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.5);
+        }
+        
+        .clickable-card:hover .info-indicator {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .math-formula {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        // Iconos como componentes
+        const Icon = ({ name, className = "w-6 h-6" }) => (
+            <i className={`fas fa-${name} ${className}`}></i>
+        );
+
+        // Componente de modal informativo
+        const InfoModal = ({ isOpen, onClose, title, content, type = 'definition' }) => {
+            if (!isOpen) return null;
+            
+            const getModalColor = () => {
+                switch (type) {
+                    case 'ai': return 'from-purple-600 to-blue-600';
+                    case 'ml': return 'from-blue-600 to-green-600';
+                    case 'regression': return 'from-green-600 to-blue-600';
+                    case 'business': return 'from-orange-600 to-red-600';
+                    default: return 'from-gray-600 to-gray-800';
+                }
+            };
+
+        // Definiciones y contenidos informativos
+        const definiciones = {
+            // Tipos de IA
+            ia_predictiva: {
+                title: "IA Predictiva",
+                content: (
+                    <div>
+                        <p><strong>Definición:</strong> Tipo de inteligencia artificial que analiza datos históricos para predecir eventos futuros o resultados probables.</p>
+                        
+                        <h4>Características:</h4>
+                        <ul>
+                            <li>• Utiliza algoritmos de machine learning</li>
+                            <li>• Se basa en patrones de datos pasados</li>
+                            <li>• Genera probabilidades y tendencias</li>
+                            <li>• Mejora con más datos</li>
+                        </ul>
+                        
+                        <h4>Ejemplos prácticos:</h4>
+                        <ul>
+                            <li>💰 <strong>Finanzas:</strong> Predicción de precios de acciones</li>
+                            <li>🏥 <strong>Salud:</strong> Diagnóstico temprano de enfermedades</li>
+                            <li>🛍️ <strong>E-commerce:</strong> Recomendaciones de productos</li>
+                            <li>🌦️ <strong>Clima:</strong> Pronósticos meteorológicos</li>
+                        </ul>
+                        
+                        <div className="bg-blue-50 p-4 rounded-lg mt-4">
+                            <p><strong>Dato curioso:</strong> Netflix usa IA predictiva para sugerir el 80% del contenido que ves.</p>
+                        </div>
+                    </div>
+                ),
+                type: 'ai'
+            },
+            
+            ia_generativa: {
+                title: "IA Generativa",
+                content: (
+                    <div>
+                        <p><strong>Definición:</strong> Inteligencia artificial capaz de crear contenido nuevo como texto, imágenes, música o código a partir de patrones aprendidos.</p>
+                        
+                        <h4>Tecnologías clave:</h4>
+                        <ul>
+                            <li>• <strong>GPT:</strong> Generación de texto</li>
+                            <li>• <strong>DALL-E:</strong> Creación de imágenes</li>
+                            <li>• <strong>GANs:</strong> Redes generativas adversarias</li>
+                            <li>• <strong>Diffusion Models:</strong> Generación de alta calidad</li>
+                        </ul>
+                        
+                        <h4>Aplicaciones revolucionarias:</h4>
+                        <ul>
+                            <li>🎨 <strong>Arte:</strong> Creación de obras únicas</li>
+                            <li>📝 <strong>Escritura:</strong> Asistencia en redacción</li>
+                            <li>💻 <strong>Programación:</strong> Generación de código</li>
+                            <li>🎵 <strong>Música:</strong> Composición automática</li>
+                        </ul>
+                        
+                        <div className="bg-purple-50 p-4 rounded-lg mt-4">
+                            <p><strong>Impacto:</strong> Se estima que la IA generativa agregará $4.4 trillones anuales a la economía global para 2030.</p>
+                        </div>
+                    </div>
+                ),
+                type: 'ai'
+            },
+            
+            ia_agentes: {
+                title: "IA Agentes",
+                content: (
+                    <div>
+                        <p><strong>Definición:</strong> Sistemas de IA que pueden tomar decisiones y realizar acciones de forma autónoma en un entorno, sin intervención humana constante.</p>
+                        
+                        <h4>Características de los agentes:</h4>
+                        <ul>
+                            <li>• <strong>Autonomía:</strong> Actúan independientemente</li>
+                            <li>• <strong>Reactividad:</strong> Responden al entorno</li>
+                            <li>• <strong>Proactividad:</strong> Toman iniciativa</li>
+                            <li>• <strong>Sociabilidad:</strong> Interactúan con otros agentes</li>
+                        </ul>
+                        
+                        <h4>Ejemplos en acción:</h4>
+                        <ul>
+                            <li>🤖 <strong>Chatbots:</strong> Atención al cliente 24/7</li>
+                            <li>🚗 <strong>Vehículos autónomos:</strong> Conducción sin conductor</li>
+                            <li>🏭 <strong>Trading:</strong> Operaciones financieras automáticas</li>
+                            <li>🎮 <strong>NPCs:</strong> Personajes inteligentes en videojuegos</li>
+                        </ul>
+                        
+                        <div className="bg-green-50 p-4 rounded-lg mt-4">
+                            <p><strong>Futuro:</strong> Los agentes de IA podrían gestionar hogares inteligentes completos para 2025.</p>
+                        </div>
+                    </div>
+                ),
+                type: 'ai'
+            },
+            
+            // Regresión Lineal
+            regresion_simple: {
+                title: "Regresión Lineal Simple",
+                content: (
+                    <div>
+                        <p><strong>Definición:</strong> Técnica estadística que modela la relación entre una variable dependiente y una variable independiente usando una línea recta.</p>
+                        
+                        <h4>Fórmula fundamental:</h4>
+                        <div className="bg-gray-100 p-4 rounded-lg font-mono text-center text-lg">
+                            y = β₀ + β₁x + ε
+                        </div>
+                        
+                        <h4>Componentes:</h4>
+                        <ul>
+                            <li>• <strong>β₀:</strong> Intercepto (valor cuando x = 0)</li>
+                            <li>• <strong>β₁:</strong> Pendiente (cambio en y por unidad de x)</li>
+                            <li>• <strong>ε:</strong> Error o residuo</li>
+                        </ul>
+                        
+                        <h4>Cuándo usarla:</h4>
+                        <ul>
+                            <li>📈 <strong>Relación lineal:</strong> Entre variables</li>
+                            <li>🔢 <strong>Predicción:</strong> Valores continuos</li>
+                            <li>📊 <strong>Análisis:</strong> Tendencias y patrones</li>
+                        </ul>
+                        
+                        <div className="bg-blue-50 p-4 rounded-lg mt-4">
+                            <p><strong>Ejemplo:</strong> Predecir el precio de una casa basándose en su tamaño en m².</p>
+                        </div>
+                    </div>
+                ),
+                type: 'regression'
+            },
+            
+            regresion_multiple: {
+                title: "Regresión Lineal Múltiple",
+                content: (
+                    <div>
+                        <p><strong>Definición:</strong> Extensión de la regresión simple que utiliza múltiples variables independientes para predecir una variable dependiente.</p>
+                        
+                        <h4>Fórmula general:</h4>
+                        <div className="bg-gray-100 p-4 rounded-lg font-mono text-center text-lg">
+                            y = β₀ + β₁x₁ + β₂x₂ + ... + βₙxₙ + ε
+                        </div>
+                        
+                        <h4>Representación matricial:</h4>
+                        <div className="bg-gray-100 p-4 rounded-lg font-mono text-center text-xl">
+                            Y = XW + ε
+                        </div>
+                        
+                        <h4>Ventajas:</h4>
+                        <ul>
+                            <li>• <strong>Más precisa:</strong> Considera múltiples factores</li>
+                            <li>• <strong>Realista:</strong> Los fenómenos reales son multivariados</li>
+                            <li>• <strong>Flexible:</strong> Puede incluir variables categóricas</li>
+                        </ul>
+                        
+                        <h4>Interpretación geométrica:</h4>
+                        <ul>
+                            <li>• <strong>2 variables:</strong> Línea en el plano</li>
+                            <li>• <strong>3 variables:</strong> Plano en el espacio</li>
+                            <li>• <strong>4+ variables:</strong> Hiperplano multidimensional</li>
+                        </ul>
+                        
+                        <div className="bg-green-50 p-4 rounded-lg mt-4">
+                            <p><strong>Ejemplo:</strong> Predecir precio de casa usando tamaño, ubicación, edad y número de habitaciones.</p>
+                        </div>
+                    </div>
+                ),
+                type: 'regression'
+            },
+            
+            cuadrados_ordinarios: {
+                title: "Método de Cuadrados Ordinarios",
+                content: (
+                    <div>
+                        <p><strong>Definición:</strong> Técnica matemática para encontrar los parámetros de una regresión lineal minimizando la suma de los errores al cuadrado.</p>
+                        
+                        <h4>Fórmula de la solución:</h4>
+                        <div className="bg-gray-100 p-4 rounded-lg font-mono text-center text-xl">
+                            W = (XᵀX)⁻¹XᵀY
+                        </div>
+                        
+                        <h4>Proceso paso a paso:</h4>
+                        <ol>
+                            <li>1. Calcular Xᵀ (X transpuesta)</li>
+                            <li>2. Multiplicar Xᵀ × X</li>
+                            <li>3. Invertir la matriz resultante</li>
+                            <li>4. Multiplicar por XᵀY</li>
+                        </ol>
+                        
+                        <h4>Función de costo (MSE):</h4>
+                        <div className="bg-gray-100 p-4 rounded-lg font-mono text-center">
+                            L(β) = Σ(yᵢ - ŷᵢ)²
+                        </div>
+                        
+                        <h4>Ventajas:</h4>
+                        <ul>
+                            <li>• <strong>Solución exacta:</strong> No iterativo</li>
+                            <li>• <strong>Matemáticamente elegante:</strong> Fórmula cerrada</li>
+                            <li>• <strong>Óptimo:</strong> Minimiza el error cuadrático</li>
+                        </ul>
+                        
+                        <div className="bg-orange-50 p-4 rounded-lg mt-4">
+                            <p><strong>Limitación:</strong> Puede ser lento para matrices muy grandes debido a la inversión matricial.</p>
+                        </div>
+                    </div>
+                ),
+                type: 'regression'
+            },
+            
+            // Casos de negocio
+            ecommerce: {
+                title: "E-commerce y Recomendaciones",
+                content: (
+                    <div>
+                        <p><strong>Problema de negocio:</strong> Cómo mejorar la experiencia de compra y aumentar las ventas a través de recomendaciones personalizadas.</p>
+                        
+                        <h4>Objetivos específicos:</h4>
+                        <ul>
+                            <li>• <strong>Aumentar engagement:</strong> Más tiempo en el sitio</li>
+                            <li>• <strong>Facilitar descubrimiento:</strong> Productos relevantes</li>
+                            <li>• <strong>Incrementar ventas:</strong> Cross-selling y up-selling</li>
+                            <li>• <strong>Mejorar satisfacción:</strong> Experiencia personalizada</li>
+                        </ul>
+                        
+                        <h4>Métricas de éxito:</h4>
+                        <ul>
+                            <li>💰 <strong>Revenue:</strong> Ventas atribuidas a recomendaciones</li>
+                            <li>📊 <strong>CTR:</strong> Click-through rate en recomendaciones</li>
+                            <li>🔄 <strong>Conversion rate:</strong> % de recomendaciones que resultan en compra</li>
+                            <li>⏱️ <strong>Time on site:</strong> Tiempo promedio de navegación</li>
+                        </ul>
+                        
+                        <h4>Tipos de algoritmos:</h4>
+                        <ul>
+                            <li>• <strong>Collaborative Filtering:</strong> Basado en usuarios similares</li>
+                            <li>• <strong>Content-Based:</strong> Basado en características del producto</li>
+                            <li>• <strong>Hybrid:</strong> Combinación de ambos enfoques</li>
+                        </ul>
+                        
+                        <div className="bg-blue-50 p-4 rounded-lg mt-4">
+                            <p><strong>Caso real:</strong> Amazon genera el 35% de sus ingresos a través de su motor de recomendaciones.</p>
+                        </div>
+                    </div>
+                ),
+                type: 'business'
+            },
+            
+            bienes_raices: {
+                title: "Valuación de Bienes Raíces",
+                content: (
+                    <div>
+                        <p><strong>Problema de negocio:</strong> Determinar el precio justo de propiedades basándose en sus características y condiciones del mercado.</p>
+                        
+                        <h4>Variables clave:</h4>
+                        <ul>
+                            <li>🏠 <strong>Tamaño:</strong> Metros cuadrados, habitaciones, baños</li>
+                            <li>🗺️ <strong>Ubicación:</strong> Barrio, proximidad a servicios</li>
+                            <li>📅 <strong>Edad:</strong> Año de construcción, estado de conservación</li>
+                            <li>🏦 <strong>Mercado:</strong> Precios de propiedades similares</li>
+                        </ul>
+                        
+                        <h4>Beneficios del ML:</h4>
+                        <ul>
+                            <li>• <strong>Objetividad:</strong> Reduce sesgos humanos</li>
+                            <li>• <strong>Velocidad:</strong> Valuaciones instantáneas</li>
+                            <li>• <strong>Precision:</strong> Considera múltiples factores simultáneamente</li>
+                            <li>• <strong>Actualización:</strong> Se adapta a cambios del mercado</li>
+                        </ul>
+                        
+                        <h4>Stakeholders beneficiados:</h4>
+                        <ul>
+                            <li>🏢 <strong>Inmobiliarias:</strong> Pricing competitivo</li>
+                            <li>💼 <strong>Bancos:</strong> Evaluación de garantías hipotecarias</li>
+                            <li>👥 <strong>Compradores:</strong> Decisión informada</li>
+                            <li>🏤 <strong>Gobierno:</strong> Valuación fiscal precisa</li>
+                        </ul>
+                        
+                        <div className="bg-green-50 p-4 rounded-lg mt-4">
+                            <p><strong>Impacto:</strong> Zillow procesó más de $1 billón en transacciones usando su algoritmo Zestimate.</p>
+                        </div>
+                    </div>
+                ),
+                type: 'business'
+            },
+            
+            market_pull: {
+                title: "Market Pull vs Technology Push",
+                content: (
+                    <div>
+                        <p><strong>Concepto clave:</strong> La diferencia entre resolver problemas reales del mercado vs implementar tecnología porque es novedosa.</p>
+                        
+                        <h4>Market Pull (✅ Enfoque correcto):</h4>
+                        <ul>
+                            <li>• <strong>Inicia con:</strong> "Tenemos un problema que resolver"</li>
+                            <li>• <strong>Pregunta:</strong> "¿Qué necesita el mercado?"</li>
+                            <li>• <strong>Enfoque:</strong> Problema → Solución → Tecnología</li>
+                            <li>• <strong>Resultado:</strong> Alto valor para el usuario</li>
+                        </ul>
+                        
+                        <h4>Technology Push (⚠️ Enfoque riesgoso):</h4>
+                        <ul>
+                            <li>• <strong>Inicia con:</strong> "Tenemos esta tecnología genial"</li>
+                            <li>• <strong>Pregunta:</strong> "¿Dónde podemos usar esto?"</li>
+                            <li>• <strong>Enfoque:</strong> Tecnología → Solución → Problema (forzado)</li>
+                            <li>• <strong>Resultado:</strong> Riesgo de crear solución sin problema</li>
+                        </ul>
+                        
+                        <h4>Ejemplos prácticos:</h4>
+                        <table className="w-full border border-gray-300 mt-4">
+                            <thead>
+                                <tr className="bg-gray-100">
+                                    <th className="border p-2">Market Pull</th>
+                                    <th className="border p-2">Technology Push</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td className="border p-2">Uber: Necesidad de transporte fácil</td>
+                                    <td className="border p-2">Google Glass: Tecnología buscando uso</td>
+                                </tr>
+                                <tr>
+                                    <td className="border p-2">Netflix: Entretenimiento on-demand</td>
+                                    <td className="border p-2">Blockchain en todo (sin propósito claro)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div className="bg-yellow-50 p-4 rounded-lg mt-4">
+                            <p><strong>Regla de oro:</strong> Siempre pregunta primero "¿Qué problema estamos resolviendo?" antes que "Qué tecnología podemos usar?"</p>
+                        </div>
+                    </div>
+                ),
+                type: 'business'
+            }
+        };
+            
+            return (
+                <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={onClose}>
+                    <div 
+                        className="bg-white rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-auto shadow-2xl transform transition-all"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        {/* Header */}
+                        <div className={`bg-gradient-to-r ${getModalColor()} p-6 rounded-t-2xl`}>
+                            <div className="flex justify-between items-start">
+                                <h3 className="text-2xl font-bold text-white pr-4">{title}</h3>
+                                <button 
+                                    onClick={onClose}
+                                    className="text-white hover:text-gray-200 transition-colors p-1"
+                                >
+                                    <Icon name="times" className="w-6 h-6" />
+                                </button>
+                            </div>
+                        </div>
+                        
+                        {/* Content */}
+                        <div className="p-6">
+                            <div className="prose prose-lg max-w-none">
+                                {content}
+                            </div>
+                        </div>
+                        
+                        {/* Footer */}
+                        <div className="border-t border-gray-200 p-4 bg-gray-50 rounded-b-2xl">
+                            <button 
+                                onClick={onClose}
+                                className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg transition-colors font-medium"
+                            >
+                                ¡Entendido!
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+        
+        // Componente clickeable con información
+        const ClickableInfo = ({ children, title, content, type, className = "" }) => {
+            const [isModalOpen, setIsModalOpen] = useState(false);
+            
+            return (
+                <>
+                    <div 
+                        className={`cursor-pointer hover:scale-105 transition-all duration-300 hover:shadow-lg relative group ${className}`}
+                        onClick={() => setIsModalOpen(true)}
+                    >
+                        {children}
+                        {/* Indicador de que es clickeable */}
+                        <div className="absolute top-2 right-2 bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                            <Icon name="info" className="w-3 h-3" />
+                        </div>
+                    </div>
+                    <InfoModal 
+                        isOpen={isModalOpen}
+                        onClose={() => setIsModalOpen(false)}
+                        title={title}
+                        content={content}
+                        type={type}
+                    />
+                </>
+            );
+        };
+
+        // Componente interactivo para demostrar regresión lineal
+        const InteractiveRegressionDemo = () => {
+            const [beta0, setBeta0] = useState(20);
+            const [beta1, setBeta1] = useState(5);
+            const [showErrors, setShowErrors] = useState(true);
+            
+            // Datos de ejemplo (habitaciones vs precio en miles)
+            const dataPoints = [
+                {x: 2, y: 25}, {x: 2.5, y: 28}, {x: 3, y: 35}, {x: 3.2, y: 32},
+                {x: 3.5, y: 38}, {x: 4, y: 45}, {x: 4.2, y: 42}, {x: 4.5, y: 48},
+                {x: 5, y: 55}, {x: 5.5, y: 58}
+            ];
+            
+            // Calcular predicciones y errores
+            const predictions = dataPoints.map(point => ({
+                ...point,
+                predicted: beta0 + beta1 * point.x,
+                error: point.y - (beta0 + beta1 * point.x)
+            }));
+            
+            // Calcular MSE
+            const mse = predictions.reduce((sum, p) => sum + p.error ** 2, 0) / predictions.length;
+            
+            // Puntos para dibujar la línea
+            const linePoints = [
+                {x: 1.5, y: beta0 + beta1 * 1.5},
+                {x: 6, y: beta0 + beta1 * 6}
+            ];
+            
+            // Escala para el SVG (400x300 pixels)
+            const scaleX = (x) => ((x - 1.5) / 4.5) * 350 + 25;
+            const scaleY = (y) => 275 - ((y - 15) / 50) * 250;
+            
+            return (
+                <div className="glass-effect p-8 rounded-xl">
+                    <h3 className="text-xl font-bold text-white mb-6 text-center">
+                        <Icon name="sliders-h" className="w-6 h-6 inline mr-2" />
+                        Demo Interactivo: Encuentra la Mejor Línea
+                    </h3>
+                    
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        {/* Controles */}
+                        <div className="space-y-6">
+                            <div className="bg-blue-500/20 p-4 rounded-lg">
+                                <label className="block text-white font-semibold mb-3">
+                                    β₀ (Intercepto): {beta0.toFixed(1)}
+                                </label>
+                                <input 
+                                    type="range" 
+                                    min="0" 
+                                    max="40" 
+                                    step="0.5"
+                                    value={beta0}
+                                    onChange={(e) => setBeta0(parseFloat(e.target.value))}
+                                    className="w-full h-2 bg-blue-300 rounded-lg appearance-none cursor-pointer"
+                                />
+                                <p className="text-white/70 text-sm mt-2">Precio base (cuando habitaciones = 0)</p>
+                            </div>
+                            
+                            <div className="bg-green-500/20 p-4 rounded-lg">
+                                <label className="block text-white font-semibold mb-3">
+                                    β₁ (Pendiente): {beta1.toFixed(1)}
+                                </label>
+                                <input 
+                                    type="range" 
+                                    min="-5" 
+                                    max="15" 
+                                    step="0.5"
+                                    value={beta1}
+                                    onChange={(e) => setBeta1(parseFloat(e.target.value))}
+                                    className="w-full h-2 bg-green-300 rounded-lg appearance-none cursor-pointer"
+                                />
+                                <p className="text-white/70 text-sm mt-2">Precio adicional por habitación</p>
+                            </div>
+                            
+                            <div className="bg-purple-500/20 p-4 rounded-lg">
+                                <label className="flex items-center text-white font-semibold">
+                                    <input 
+                                        type="checkbox" 
+                                        checked={showErrors}
+                                        onChange={(e) => setShowErrors(e.target.checked)}
+                                        className="mr-3 w-4 h-4"
+                                    />
+                                    Mostrar líneas de error
+                                </label>
+                            </div>
+                            
+                            <div className="bg-orange-500/20 p-4 rounded-lg">
+                                <h4 className="text-white font-semibold mb-2">Métricas Actuales</h4>
+                                <p className="text-white/80">MSE: <strong>{mse.toFixed(2)}</strong></p>
+                                <p className="text-white/80">RMSE: <strong>{Math.sqrt(mse).toFixed(2)}</strong></p>
+                                <p className="text-white/70 text-sm mt-2">
+                                    Ecuación: y = {beta0.toFixed(1)} + {beta1.toFixed(1)}x
+                                </p>
+                            </div>
+                        </div>
+                        
+                        {/* Gráfico */}
+                        <div className="bg-white p-4 rounded-lg">
+                            <svg width="400" height="300" className="w-full h-auto">
+                                {/* Grid */}
+                                <defs>
+                                    <pattern id="grid" width="40" height="30" patternUnits="userSpaceOnUse">
+                                        <path d="M 40 0 L 0 0 0 30" fill="none" stroke="#e5e7eb" strokeWidth="1"/>
+                                    </pattern>
+                                </defs>
+                                <rect width="400" height="300" fill="url(#grid)" />
+                                
+                                {/* Ejes */}
+                                <line x1="25" y1="275" x2="375" y2="275" stroke="#374151" strokeWidth="2" />
+                                <line x1="25" y1="275" x2="25" y2="25" stroke="#374151" strokeWidth="2" />
+                                
+                                {/* Labels de ejes */}
+                                <text x="200" y="295" textAnchor="middle" className="text-sm fill-gray-600">
+                                    Habitaciones
+                                </text>
+                                <text x="15" y="150" textAnchor="middle" className="text-sm fill-gray-600" transform="rotate(-90 15 150)">
+                                    Precio (k$)
+                                </text>
+                                
+                                {/* Líneas de error */}
+                                {showErrors && predictions.map((p, i) => (
+                                    <line
+                                        key={i}
+                                        x1={scaleX(p.x)}
+                                        y1={scaleY(p.y)}
+                                        x2={scaleX(p.x)}
+                                        y2={scaleY(p.predicted)}
+                                        stroke="#ef4444"
+                                        strokeWidth="1"
+                                        strokeDasharray="3,3"
+                                        opacity="0.7"
+                                    />
+                                ))}
+                                
+                                {/* Línea de regresión */}
+                                <line
+                                    x1={scaleX(linePoints[0].x)}
+                                    y1={scaleY(linePoints[0].y)}
+                                    x2={scaleX(linePoints[1].x)}
+                                    y2={scaleY(linePoints[1].y)}
+                                    stroke="#2563eb"
+                                    strokeWidth="3"
+                                />
+                                
+                                {/* Puntos de datos */}
+                                {predictions.map((p, i) => (
+                                    <g key={i}>
+                                        <circle
+                                            cx={scaleX(p.x)}
+                                            cy={scaleY(p.y)}
+                                            r="6"
+                                            fill="#dc2626"
+                                            stroke="white"
+                                            strokeWidth="2"
+                                        />
+                                        {/* Predicciones */}
+                                        <circle
+                                            cx={scaleX(p.x)}
+                                            cy={scaleY(p.predicted)}
+                                            r="4"
+                                            fill="#2563eb"
+                                            opacity="0.8"
+                                        />
+                                    </g>
+                                ))}
+                                
+                                {/* Leyenda */}
+                                <g transform="translate(280, 40)">
+                                    <rect x="0" y="0" width="110" height="60" fill="white" stroke="#d1d5db" rx="4" />
+                                    <circle cx="10" cy="15" r="4" fill="#dc2626" />
+                                    <text x="20" y="19" className="text-xs fill-gray-700">Datos reales</text>
+                                    <circle cx="10" cy="30" r="3" fill="#2563eb" />
+                                    <text x="20" y="34" className="text-xs fill-gray-700">Predicciones</text>
+                                    <line x1="5" y1="45" x2="15" y2="45" stroke="#2563eb" strokeWidth="2" />
+                                    <text x="20" y="49" className="text-xs fill-gray-700">Regresión</text>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div className="mt-6 bg-yellow-500/20 p-4 rounded-lg">
+                        <h4 className="text-white font-semibold mb-2">
+                            <Icon name="lightbulb" className="w-5 h-5 inline mr-2" />
+                            Experimenta:
+                        </h4>
+                        <div className="text-white/90 text-sm space-y-1">
+                            <p>• Ajusta β₀ y β₁ para minimizar el MSE</p>
+                            <p>• Observa cómo cambian las líneas de error rojas</p>
+                            <p>• La mejor línea minimiza la suma de errores al cuadrado</p>
+                            <p>• Valores óptimos aproximados: β₀ ≈ 10, β₁ ≈ 8</p>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        // Componente simple para demostrar regresión múltiple
+        const MultipleRegressionDemo = () => {
+            const [habitaciones, setHabitaciones] = useState(3);
+            const [seguridad, setSeguridad] = useState(5);
+            const [cercania, setCercania] = useState(7);
+            const [antiguedad, setAntiguedad] = useState(5);
+            
+            // Coeficientes del modelo (simulados)
+            const coeficientes = {
+                intercepto: 20,
+                habitaciones: 8,
+                seguridad: 3,
+                cercania: 2,
+                antiguedad: -1.5
+            };
+            
+            // Calcular predicción
+            const prediccion = coeficientes.intercepto + 
+                              coeficientes.habitaciones * habitaciones +
+                              coeficientes.seguridad * seguridad +
+                              coeficientes.cercania * cercania +
+                              coeficientes.antiguedad * antiguedad;
+            
+            const contribuciones = [
+                { nombre: 'Base', valor: coeficientes.intercepto, color: '#6b7280' },
+                { nombre: 'Habitaciones', valor: coeficientes.habitaciones * habitaciones, color: '#3b82f6' },
+                { nombre: 'Seguridad', valor: coeficientes.seguridad * seguridad, color: '#10b981' },
+                { nombre: 'Cercanía', valor: coeficientes.cercania * cercania, color: '#f59e0b' },
+                { nombre: 'Antigüedad', valor: coeficientes.antiguedad * antiguedad, color: '#ef4444' }
+            ];
+            
+            return (
+                <div className="glass-effect p-8 rounded-xl">
+                    <h3 className="text-xl font-bold text-white mb-6 text-center">
+                        <Icon name="home" className="w-6 h-6 inline mr-2" />
+                        Demo: Múltiples Factores Afectan el Precio
+                    </h3>
+                    
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        {/* Controles */}
+                        <div className="space-y-6">
+                            <div className="bg-blue-500/20 p-4 rounded-lg">
+                                <label className="block text-white font-semibold mb-3">
+                                    Habitaciones: {habitaciones}
+                                </label>
+                                <input 
+                                    type="range" 
+                                    min="1" 
+                                    max="6" 
+                                    step="0.5"
+                                    value={habitaciones}
+                                    onChange={(e) => setHabitaciones(parseFloat(e.target.value))}
+                                    className="w-full h-2 bg-blue-300 rounded-lg cursor-pointer"
+                                />
+                                <p className="text-white/70 text-sm mt-1">Contribución: +${(coeficientes.habitaciones * habitaciones).toFixed(1)}k</p>
+                            </div>
+                            
+                            <div className="bg-green-500/20 p-4 rounded-lg">
+                                <label className="block text-white font-semibold mb-3">
+                                    Seguridad del barrio (1-10): {seguridad}
+                                </label>
+                                <input 
+                                    type="range" 
+                                    min="1" 
+                                    max="10" 
+                                    step="1"
+                                    value={seguridad}
+                                    onChange={(e) => setSeguridad(parseInt(e.target.value))}
+                                    className="w-full h-2 bg-green-300 rounded-lg cursor-pointer"
+                                />
+                                <p className="text-white/70 text-sm mt-1">Contribución: +${(coeficientes.seguridad * seguridad).toFixed(1)}k</p>
+                            </div>
+                            
+                            <div className="bg-yellow-500/20 p-4 rounded-lg">
+                                <label className="block text-white font-semibold mb-3">
+                                    Cercanía centros (1-10): {cercania}
+                                </label>
+                                <input 
+                                    type="range" 
+                                    min="1" 
+                                    max="10" 
+                                    step="1"
+                                    value={cercania}
+                                    onChange={(e) => setCercania(parseInt(e.target.value))}
+                                    className="w-full h-2 bg-yellow-300 rounded-lg cursor-pointer"
+                                />
+                                <p className="text-white/70 text-sm mt-1">Contribución: +${(coeficientes.cercania * cercania).toFixed(1)}k</p>
+                            </div>
+                            
+                            <div className="bg-red-500/20 p-4 rounded-lg">
+                                <label className="block text-white font-semibold mb-3">
+                                    Antigüedad (años): {antiguedad}
+                                </label>
+                                <input 
+                                    type="range" 
+                                    min="0" 
+                                    max="20" 
+                                    step="1"
+                                    value={antiguedad}
+                                    onChange={(e) => setAntiguedad(parseInt(e.target.value))}
+                                    className="w-full h-2 bg-red-300 rounded-lg cursor-pointer"
+                                />
+                                <p className="text-white/70 text-sm mt-1">Contribución: ${(coeficientes.antiguedad * antiguedad).toFixed(1)}k</p>
+                            </div>
+                        </div>
+                        
+                        {/* Visualización */}
+                        <div className="space-y-6">
+                            <div className="bg-white p-6 rounded-lg">
+                                <h4 className="text-gray-800 font-bold text-lg mb-4 text-center">Contribución por Factor</h4>
+                                <div className="space-y-3">
+                                    {contribuciones.map((contrib, i) => {
+                                        const ancho = Math.abs(contrib.valor) / Math.max(...contribuciones.map(c => Math.abs(c.valor))) * 100;
+                                        return (
+                                            <div key={i} className="flex items-center justify-between">
+                                                <span className="text-gray-700 text-sm w-20">{contrib.nombre}</span>
+                                                <div className="flex-1 mx-3">
+                                                    <div className="h-6 bg-gray-200 rounded relative">
+                                                        <div 
+                                                            className="h-full rounded"
+                                                            style={{
+                                                                backgroundColor: contrib.color,
+                                                                width: `${ancho}%`,
+                                                                marginLeft: contrib.valor < 0 ? `${100-ancho}%` : '0'
+                                                            }}
+                                                        ></div>
+                                                    </div>
+                                                </div>
+                                                <span className="text-gray-700 text-sm w-16 text-right">
+                                                    {contrib.valor > 0 ? '+' : ''}{contrib.valor.toFixed(1)}k
+                                                </span>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                            
+                            <div className="bg-gradient-to-r from-purple-500 to-blue-500 p-6 rounded-lg text-center">
+                                <h4 className="text-white font-bold text-xl mb-2">Precio Predicho</h4>
+                                <p className="text-white text-3xl font-bold">${prediccion.toFixed(1)}k</p>
+                                <p className="text-white/80 text-sm mt-2">
+                                    Ecuación: {coeficientes.intercepto} + {coeficientes.habitaciones}×{habitaciones} + {coeficientes.seguridad}×{seguridad} + {coeficientes.cercania}×{cercania} + ({coeficientes.antiguedad})×{antiguedad}
+                                </p>
+                            </div>
+                            
+                            <div className="bg-gray-800 p-4 rounded-lg">
+                                <h5 className="text-white font-semibold mb-2">Representación Vectorial:</h5>
+                                <div className="text-green-300 font-mono text-sm">
+                                    <p>X = [{habitaciones}, {seguridad}, {cercania}, {antiguedad}]</p>
+                                    <p>W = [{coeficientes.habitaciones}, {coeficientes.seguridad}, {coeficientes.cercania}, {coeficientes.antiguedad}]</p>
+                                    <p>y = {coeficientes.intercepto} + X · W = {prediccion.toFixed(1)}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div className="mt-6 bg-blue-500/20 p-4 rounded-lg">
+                        <h4 className="text-white font-semibold mb-2">
+                            <Icon name="info-circle" className="w-5 h-5 inline mr-2" />
+                            Observaciones:
+                        </h4>
+                        <div className="text-white/90 text-sm space-y-1">
+                            <p>• Cada factor contribuye de manera <strong>lineal</strong> al precio final</p>
+                            <p>• La <strong>antigüedad</strong> tiene coeficiente negativo (reduce el precio)</p>
+                            <p>• El modelo suma todas las contribuciones: <strong>y = w₀ + w₁x₁ + w₂x₂ + ... + wₙxₙ</strong></p>
+                            <p>• En espacios multidimensionales, esto forma un <strong>hiperplano</strong></p>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        // Componente interactivo para demostrar métricas de evaluación
+        const InteractiveMetricsDemo = () => {
+            const [selectedMetric, setSelectedMetric] = useState('mse');
+            
+            // Datos de ejemplo con diferentes tipos de errores
+            const scenarios = {
+                good: {
+                    name: 'Predicción Buena',
+                    real: [10, 15, 20, 25, 30, 35, 40],
+                    predicted: [11, 14, 21, 24, 31, 34, 39],
+                    color: '#10b981'
+                },
+                outliers: {
+                    name: 'Con Valores Atípicos',
+                    real: [10, 15, 20, 25, 30, 35, 40],
+                    predicted: [11, 14, 21, 45, 31, 34, 15], // Errores grandes
+                    color: '#f59e0b'
+                },
+                systematic: {
+                    name: 'Error Sistemático',
+                    real: [10, 15, 20, 25, 30, 35, 40],
+                    predicted: [15, 20, 25, 30, 35, 40, 45], // Siempre +5
+                    color: '#ef4444'
+                }
+            };
+            
+            const [currentScenario, setCurrentScenario] = useState('good');
+            const scenario = scenarios[currentScenario];
+            
+            // Calcular métricas
+            const errors = scenario.real.map((r, i) => r - scenario.predicted[i]);
+            const absErrors = errors.map(e => Math.abs(e));
+            const squaredErrors = errors.map(e => e * e);
+            
+            const mse = squaredErrors.reduce((a, b) => a + b, 0) / errors.length;
+            const rmse = Math.sqrt(mse);
+            const mae = absErrors.reduce((a, b) => a + b, 0) / errors.length;
+            const meanReal = scenario.real.reduce((a, b) => a + b, 0) / scenario.real.length;
+            const ssTot = scenario.real.reduce((sum, val) => sum + (val - meanReal) ** 2, 0);
+            const ssRes = squaredErrors.reduce((a, b) => a + b, 0);
+            const r2 = 1 - (ssRes / ssTot);
+            
+            const metrics = {
+                mse: { value: mse, label: 'MSE', desc: 'Penaliza más los errores grandes' },
+                rmse: { value: rmse, label: 'RMSE', desc: 'En las mismas unidades que Y' },
+                mae: { value: mae, label: 'MAE', desc: 'Más robusto a outliers' },
+                r2: { value: r2, label: 'R²', desc: '% de varianza explicada' }
+            };
+            
+            return (
+                <div className="glass-effect p-8 rounded-xl">
+                    <h3 className="text-xl font-bold text-white mb-6 text-center">
+                        <Icon name="calculator" className="w-6 h-6 inline mr-2" />
+                        Demo Interactivo: Cómo se Calculan las Métricas
+                    </h3>
+                    
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        {/* Controles y Métricas */}
+                        <div className="space-y-6">
+                            <div className="bg-blue-500/20 p-4 rounded-lg">
+                                <h4 className="text-white font-semibold mb-3">Escenario:</h4>
+                                <div className="space-y-2">
+                                    {Object.entries(scenarios).map(([key, scen]) => (
+                                        <label key={key} className="flex items-center text-white cursor-pointer">
+                                            <input 
+                                                type="radio" 
+                                                name="scenario" 
+                                                value={key}
+                                                checked={currentScenario === key}
+                                                onChange={(e) => setCurrentScenario(e.target.value)}
+                                                className="mr-3"
+                                            />
+                                            <span style={{color: scen.color}}>●</span>
+                                            <span className="ml-2">{scen.name}</span>
+                                        </label>
+                                    ))}
+                                </div>
+                            </div>
+                            
+                            <div className="bg-purple-500/20 p-4 rounded-lg">
+                                <h4 className="text-white font-semibold mb-3">Métrica a Destacar:</h4>
+                                <select 
+                                    value={selectedMetric}
+                                    onChange={(e) => setSelectedMetric(e.target.value)}
+                                    className="w-full p-2 bg-white/10 text-white rounded border border-white/20"
+                                >
+                                    <option value="mse">MSE - Error Cuadrático Medio</option>
+                                    <option value="rmse">RMSE - Raíz del MSE</option>
+                                    <option value="mae">MAE - Error Absoluto Medio</option>
+                                    <option value="r2">R² - Coeficiente Determinación</option>
+                                </select>
+                            </div>
+                            
+                            <div className="space-y-3">
+                                {Object.entries(metrics).map(([key, metric]) => {
+                                    const isSelected = key === selectedMetric;
+                                    return (
+                                        <div 
+                                            key={key} 
+                                            className={`p-4 rounded-lg transition-all ${
+                                                isSelected 
+                                                    ? 'bg-yellow-500/30 ring-2 ring-yellow-400' 
+                                                    : 'bg-white/10'
+                                            }`}
+                                        >
+                                            <div className="flex justify-between items-start">
+                                                <div>
+                                                    <h5 className="text-white font-semibold">{metric.label}</h5>
+                                                    <p className="text-white/70 text-sm">{metric.desc}</p>
+                                                </div>
+                                                <div className="text-right">
+                                                    <p className="text-white font-bold text-lg">
+                                                        {key === 'r2' ? 
+                                                            `${(metric.value * 100).toFixed(1)}%` : 
+                                                            metric.value.toFixed(2)
+                                                        }
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                        
+                        {/* Visualización */}
+                        <div className="bg-white p-4 rounded-lg">
+                            <svg width="400" height="350" className="w-full h-auto">
+                                {/* Grid */}
+                                <defs>
+                                    <pattern id="metricsGrid" width="40" height="35" patternUnits="userSpaceOnUse">
+                                        <path d="M 40 0 L 0 0 0 35" fill="none" stroke="#f3f4f6" strokeWidth="1"/>
+                                    </pattern>
+                                </defs>
+                                <rect width="400" height="350" fill="url(#metricsGrid)" />
+                                
+                                {/* Ejes */}
+                                <line x1="40" y1="310" x2="360" y2="310" stroke="#374151" strokeWidth="2" />
+                                <line x1="40" y1="310" x2="40" y2="40" stroke="#374151" strokeWidth="2" />
+                                
+                                {/* Labels */}
+                                <text x="200" y="335" textAnchor="middle" className="text-sm fill-gray-600">
+                                    Valores Reales
+                                </text>
+                                <text x="25" y="175" textAnchor="middle" className="text-sm fill-gray-600" transform="rotate(-90 25 175)">
+                                    Predicciones
+                                </text>
+                                
+                                {/* Línea perfecta (y = x) */}
+                                <line x1="40" y1="310" x2="360" y2="40" stroke="#d1d5db" strokeWidth="2" strokeDasharray="5,5" />
+                                <text x="300" y="80" className="text-xs fill-gray-500">Línea perfecta</text>
+                                
+                                {/* Puntos y errores */}
+                                {scenario.real.map((realVal, i) => {
+                                    const predVal = scenario.predicted[i];
+                                    const x = 40 + ((realVal - 5) / 40) * 320;
+                                    const y = 310 - ((predVal - 5) / 40) * 270;
+                                    const error = Math.abs(realVal - predVal);
+                                    const errorType = selectedMetric === 'mae' ? error : 
+                                                     selectedMetric === 'mse' ? error * error :
+                                                     selectedMetric === 'rmse' ? Math.sqrt(error * error) : error;
+                                    
+                                    return (
+                                        <g key={i}>
+                                            {/* Línea de error si está seleccionada la métrica */}
+                                            {(selectedMetric === 'mse' || selectedMetric === 'mae' || selectedMetric === 'rmse') && (
+                                                <line
+                                                    x1={x}
+                                                    y1={310 - ((realVal - 5) / 40) * 270}
+                                                    x2={x}
+                                                    y2={y}
+                                                    stroke="#ef4444"
+                                                    strokeWidth="2"
+                                                    opacity="0.6"
+                                                />
+                                            )}
+                                            
+                                            {/* Punto */}
+                                            <circle
+                                                cx={x}
+                                                cy={y}
+                                                r={selectedMetric === 'mse' ? Math.min(4 + errorType / 5, 12) : "6"}
+                                                fill={scenario.color}
+                                                stroke="white"
+                                                strokeWidth="2"
+                                                opacity="0.8"
+                                            />
+                                            
+                                            {/* Valor del error si está destacado */}
+                                            {selectedMetric !== 'r2' && error > 2 && (
+                                                <text
+                                                    x={x + 10}
+                                                    y={y - 10}
+                                                    className="text-xs fill-red-600 font-semibold"
+                                                >
+                                                    {error.toFixed(1)}
+                                                </text>
+                                            )}
+                                        </g>
+                                    );
+                                })}
+                                
+                                {/* Info de la métrica seleccionada */}
+                                <g transform="translate(50, 50)">
+                                    <rect x="0" y="0" width="300" height="40" fill="rgba(0,0,0,0.8)" rx="4" />
+                                    <text x="10" y="15" className="text-xs fill-white font-semibold">
+                                        {metrics[selectedMetric].label}: {selectedMetric === 'r2' ? 
+                                            `${(metrics[selectedMetric].value * 100).toFixed(1)}%` : 
+                                            metrics[selectedMetric].value.toFixed(2)
+                                        }
+                                    </text>
+                                    <text x="10" y="30" className="text-xs fill-gray-300">
+                                        {metrics[selectedMetric].desc}
+                                    </text>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div className="mt-6 bg-green-500/20 p-4 rounded-lg">
+                        <h4 className="text-white font-semibold mb-2">
+                            <Icon name="eye" className="w-5 h-5 inline mr-2" />
+                            Observa:
+                        </h4>
+                        <div className="text-white/90 text-sm space-y-1">
+                            <p>• <strong>MSE:</strong> Penaliza más los errores grandes (círculos más grandes)</p>
+                            <p>• <strong>MAE:</strong> Trata todos los errores por igual</p>
+                            <p>• <strong>R²:</strong> Qué tan cerca están los puntos de la línea perfecta</p>
+                            <p>• Cambia entre escenarios para ver cómo afectan las métricas</p>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        // Componente principal de la presentación
+        const MLPresentation = () => {
+            const [currentSlide, setCurrentSlide] = useState(0);
+            const [isFullscreen, setIsFullscreen] = useState(false);
+            const [showProgress, setShowProgress] = useState(true);
+
+            const slides = [
+                // Slide 1: Portada
+                {
+                    id: 1,
+                    type: 'cover',
+                    title: 'Fundamentos de Machine Learning',
+                    subtitle: 'De los Datos a la Innovación',
+                    content: (
+                        <div className="text-center space-y-8 fade-in">
+                            <div className="flex justify-center mb-8">
+                                <div className="relative">
+                                    <Icon name="brain" className="w-32 h-32 text-blue-400 pulse-animation" />
+                                    <div className="absolute -inset-4 border-2 border-blue-300 rounded-full animate-spin opacity-30"></div>
+                                </div>
+                            </div>
+                            <p className="text-2xl text-white/80">Clase 2 - 10 de Junio del 2025</p>
+                            <div className="grid grid-cols-3 gap-6 mt-12 max-w-4xl mx-auto">
+                                <div className="glass-effect p-6 rounded-xl hover:scale-105 transition-transform">
+                                    <Icon name="chart-line" className="w-12 h-12 text-blue-300 mx-auto mb-4" />
+                                    <h3 className="text-lg font-semibold text-white mb-2">Regresión Lineal</h3>
+                                    <p className="text-white/70 text-sm">Fundamentos matemáticos y aplicaciones prácticas</p>
+                                </div>
+                                <div className="glass-effect p-6 rounded-xl hover:scale-105 transition-transform">
+                                    <Icon name="robot" className="w-12 h-12 text-green-300 mx-auto mb-4" />
+                                    <h3 className="text-lg font-semibold text-white mb-2">Tipos de IA</h3>
+                                    <p className="text-white/70 text-sm">Predictiva, Generativa y Agentes</p>
+                                </div>
+                                <div className="glass-effect p-6 rounded-xl hover:scale-105 transition-transform">
+                                    <Icon name="briefcase" className="w-12 h-12 text-purple-300 mx-auto mb-4" />
+                                    <h3 className="text-lg font-semibold text-white mb-2">Casos de Negocio</h3>
+                                    <p className="text-white/70 text-sm">Aplicaciones reales en la industria</p>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                },
+
+                // Slide 2: ¿Qué es la IA?
+                {
+                    id: 2,
+                    type: 'content',
+                    title: '¿Qué es la Inteligencia Artificial?',
+                    content: (
+                        <div className="space-y-8 fade-in">
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                                <div className="glass-effect p-8 rounded-xl">
+                                    <div className="flex items-center mb-6">
+                                        <Icon name="brain" className="w-10 h-10 text-blue-400 mr-4" />
+                                        <h3 className="text-2xl font-bold text-white">Inteligencia Artificial</h3>
+                                    </div>
+                                    <p className="text-white/90 text-lg leading-relaxed mb-4">
+                                        Desarrollo de sistemas informáticos capaces de realizar tareas que normalmente requieren inteligencia humana.
+                                    </p>
+                                    <div className="space-y-3">
+                                        <div className="flex items-center text-white/80">
+                                            <Icon name="eye" className="w-5 h-5 mr-3 text-blue-300" />
+                                            <span>Percepción visual</span>
+                                        </div>
+                                        <div className="flex items-center text-white/80">
+                                            <Icon name="microphone" className="w-5 h-5 mr-3 text-blue-300" />
+                                            <span>Reconocimiento del habla</span>
+                                        </div>
+                                        <div className="flex items-center text-white/80">
+                                            <Icon name="chess" className="w-5 h-5 mr-3 text-blue-300" />
+                                            <span>Toma de decisiones</span>
+                                        </div>
+                                        <div className="flex items-center text-white/80">
+                                            <Icon name="language" className="w-5 h-5 mr-3 text-blue-300" />
+                                            <span>Traducción entre idiomas</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="glass-effect p-8 rounded-xl">
+                                    <div className="flex items-center mb-6">
+                                        <Icon name="cogs" className="w-10 h-10 text-green-400 mr-4" />
+                                        <h3 className="text-2xl font-bold text-white">Machine Learning</h3>
+                                    </div>
+                                    <p className="text-white/90 text-lg leading-relaxed mb-4">
+                                        Subdisciplina que se centra en crear algoritmos que permiten a las máquinas aprender de datos sin programación explícita.
+                                    </p>
+                                    <div className="space-y-3">
+                                        <div className="flex items-center text-white/80">
+                                            <Icon name="database" className="w-5 h-5 mr-3 text-green-300" />
+                                            <span>Aprendizaje basado en datos</span>
+                                        </div>
+                                        <div className="flex items-center text-white/80">
+                                            <Icon name="chart-bar" className="w-5 h-5 mr-3 text-green-300" />
+                                            <span>Modelos estadísticos</span>
+                                        </div>
+                                        <div className="flex items-center text-white/80">
+                                            <Icon name="sync" className="w-5 h-5 mr-3 text-green-300" />
+                                            <span>Mejora automática del rendimiento</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="text-center">
+                                <div className="inline-block glass-effect p-6 rounded-xl">
+                                    <p className="text-xl text-white/90">
+                                        <strong>IA</strong> es el campo más amplio → <strong>ML</strong> es una técnica específica dentro de IA
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                },
+
+                // Slide 3: Tipos de IA por función
+                {
+                    id: 3,
+                    type: 'content',
+                    title: 'Tipos de IA según su Función',
+                    content: (
+                        <div className="space-y-8 fade-in">
+                            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                                <div className="glass-effect p-8 rounded-xl hover:scale-105 transition-transform">
+                                    <div className="text-center mb-6">
+                                        <Icon name="chart-line" className="w-16 h-16 text-blue-400 mx-auto mb-4" />
+                                        <h3 className="text-2xl font-bold text-white">IA Predictiva</h3>
+                                    </div>
+                                    <p className="text-white/90 text-center mb-6">
+                                        Analiza datos históricos y predice resultados futuros
+                                    </p>
+                                    <div className="space-y-3">
+                                        <div className="bg-blue-500/20 p-3 rounded-lg">
+                                            <p className="text-white/80 text-sm">📊 Predicción de ventas</p>
+                                        </div>
+                                        <div className="bg-blue-500/20 p-3 rounded-lg">
+                                            <p className="text-white/80 text-sm">🏠 Precios de vivienda</p>
+                                        </div>
+                                        <div className="bg-blue-500/20 p-3 rounded-lg">
+                                            <p className="text-white/80 text-sm">📈 Análisis de riesgo</p>
+                                        </div>
+                                        <div className="bg-blue-500/20 p-3 rounded-lg">
+                                            <p className="text-white/80 text-sm">🌡️ Pronóstico del tiempo</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="glass-effect p-8 rounded-xl hover:scale-105 transition-transform">
+                                    <div className="text-center mb-6">
+                                        <Icon name="magic" className="w-16 h-16 text-purple-400 mx-auto mb-4" />
+                                        <h3 className="text-2xl font-bold text-white">IA Generativa</h3>
+                                    </div>
+                                    <p className="text-white/90 text-center mb-6">
+                                        Crea contenido nuevo como texto, imágenes o música
+                                    </p>
+                                    <div className="space-y-3">
+                                        <div className="bg-purple-500/20 p-3 rounded-lg">
+                                            <p className="text-white/80 text-sm">✍️ Generación de texto</p>
+                                        </div>
+                                        <div className="bg-purple-500/20 p-3 rounded-lg">
+                                            <p className="text-white/80 text-sm">🎨 Creación de imágenes</p>
+                                        </div>
+                                        <div className="bg-purple-500/20 p-3 rounded-lg">
+                                            <p className="text-white/80 text-sm">🎵 Composición musical</p>
+                                        </div>
+                                        <div className="bg-purple-500/20 p-3 rounded-lg">
+                                            <p className="text-white/80 text-sm">💻 Generación de código</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="glass-effect p-8 rounded-xl hover:scale-105 transition-transform">
+                                    <div className="text-center mb-6">
+                                        <Icon name="user-cog" className="w-16 h-16 text-green-400 mx-auto mb-4" />
+                                        <h3 className="text-2xl font-bold text-white">IA Agentes</h3>
+                                    </div>
+                                    <p className="text-white/90 text-center mb-6">
+                                        Toma decisiones y realiza acciones de forma autónoma
+                                    </p>
+                                    <div className="space-y-3">
+                                        <div className="bg-green-500/20 p-3 rounded-lg">
+                                            <p className="text-white/80 text-sm">🤖 Chatbots inteligentes</p>
+                                        </div>
+                                        <div className="bg-green-500/20 p-3 rounded-lg">
+                                            <p className="text-white/80 text-sm">🚗 Vehículos autónomos</p>
+                                        </div>
+                                        <div className="bg-green-500/20 p-3 rounded-lg">
+                                            <p className="text-white/80 text-sm">🏭 Sistemas de control</p>
+                                        </div>
+                                        <div className="bg-green-500/20 p-3 rounded-lg">
+                                            <p className="text-white/80 text-sm">🎮 NPCs en videojuegos</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                },
+
+                // Slide 4: Niveles de inteligencia
+                {
+                    id: 4,
+                    type: 'content',
+                    title: 'Tipos de IA por Niveles de Inteligencia',
+                    content: (
+                        <div className="space-y-8 fade-in">
+                            <div className="flex justify-center mb-8">
+                                <div className="glass-effect p-6 rounded-xl">
+                                    <p className="text-xl text-white text-center">
+                                        <strong>Evolución de la Inteligencia Artificial</strong>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="space-y-6">
+                                <div className="glass-effect p-8 rounded-xl border-l-4 border-green-400">
+                                    <div className="flex items-center mb-4">
+                                        <Icon name="target" className="w-8 h-8 text-green-400 mr-4" />
+                                        <h3 className="text-2xl font-bold text-white">IA Estrecha (ANI)</h3>
+                                        <span className="ml-auto bg-green-500 text-white px-3 py-1 rounded-full text-sm">ACTUAL</span>
+                                    </div>
+                                    <p className="text-white/90 text-lg mb-4">
+                                        Diseñada para tareas específicas. Todos los sistemas actuales son IA estrecha.
+                                    </p>
+                                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                                        <div className="bg-green-500/20 p-3 rounded-lg text-center">
+                                            <p className="text-white/80 text-sm">🔍 Reconocimiento facial</p>
+                                        </div>
+                                        <div className="bg-green-500/20 p-3 rounded-lg text-center">
+                                            <p className="text-white/80 text-sm">🗣️ Asistentes de voz</p>
+                                        </div>
+                                        <div className="bg-green-500/20 p-3 rounded-lg text-center">
+                                            <p className="text-white/80 text-sm">📧 Filtros de spam</p>
+                                        </div>
+                                        <div className="bg-green-500/20 p-3 rounded-lg text-center">
+                                            <p className="text-white/80 text-sm">🎯 Sistemas de recomendación</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="glass-effect p-8 rounded-xl border-l-4 border-yellow-400">
+                                    <div className="flex items-center mb-4">
+                                        <Icon name="brain" className="w-8 h-8 text-yellow-400 mr-4" />
+                                        <h3 className="text-2xl font-bold text-white">IA General (AGI)</h3>
+                                        <span className="ml-auto bg-yellow-500 text-black px-3 py-1 rounded-full text-sm">TEÓRICA</span>
+                                    </div>
+                                    <p className="text-white/90 text-lg">
+                                        Igualaría la inteligencia humana en cualquier tarea. Capacidad de aprender y adaptarse sin intervención humana.
+                                    </p>
+                                </div>
+
+                                <div className="glass-effect p-8 rounded-xl border-l-4 border-red-400">
+                                    <div className="flex items-center mb-4">
+                                        <Icon name="rocket" className="w-8 h-8 text-red-400 mr-4" />
+                                        <h3 className="text-2xl font-bold text-white">Superinteligencia Artificial</h3>
+                                        <span className="ml-auto bg-red-500 text-white px-3 py-1 rounded-full text-sm">TEÓRICA</span>
+                                    </div>
+                                    <p className="text-white/90 text-lg">
+                                        Superaría ampliamente la inteligencia humana. Plantea desafíos éticos y de seguridad significativos.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                },
+
+                // Slide 5: Introducción al Machine Learning
+                {
+                    id: 5,
+                    type: 'content',
+                    title: 'Machine Learning en los Negocios',
+                    content: (
+                        <div className="space-y-8 fade-in">
+                            <div className="text-center mb-8">
+                                <div className="glass-effect p-6 rounded-xl inline-block">
+                                    <h3 className="text-2xl font-bold text-white mb-2">¿Por qué Machine Learning?</h3>
+                                    <p className="text-white/80">Transformando datos en valor empresarial</p>
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                                <div className="space-y-6">
+                                    <div className="glass-effect p-6 rounded-xl">
+                                        <h4 className="text-xl font-semibold text-white mb-4 flex items-center">
+                                            <Icon name="bullseye" className="w-6 h-6 mr-3 text-blue-400" />
+                                            Tirón del Mercado vs Empuje Tecnológico
+                                        </h4>
+                                        <div className="space-y-4">
+                                            <div className="bg-green-500/20 p-4 rounded-lg border-l-4 border-green-400">
+                                                <p className="text-green-100 font-medium">✅ Enfoque Correcto</p>
+                                                <p className="text-white/80">¿Qué necesito para resolver este problema?</p>
+                                            </div>
+                                            <div className="bg-red-500/20 p-4 rounded-lg border-l-4 border-red-400">
+                                                <p className="text-red-100 font-medium">❌ Enfoque Incorrecto</p>
+                                                <p className="text-white/80">Quiero usar esta técnica nueva</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="glass-effect p-6 rounded-xl">
+                                        <h4 className="text-xl font-semibold text-white mb-4 flex items-center">
+                                            <Icon name="chart-pie" className="w-6 h-6 mr-3 text-purple-400" />
+                                            Principio de Pareto
+                                        </h4>
+                                        <p className="text-white/90 text-lg">
+                                            <strong>80% del problema</strong> se puede resolver con <strong>20% del esfuerzo</strong>
+                                        </p>
+                                        <p className="text-white/70 mt-2">
+                                            Lo excelente es enemigo de lo bueno
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="glass-effect p-8 rounded-xl">
+                                    <h4 className="text-xl font-semibold text-white mb-6 flex items-center">
+                                        <Icon name="users" className="w-6 h-6 mr-3 text-green-400" />
+                                        Equipos de Data Products
+                                    </h4>
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div className="bg-blue-500/20 p-3 rounded-lg text-center">
+                                            <Icon name="database" className="w-8 h-8 text-blue-300 mx-auto mb-2" />
+                                            <p className="text-white text-sm">Ingeniero de Datos</p>
+                                        </div>
+                                        <div className="bg-green-500/20 p-3 rounded-lg text-center">
+                                            <Icon name="brain" className="w-8 h-8 text-green-300 mx-auto mb-2" />
+                                            <p className="text-white text-sm">Data Scientist</p>
+                                        </div>
+                                        <div className="bg-purple-500/20 p-3 rounded-lg text-center">
+                                            <Icon name="cogs" className="w-8 h-8 text-purple-300 mx-auto mb-2" />
+                                            <p className="text-white text-sm">ML Engineer</p>
+                                        </div>
+                                        <div className="bg-orange-500/20 p-3 rounded-lg text-center">
+                                            <Icon name="code" className="w-8 h-8 text-orange-300 mx-auto mb-2" />
+                                            <p className="text-white text-sm">Backend/Frontend</p>
+                                        </div>
+                                        <div className="bg-pink-500/20 p-3 rounded-lg text-center">
+                                            <Icon name="palette" className="w-8 h-8 text-pink-300 mx-auto mb-2" />
+                                            <p className="text-white text-sm">UX Designer</p>
+                                        </div>
+                                        <div className="bg-yellow-500/20 p-3 rounded-lg text-center">
+                                            <Icon name="lightbulb" className="w-8 h-8 text-yellow-300 mx-auto mb-2" />
+                                            <p className="text-white text-sm">Product Owner</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                },
+
+                // Slide 6: Caso de negocio
+                {
+                    id: 6,
+                    type: 'content',
+                    title: 'Caso de Negocio: Predicción de Precios de Vivienda',
+                    content: (
+                        <div className="space-y-8 fade-in">
+                            <div className="text-center mb-8">
+                                <div className="glass-effect p-6 rounded-xl inline-block">
+                                    <Icon name="home" className="w-16 h-16 text-blue-400 mx-auto mb-4" />
+                                    <p className="text-xl text-white">
+                                        ¿Cómo modelar la relación entre características de una vivienda y su precio?
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                                <div className="glass-effect p-8 rounded-xl">
+                                    <h3 className="text-2xl font-bold text-white mb-6 flex items-center">
+                                        <Icon name="bullseye" className="w-8 h-8 mr-3 text-green-400" />
+                                        Objetivos del Proyecto
+                                    </h3>
+                                    <div className="space-y-4">
+                                        <div className="bg-green-500/20 p-4 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-2">¿Qué quiero lograr?</h4>
+                                            <p className="text-white/80">Encontrar la relación entre el precio de la vivienda y el número de habitaciones</p>
+                                        </div>
+                                        <div className="bg-blue-500/20 p-4 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-2">¿Cómo medir el éxito?</h4>
+                                            <p className="text-white/80">Predicciones precisas para diferentes números de habitaciones</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="glass-effect p-8 rounded-xl">
+                                    <h3 className="text-2xl font-bold text-white mb-6 flex items-center">
+                                        <Icon name="chart-bar" className="w-8 h-8 mr-3 text-purple-400" />
+                                        Datos de Ejemplo
+                                    </h3>
+                                    <div className="space-y-3">
+                                        <div className="bg-white/10 p-3 rounded-lg flex justify-between">
+                                            <span className="text-white/80">2 habitaciones</span>
+                                            <span className="text-green-300 font-semibold">$25,000</span>
+                                        </div>
+                                        <div className="bg-white/10 p-3 rounded-lg flex justify-between">
+                                            <span className="text-white/80">3 habitaciones</span>
+                                            <span className="text-green-300 font-semibold">$35,000</span>
+                                        </div>
+                                        <div className="bg-white/10 p-3 rounded-lg flex justify-between">
+                                            <span className="text-white/80">3 habitaciones</span>
+                                            <span className="text-green-300 font-semibold">$28,000</span>
+                                        </div>
+                                        <div className="bg-blue-500/20 p-3 rounded-lg">
+                                            <p className="text-white/90 text-center">
+                                                <strong>Observación:</strong> Existe una relación directa entre habitaciones y precio
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="glass-effect p-6 rounded-xl">
+                                <div className="text-center">
+                                    <Icon name="lightbulb" className="w-12 h-12 text-yellow-400 mx-auto mb-4" />
+                                    <h3 className="text-xl font-bold text-white mb-2">Insight Clave</h3>
+                                    <p className="text-white/90 text-lg">
+                                        A mayor número de habitaciones → Mayor precio de la vivienda
+                                    </p>
+                                    <p className="text-white/70 mt-2">
+                                        Esto se puede modelar con una <strong>línea recta</strong> = Regresión Lineal
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                },
+
+                // Slide 7: Fundamentos de Regresión Lineal
+                {
+                    id: 7,
+                    type: 'content',
+                    title: 'Fundamentos de Regresión Lineal',
+                    content: (
+                        <div className="space-y-8 fade-in">
+                            <div className="text-center mb-8">
+                                <div className="glass-effect p-6 rounded-xl inline-block">
+                                    <Icon name="chart-line" className="w-16 h-16 text-blue-400 mx-auto mb-4" />
+                                    <h3 className="text-2xl font-bold text-white">La ecuación de una recta</h3>
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                                <div className="glass-effect p-8 rounded-xl">
+                                    <h3 className="text-xl font-bold text-white mb-6">Ecuación Básica</h3>
+                                    <div className="math-formula text-center mb-6">
+                                        <p className="text-2xl font-bold text-gray-800">y = w₀ + w₁x</p>
+                                    </div>
+                                    <div className="space-y-4">
+                                        <div className="bg-blue-500/20 p-4 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-2">w₀ (Intercepto)</h4>
+                                            <p className="text-white/80">Punto donde la recta corta el eje Y</p>
+                                            <p className="text-white/70 text-sm">En nuestro caso: precio base de la vivienda</p>
+                                        </div>
+                                        <div className="bg-green-500/20 p-4 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-2">w₁ (Pendiente)</h4>
+                                            <p className="text-white/80">Inclinación de la recta</p>
+                                            <p className="text-white/70 text-sm">Cuánto aumenta el precio por cada habitación adicional</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="glass-effect p-8 rounded-xl">
+                                    <h3 className="text-xl font-bold text-white mb-6">Interpretación Práctica</h3>
+                                    <div className="space-y-4">
+                                        <div className="bg-purple-500/20 p-4 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-2">Variables</h4>
+                                            <p className="text-white/80"><strong>x:</strong> Número de habitaciones</p>
+                                            <p className="text-white/80"><strong>y:</strong> Precio de la vivienda</p>
+                                        </div>
+                                        <div className="bg-orange-500/20 p-4 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-2">Ejemplo</h4>
+                                            <p className="text-white/80">Si w₀ = 10,000 y w₁ = 8,000:</p>
+                                            <p className="text-white/70">Para 3 habitaciones: $10,000 + $8,000 × 3 = $34,000</p>
+                                        </div>
+                                        <div className="bg-yellow-500/20 p-4 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-2">Objetivo</h4>
+                                            <p className="text-white/80">Encontrar los mejores valores de w₀ y w₁ que se ajusten a nuestros datos</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="glass-effect p-6 rounded-xl">
+                                <div className="text-center">
+                                    <h3 className="text-xl font-bold text-white mb-4">🎯 Meta del Machine Learning</h3>
+                                    <p className="text-white/90 text-lg">
+                                        Encontrar automáticamente los parámetros w₀ y w₁ que mejor se ajusten a los datos
+                                    </p>
+                                    <p className="text-white/70 mt-2">
+                                        Sin programación explícita → Aprendizaje automático
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                },
+
+                // Slide 8: Regresión Lineal Múltiple con Interactividad
+                {
+                    id: 8,
+                    type: 'content',
+                    title: 'Regresión Lineal Múltiple',
+                    content: (
+                        <div className="space-y-8 fade-in">
+                            <div className="text-center mb-8">
+                                <div className="glass-effect p-6 rounded-xl inline-block">
+                                    <h3 className="text-2xl font-bold text-white mb-2">La realidad es más compleja</h3>
+                                    <p className="text-white/80">Múltiples factores afectan el precio de una vivienda</p>
+                                </div>
+                            </div>
+
+                            <MultipleRegressionDemo />
+
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                                <div className="glass-effect p-8 rounded-xl">
+                                    <h3 className="text-xl font-bold text-white mb-6">Variables Múltiples</h3>
+                                    <div className="space-y-4">
+                                        <div className="bg-blue-500/20 p-3 rounded-lg flex items-center">
+                                            <Icon name="bed" className="w-6 h-6 text-blue-300 mr-3" />
+                                            <span className="text-white">x₁ = Número de habitaciones</span>
+                                        </div>
+                                        <div className="bg-red-500/20 p-3 rounded-lg flex items-center">
+                                            <Icon name="shield-alt" className="w-6 h-6 text-red-300 mr-3" />
+                                            <span className="text-white">x₂ = Seguridad del barrio</span>
+                                        </div>
+                                        <div className="bg-green-500/20 p-3 rounded-lg flex items-center">
+                                            <Icon name="building" className="w-6 h-6 text-green-300 mr-3" />
+                                            <span className="text-white">x₃ = Cercanía a centros comerciales</span>
+                                        </div>
+                                        <div className="bg-purple-500/20 p-3 rounded-lg flex items-center">
+                                            <Icon name="calendar" className="w-6 h-6 text-purple-300 mr-3" />
+                                            <span className="text-white">x₄ = Antigüedad de la construcción</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="glass-effect p-8 rounded-xl">
+                                    <h3 className="text-xl font-bold text-white mb-6">Nueva Ecuación</h3>
+                                    <div className="math-formula text-center mb-6">
+                                        <p className="text-lg font-bold text-gray-800">y = w₀ + w₁x₁ + w₂x₂ + w₃x₃ + ... + wₙxₙ</p>
+                                    </div>
+                                    <div className="bg-yellow-500/20 p-4 rounded-lg">
+                                        <h4 className="text-white font-semibold mb-2">Interpretación Geométrica</h4>
+                                        <p className="text-white/80">• 2 variables → Línea recta</p>
+                                        <p className="text-white/80">• 3 variables → Plano</p>
+                                        <p className="text-white/80">• 4+ variables → Hiperplano</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="glass-effect p-8 rounded-xl">
+                                <h3 className="text-xl font-bold text-white mb-6 text-center">Representación Vectorial</h3>
+                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                                    <div>
+                                        <h4 className="text-white font-semibold mb-4">Forma Individual</h4>
+                                        <div className="math-formula text-sm">
+                                            <p>y₁ = w₀ + w₁x₁₁ + w₂x₁₂ + w₃x₁₃ + ...</p>
+                                            <p>y₂ = w₀ + w₁x₂₁ + w₂x₂₂ + w₃x₂₃ + ...</p>
+                                            <p>y₃ = w₀ + w₁x₃₁ + w₂x₃₂ + w₃x₃₃ + ...</p>
+                                            <p>...</p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h4 className="text-white font-semibold mb-4">Forma Vectorial</h4>
+                                        <div className="math-formula text-center">
+                                            <p className="text-2xl font-bold text-gray-800">Y = XW</p>
+                                        </div>
+                                        <div className="mt-4 text-white/80 text-sm">
+                                            <p>• <strong>Y:</strong> Vector de precios</p>
+                                            <p>• <strong>X:</strong> Matriz de características</p>
+                                            <p>• <strong>W:</strong> Vector de parámetros</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div className="mt-6 bg-blue-500/20 p-4 rounded-lg">
+                                    <p className="text-white/90 text-center">
+                                        <Icon name="microchip" className="w-5 h-5 inline mr-2" />
+                                        <strong>Ventaja:</strong> Las GPUs están optimizadas para procesamiento de matrices
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                },
+
+                // Slide 9: Método de Cuadrados Ordinarios con Interactividad
+                {
+                    id: 9,
+                    type: 'content',
+                    title: 'Método de Cuadrados Ordinarios',
+                    content: (
+                        <div className="space-y-8 fade-in">
+                            <div className="text-center mb-8">
+                                <div className="glass-effect p-6 rounded-xl inline-block">
+                                    <h3 className="text-2xl font-bold text-white mb-2">¿Cómo encontrar la mejor línea?</h3>
+                                    <p className="text-white/80">Minimizando el error entre predicciones y valores reales</p>
+                                </div>
+                            </div>
+
+                            <InteractiveRegressionDemo />
+
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                                <div className="glass-effect p-8 rounded-xl">
+                                    <h3 className="text-xl font-bold text-white mb-6">Concepto del Error</h3>
+                                    <div className="space-y-4">
+                                        <div className="bg-blue-500/20 p-4 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-2">Error Individual</h4>
+                                            <div className="math-formula text-center">
+                                                <p className="text-lg font-bold text-gray-800">Error = (y_real - y_predicho)</p>
+                                            </div>
+                                            <p className="text-white/80 text-sm mt-2">Para cada punto de datos</p>
+                                        </div>
+                                        <div className="bg-green-500/20 p-4 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-2">¿Por qué elevar al cuadrado?</h4>
+                                            <p className="text-white/80">• Evita que errores positivos y negativos se cancelen</p>
+                                            <p className="text-white/80">• Penaliza más los errores grandes</p>
+                                            <p className="text-white/80">• Hace la función matemáticamente tratable</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="glass-effect p-8 rounded-xl">
+                                    <h3 className="text-xl font-bold text-white mb-6">Función de Costo</h3>
+                                    <div className="math-formula text-center mb-6">
+                                        <p className="text-xl font-bold text-gray-800">L(β) = Σ(y_i - (β₀ + β₁x_i))²</p>
+                                    </div>
+                                    <div className="space-y-3">
+                                        <div className="bg-purple-500/20 p-3 rounded-lg">
+                                            <p className="text-white/80"><strong>β₀:</strong> Intercepto (altura inicial)</p>
+                                        </div>
+                                        <div className="bg-purple-500/20 p-3 rounded-lg">
+                                            <p className="text-white/80"><strong>β₁:</strong> Pendiente (inclinación)</p>
+                                        </div>
+                                        <div className="bg-orange-500/20 p-3 rounded-lg">
+                                            <p className="text-white/80"><strong>Objetivo:</strong> Encontrar β₀ y β₁ que minimicen L(β)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="glass-effect p-8 rounded-xl">
+                                <h3 className="text-xl font-bold text-white mb-6 text-center">Solución Analítica</h3>
+                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                                    <div>
+                                        <h4 className="text-white font-semibold mb-4">Proceso Matemático</h4>
+                                        <div className="space-y-3 text-white/80">
+                                            <p>1. Derivar L(β) respecto a β₀ y β₁</p>
+                                            <p>2. Igualar ambas derivadas a cero</p>
+                                            <p>3. Resolver el sistema de ecuaciones</p>
+                                            <p>4. Obtener fórmula cerrada</p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h4 className="text-white font-semibold mb-4">Fórmula Final</h4>
+                                        <div className="math-formula text-center">
+                                            <p className="text-xl font-bold text-gray-800">W = (X'X)⁻¹X'Y</p>
+                                        </div>
+                                        <p className="text-white/70 text-sm mt-2 text-center">
+                                            Donde X' = X transpuesta
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div className="mt-6 bg-green-500/20 p-4 rounded-lg">
+                                    <p className="text-white/90 text-center">
+                                        <Icon name="check-circle" className="w-5 h-5 inline mr-2" />
+                                        <strong>Ventaja:</strong> Solución exacta en un solo paso (no iterativo)
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                },
+
+                // Slide 10: Aprendizaje Supervisado
+                {
+                    id: 10,
+                    type: 'content',
+                    title: 'Aprendizaje Supervisado',
+                    content: (
+                        <div className="space-y-8 fade-in">
+                            <div className="text-center mb-8">
+                                <div className="glass-effect p-6 rounded-xl inline-block">
+                                    <Icon name="graduation-cap" className="w-16 h-16 text-blue-400 mx-auto mb-4" />
+                                    <h3 className="text-2xl font-bold text-white">Aprender de ejemplos etiquetados</h3>
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                                <div className="glass-effect p-8 rounded-xl">
+                                    <h3 className="text-xl font-bold text-white mb-6">Componentes Clave</h3>
+                                    <div className="space-y-4">
+                                        <div className="bg-blue-500/20 p-4 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-2">N Observaciones</h4>
+                                            <p className="text-white/80">Conjunto de ejemplos de entrenamiento</p>
+                                        </div>
+                                        <div className="bg-green-500/20 p-4 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-2">Características (Features)</h4>
+                                            <p className="text-white/80">Vector x_i que describe cada entidad</p>
+                                        </div>
+                                        <div className="bg-purple-500/20 p-4 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-2">Variable Objetivo</h4>
+                                            <p className="text-white/80">y_i = lo que queremos predecir</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="glass-effect p-8 rounded-xl">
+                                    <h3 className="text-xl font-bold text-white mb-6">Ejemplos Prácticos</h3>
+                                    <div className="space-y-4">
+                                        <div className="bg-yellow-500/20 p-4 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-2">🐱 Detección de Gatos</h4>
+                                            <p className="text-white/80">x_i = imagen, y_i = 1 si hay gato, 0 si no</p>
+                                        </div>
+                                        <div className="bg-red-500/20 p-4 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-2">📧 Filtro de Spam</h4>
+                                            <p className="text-white/80">x_i = email, y_i = 1 si es spam, 0 si no</p>
+                                        </div>
+                                        <div className="bg-orange-500/20 p-4 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-2">🏠 Precio de Casas</h4>
+                                            <p className="text-white/80">x_i = características, y_i = precio</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="glass-effect p-8 rounded-xl">
+                                <h3 className="text-xl font-bold text-white mb-6 text-center">Dos Tipos Principales</h3>
+                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                    <div className="bg-blue-500/20 p-6 rounded-xl">
+                                        <div className="text-center mb-4">
+                                            <Icon name="chart-bar" className="w-12 h-12 text-blue-300 mx-auto mb-2" />
+                                            <h4 className="text-xl font-bold text-white">Regresión</h4>
+                                        </div>
+                                        <p className="text-white/90 mb-4">Predecir valores numéricos continuos</p>
+                                        <div className="space-y-2">
+                                            <p className="text-white/70">• Precios de viviendas</p>
+                                            <p className="text-white/70">• Temperatura</p>
+                                            <p className="text-white/70">• Ventas futuras</p>
+                                            <p className="text-white/70">• Edad de una persona</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="bg-green-500/20 p-6 rounded-xl">
+                                        <div className="text-center mb-4">
+                                            <Icon name="tags" className="w-12 h-12 text-green-300 mx-auto mb-2" />
+                                            <h4 className="text-xl font-bold text-white">Clasificación</h4>
+                                        </div>
+                                        <p className="text-white/90 mb-4">Predecir categorías o clases</p>
+                                        <div className="space-y-2">
+                                            <p className="text-white/70">• Spam vs No Spam</p>
+                                            <p className="text-white/70">• Perro vs Gato</p>
+                                            <p className="text-white/70">• Diagnóstico médico</p>
+                                            <p className="text-white/70">• Sentimiento positivo/negativo</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                },
+
+                // Slide 11: Otros tipos de modelos
+                {
+                    id: 11,
+                    type: 'content',
+                    title: 'Otros Modelos de Machine Learning',
+                    content: (
+                        <div className="space-y-8 fade-in">
+                            <div className="text-center mb-8">
+                                <div className="glass-effect p-6 rounded-xl inline-block">
+                                    <h3 className="text-2xl font-bold text-white">Más allá de la Regresión Lineal</h3>
+                                    <p className="text-white/80">Diferentes problemas requieren diferentes herramientas</p>
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                <div className="glass-effect p-6 rounded-xl hover:scale-105 transition-transform">
+                                    <div className="text-center mb-4">
+                                        <Icon name="sitemap" className="w-12 h-12 text-green-400 mx-auto mb-2" />
+                                        <h3 className="text-xl font-bold text-white">Árboles de Decisión</h3>
+                                    </div>
+                                    <p className="text-white/80 mb-4">Toman decisiones siguiendo reglas tipo "si-entonces"</p>
+                                    <div className="bg-green-500/20 p-3 rounded-lg">
+                                        <p className="text-white/70 text-sm">Ejemplo: ¿Salir en bicicleta?</p>
+                                        <p className="text-white/70 text-sm">Si llueve → No</p>
+                                        <p className="text-white/70 text-sm">Si no llueve y temp > 20° → Sí</p>
+                                    </div>
+                                </div>
+
+                                <div className="glass-effect p-6 rounded-xl hover:scale-105 transition-transform">
+                                    <div className="text-center mb-4">
+                                        <Icon name="vector-square" className="w-12 h-12 text-blue-400 mx-auto mb-2" />
+                                        <h3 className="text-xl font-bold text-white">Support Vector Machines</h3>
+                                    </div>
+                                    <p className="text-white/80 mb-4">Encuentran la mejor frontera para separar clases</p>
+                                    <div className="bg-blue-500/20 p-3 rounded-lg">
+                                        <p className="text-white/70 text-sm">Efectivos para clasificación con datos complejos</p>
+                                    </div>
+                                </div>
+
+                                <div className="glass-effect p-6 rounded-xl hover:scale-105 transition-transform">
+                                    <div className="text-center mb-4">
+                                        <Icon name="network-wired" className="w-12 h-12 text-purple-400 mx-auto mb-2" />
+                                        <h3 className="text-xl font-bold text-white">Redes Neuronales</h3>
+                                    </div>
+                                    <p className="text-white/80 mb-4">Imitan el funcionamiento del cerebro humano</p>
+                                    <div className="bg-purple-500/20 p-3 rounded-lg">
+                                        <p className="text-white/70 text-sm">Base del Deep Learning y la IA moderna</p>
+                                    </div>
+                                </div>
+
+                                <div className="glass-effect p-6 rounded-xl hover:scale-105 transition-transform">
+                                    <div className="text-center mb-4">
+                                        <Icon name="layer-group" className="w-12 h-12 text-orange-400 mx-auto mb-2" />
+                                        <h3 className="text-xl font-bold text-white">Ensemble Methods</h3>
+                                    </div>
+                                    <p className="text-white/80 mb-4">Combinan múltiples modelos para mejores resultados</p>
+                                    <div className="bg-orange-500/20 p-3 rounded-lg">
+                                        <p className="text-white/70 text-sm">Random Forest, Gradient Boosting, etc.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="glass-effect p-6 rounded-xl">
+                                <h3 className="text-xl font-bold text-white mb-4 text-center">
+                                    <Icon name="lightbulb" className="w-6 h-6 inline mr-2" />
+                                    Principio Clave
+                                </h3>
+                                <p className="text-white/90 text-lg text-center">
+                                    <strong>No existe un modelo que sea mejor para todos los problemas</strong>
+                                </p>
+                                <p className="text-white/70 text-center mt-2">
+                                    La elección del modelo depende del tipo de datos, el problema específico, 
+                                    y los requisitos de interpretabilidad y rendimiento.
+                                </p>
+                            </div>
+                        </div>
+                    )
+                },
+
+                // Slide 12: Métricas de evaluación con Interactividad
+                {
+                    id: 12,
+                    type: 'content',
+                    title: 'Métricas de Evaluación',
+                    content: (
+                        <div className="space-y-8 fade-in">
+                            <div className="text-center mb-8">
+                                <div className="glass-effect p-6 rounded-xl inline-block">
+                                    <Icon name="tachometer-alt" className="w-16 h-16 text-blue-400 mx-auto mb-4" />
+                                    <h3 className="text-2xl font-bold text-white">¿Cómo medimos el éxito?</h3>
+                                </div>
+                            </div>
+
+                            <InteractiveMetricsDemo />
+
+                            <div className="space-y-6">
+                                <div className="glass-effect p-8 rounded-xl">
+                                    <h3 className="text-xl font-bold text-white mb-6 text-center">Métricas para Regresión</h3>
+                                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                        <div className="space-y-4">
+                                            <div className="bg-blue-500/20 p-4 rounded-lg">
+                                                <h4 className="text-white font-semibold mb-2">MSE - Error Cuadrático Medio</h4>
+                                                <div className="math-formula text-center mb-2">
+                                                    <p className="text-sm font-bold text-gray-800">MSE = (1/n) × Σ(y - ŷ)²</p>
+                                                </div>
+                                                <p className="text-white/80 text-sm">Penaliza más los errores grandes</p>
+                                            </div>
+                                            <div className="bg-green-500/20 p-4 rounded-lg">
+                                                <h4 className="text-white font-semibold mb-2">MAE - Error Absoluto Medio</h4>
+                                                <div className="math-formula text-center mb-2">
+                                                    <p className="text-sm font-bold text-gray-800">MAE = (1/n) × Σ|y - ŷ|</p>
+                                                </div>
+                                                <p className="text-white/80 text-sm">Más robusto a valores extremos</p>
+                                            </div>
+                                        </div>
+                                        <div className="space-y-4">
+                                            <div className="bg-purple-500/20 p-4 rounded-lg">
+                                                <h4 className="text-white font-semibold mb-2">R² - Coeficiente de Determinación</h4>
+                                                <div className="math-formula text-center mb-2">
+                                                    <p className="text-sm font-bold text-gray-800">R² = 1 - (SS_res / SS_tot)</p>
+                                                </div>
+                                                <p className="text-white/80 text-sm">% de varianza explicada (0 a 1)</p>
+                                            </div>
+                                            <div className="bg-orange-500/20 p-4 rounded-lg">
+                                                <h4 className="text-white font-semibold mb-2">RMSE - Raíz del MSE</h4>
+                                                <div className="math-formula text-center mb-2">
+                                                    <p className="text-sm font-bold text-gray-800">RMSE = √MSE</p>
+                                                </div>
+                                                <p className="text-white/80 text-sm">En las mismas unidades que y</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="glass-effect p-8 rounded-xl">
+                                    <h3 className="text-xl font-bold text-white mb-6 text-center">Métricas para Clasificación</h3>
+                                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                                        <div className="bg-blue-500/20 p-4 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-2 text-center">Accuracy</h4>
+                                            <div className="math-formula text-center mb-2">
+                                                <p className="text-sm font-bold text-gray-800">Correctas / Total</p>
+                                            </div>
+                                            <p className="text-white/80 text-sm text-center">% de predicciones correctas</p>
+                                        </div>
+                                        <div className="bg-green-500/20 p-4 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-2 text-center">Precision</h4>
+                                            <div className="math-formula text-center mb-2">
+                                                <p className="text-sm font-bold text-gray-800">TP / (TP + FP)</p>
+                                            </div>
+                                            <p className="text-white/80 text-sm text-center">De las predichas como positivas, ¿cuántas son correctas?</p>
+                                        </div>
+                                        <div className="bg-purple-500/20 p-4 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-2 text-center">Recall</h4>
+                                            <div className="math-formula text-center mb-2">
+                                                <p className="text-sm font-bold text-gray-800">TP / (TP + FN)</p>
+                                            </div>
+                                            <p className="text-white/80 text-sm text-center">De las realmente positivas, ¿cuántas detecté?</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="glass-effect p-6 rounded-xl">
+                                <div className="text-center">
+                                    <Icon name="exclamation-triangle" className="w-8 h-8 text-yellow-400 mx-auto mb-4" />
+                                    <h3 className="text-xl font-bold text-white mb-2">Importante</h3>
+                                    <p className="text-white/90">
+                                        La métrica de evaluación no siempre es la misma que optimizamos durante el entrenamiento
+                                    </p>
+                                    <p className="text-white/70 mt-2 text-sm">
+                                        Algunas métricas son difíciles de optimizar directamente o no son diferenciables
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                },
+
+                // Slide 13: Metodología práctica
+                {
+                    id: 13,
+                    type: 'content',
+                    title: 'Metodología Práctica',
+                    content: (
+                        <div className="space-y-8 fade-in">
+                            <div className="text-center mb-8">
+                                <div className="glass-effect p-6 rounded-xl inline-block">
+                                    <Icon name="route" className="w-16 h-16 text-green-400 mx-auto mb-4" />
+                                    <h3 className="text-2xl font-bold text-white">Cómo abordar un proyecto de ML</h3>
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                                <div className="glass-effect p-8 rounded-xl">
+                                    <h3 className="text-xl font-bold text-white mb-6">
+                                        <Icon name="rocket" className="w-6 h-6 inline mr-2" />
+                                        Crear un End-to-End
+                                    </h3>
+                                    <div className="space-y-4">
+                                        <div className="bg-green-500/20 p-4 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-2">1. Comenzar Simple</h4>
+                                            <p className="text-white/80 text-sm">Modelo básico que funcione de principio a fin</p>
+                                        </div>
+                                        <div className="bg-blue-500/20 p-4 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-2">2. Validar Todo</h4>
+                                            <p className="text-white/80 text-sm">ETL → Entrenamiento → Evaluación → Despliegue</p>
+                                        </div>
+                                        <div className="bg-purple-500/20 p-4 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-2">3. Iterar y Mejorar</h4>
+                                            <p className="text-white/80 text-sm">Identificar el cuello de botella más importante</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="glass-effect p-8 rounded-xl">
+                                    <h3 className="text-xl font-bold text-white mb-6">
+                                        <Icon name="microscope" className="w-6 h-6 inline mr-2" />
+                                        Análisis de Errores
+                                    </h3>
+                                    <div className="space-y-4">
+                                        <div className="bg-orange-500/20 p-4 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-2">1. Revisar Manualmente</h4>
+                                            <p className="text-white/80 text-sm">Analizar casos donde el modelo falla</p>
+                                        </div>
+                                        <div className="bg-red-500/20 p-4 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-2">2. Categorizar Problemas</h4>
+                                            <p className="text-white/80 text-sm">¿Qué tipo de errores son más frecuentes?</p>
+                                        </div>
+                                        <div className="bg-yellow-500/20 p-4 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-2">3. Priorizar Soluciones</h4>
+                                            <p className="text-white/80 text-sm">Atacar el problema más común primero</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="glass-effect p-8 rounded-xl">
+                                <h3 className="text-xl font-bold text-white mb-6 text-center">Marco para Tomar Decisiones</h3>
+                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                                    <div className="space-y-4">
+                                        <div className="bg-blue-500/20 p-4 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-2">📋 Formulación</h4>
+                                            <p className="text-white/80 text-sm">• Hipótesis clara</p>
+                                            <p className="text-white/80 text-sm">• Experimento para probarla</p>
+                                            <p className="text-white/80 text-sm">• Criterios de decisión</p>
+                                        </div>
+                                        <div className="bg-green-500/20 p-4 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-2">⚖️ Evaluación</h4>
+                                            <p className="text-white/80 text-sm">• Costo del experimento</p>
+                                            <p className="text-white/80 text-sm">• Riesgo de no hacer nada</p>
+                                            <p className="text-white/80 text-sm">• Costo de oportunidad</p>
+                                        </div>
+                                    </div>
+                                    <div className="bg-purple-500/20 p-6 rounded-lg">
+                                        <h4 className="text-white font-semibold mb-4 text-center">Ejemplo Práctico</h4>
+                                        <div className="space-y-2 text-sm">
+                                            <p className="text-white/80"><strong>Contexto:</strong> Métrica baja en test</p>
+                                            <p className="text-white/80"><strong>Hipótesis:</strong> Train y test difieren</p>
+                                            <p className="text-white/80"><strong>Experimento:</strong> Modelo para distinguir train/test</p>
+                                            <p className="text-white/80"><strong>Decisión:</strong> Cambiar división de datos</p>
+                                            <p className="text-white/80"><strong>Costo:</strong> Bajo</p>
+                                            <p className="text-white/80"><strong>Riesgo:</strong> Performance impredecible</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                },
+
+                // Slide 14: Ejemplo práctico implementación
+                {
+                    id: 14,
+                    type: 'content',
+                    title: 'Ejemplo Práctico: Predicción de Precios de Automóviles',
+                    content: (
+                        <div className="space-y-8 fade-in">
+                            <div className="text-center mb-8">
+                                <div className="glass-effect p-6 rounded-xl inline-block">
+                                    <Icon name="car" className="w-16 h-16 text-blue-400 mx-auto mb-4" />
+                                    <h3 className="text-2xl font-bold text-white">Caso Real: Concesionaria de Autos</h3>
+                                    <p className="text-white/80">Prediciendo precios basados en antigüedad</p>
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                                <div className="glass-effect p-8 rounded-xl">
+                                    <h3 className="text-xl font-bold text-white mb-6">Problema de Negocio</h3>
+                                    <div className="space-y-4">
+                                        <div className="bg-blue-500/20 p-4 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-2">Situación</h4>
+                                            <p className="text-white/80 text-sm">Concesionaria necesita establecer precios justos para autos usados</p>
+                                        </div>
+                                        <div className="bg-green-500/20 p-4 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-2">Observación</h4>
+                                            <p className="text-white/80 text-sm">Los autos pierden valor con la antigüedad</p>
+                                        </div>
+                                        <div className="bg-purple-500/20 p-4 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-2">Objetivo</h4>
+                                            <p className="text-white/80 text-sm">Predecir precio basado en años de antigüedad</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="glass-effect p-8 rounded-xl">
+                                    <h3 className="text-xl font-bold text-white mb-6">Implementación</h3>
+                                    <div className="space-y-4">
+                                        <div className="bg-orange-500/20 p-4 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-2">Datos Generados</h4>
+                                            <p className="text-white/80 text-sm">100 automóviles con antigüedad 0-15 años</p>
+                                        </div>
+                                        <div className="bg-red-500/20 p-4 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-2">Fórmula Base</h4>
+                                            <p className="text-white/80 text-sm">Precio = $25,000 - $1,500 × años + ruido</p>
+                                        </div>
+                                        <div className="bg-yellow-500/20 p-4 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-2">Validación</h4>
+                                            <p className="text-white/80 text-sm">Comparación manual vs sklearn</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="glass-effect p-8 rounded-xl">
+                                <h3 className="text-xl font-bold text-white mb-6 text-center">Implementación del Método de Cuadrados Ordinarios</h3>
+                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                                    <div className="bg-gray-800 p-4 rounded-lg">
+                                        <h4 className="text-white font-semibold mb-3">Código Python (Simplificado)</h4>
+                                        <pre className="text-green-300 text-sm">
+{`# Preparar datos
+X = antiguedad.reshape(-1, 1)
+y = precios
+
+# Agregar columna de unos
+X_con_intercepto = np.column_stack([
+    np.ones(len(X)), X
+])
+
+# Fórmula: W = (X'X)^(-1) X'Y
+XTX = X_con_intercepto.T @ X_con_intercepto
+XTY = X_con_intercepto.T @ y
+W = np.linalg.inv(XTX) @ XTY
+
+w0, w1 = W[0], W[1]  # Intercepto y pendiente`}
+                        </pre>
+                                    </div>
+                                    <div className="space-y-4">
+                                        <div className="bg-green-500/20 p-4 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-2">Resultados Típicos</h4>
+                                            <p className="text-white/80 text-sm">w₀ ≈ $25,000 (precio base)</p>
+                                            <p className="text-white/80 text-sm">w₁ ≈ -$1,500 (depreciación anual)</p>
+                                        </div>
+                                        <div className="bg-blue-500/20 p-4 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-2">Interpretación</h4>
+                                            <p className="text-white/80 text-sm">Cada año reduce el valor en $1,500</p>
+                                            <p className="text-white/80 text-sm">R² típico: 0.85-0.95</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="glass-effect p-6 rounded-xl">
+                                <div className="text-center">
+                                    <Icon name="calculator" className="w-8 h-8 text-green-400 mx-auto mb-4" />
+                                    <h3 className="text-xl font-bold text-white mb-2">Calculadora Práctica</h3>
+                                    <p className="text-white/90 text-lg">
+                                        Precio = $25,000 - $1,500 × años_antigüedad
+                                    </p>
+                                    <p className="text-white/70 mt-2">
+                                        Auto de 5 años = $25,000 - $1,500 × 5 = <strong>$17,500</strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                },
+
+                // Slide 15: Conclusiones y próximos pasos
+                {
+                    id: 15,
+                    type: 'content',
+                    title: 'Conclusiones y Próximos Pasos',
+                    content: (
+                        <div className="space-y-8 fade-in">
+                            <div className="text-center mb-8">
+                                <div className="glass-effect p-6 rounded-xl inline-block">
+                                    <Icon name="flag-checkered" className="w-16 h-16 text-green-400 mx-auto mb-4" />
+                                    <h3 className="text-2xl font-bold text-white">¿Qué hemos aprendido?</h3>
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                                <div className="glass-effect p-8 rounded-xl">
+                                    <h3 className="text-xl font-bold text-white mb-6">
+                                        <Icon name="check-circle" className="w-6 h-6 inline mr-2 text-green-400" />
+                                        Conceptos Dominados
+                                    </h3>
+                                    <div className="space-y-3">
+                                        <div className="flex items-center text-white/90">
+                                            <Icon name="check" className="w-4 h-4 mr-3 text-green-300" />
+                                            <span>Diferencia entre IA y Machine Learning</span>
+                                        </div>
+                                        <div className="flex items-center text-white/90">
+                                            <Icon name="check" className="w-4 h-4 mr-3 text-green-300" />
+                                            <span>Tipos de IA: Predictiva, Generativa, Agentes</span>
+                                        </div>
+                                        <div className="flex items-center text-white/90">
+                                            <Icon name="check" className="w-4 h-4 mr-3 text-green-300" />
+                                            <span>Regresión lineal simple y múltiple</span>
+                                        </div>
+                                        <div className="flex items-center text-white/90">
+                                            <Icon name="check" className="w-4 h-4 mr-3 text-green-300" />
+                                            <span>Método de cuadrados ordinarios</span>
+                                        </div>
+                                        <div className="flex items-center text-white/90">
+                                            <Icon name="check" className="w-4 h-4 mr-3 text-green-300" />
+                                            <span>Métricas de evaluación</span>
+                                        </div>
+                                        <div className="flex items-center text-white/90">
+                                            <Icon name="check" className="w-4 h-4 mr-3 text-green-300" />
+                                            <span>Metodología práctica</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="glass-effect p-8 rounded-xl">
+                                    <h3 className="text-xl font-bold text-white mb-6">
+                                        <Icon name="road" className="w-6 h-6 inline mr-2 text-blue-400" />
+                                        Próximos Pasos
+                                    </h3>
+                                    <div className="space-y-4">
+                                        <div className="bg-blue-500/20 p-3 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-1">Descenso del Gradiente</h4>
+                                            <p className="text-white/80 text-sm">Alternativa iterativa a cuadrados ordinarios</p>
+                                        </div>
+                                        <div className="bg-purple-500/20 p-3 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-1">Regularización</h4>
+                                            <p className="text-white/80 text-sm">Ridge, Lasso para evitar overfitting</p>
+                                        </div>
+                                        <div className="bg-green-500/20 p-3 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-1">Otros Algoritmos</h4>
+                                            <p className="text-white/80 text-sm">Árboles, SVM, Redes Neuronales</p>
+                                        </div>
+                                        <div className="bg-orange-500/20 p-3 rounded-lg">
+                                            <h4 className="text-white font-semibold mb-1">Validación Cruzada</h4>
+                                            <p className="text-white/80 text-sm">Técnicas avanzadas de evaluación</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="glass-effect p-8 rounded-xl">
+                                <h3 className="text-xl font-bold text-white mb-6 text-center">Lecciones Clave para el Mundo Real</h3>
+                                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                                    <div className="bg-yellow-500/20 p-6 rounded-xl text-center">
+                                        <Icon name="lightbulb" className="w-12 h-12 text-yellow-300 mx-auto mb-4" />
+                                        <h4 className="text-white font-semibold mb-2">Empezar Simple</h4>
+                                        <p className="text-white/80 text-sm">Un modelo básico que funcione es mejor que uno complejo que no</p>
+                                    </div>
+                                    <div className="bg-red-500/20 p-6 rounded-xl text-center">
+                                        <Icon name="crosshairs" className="w-12 h-12 text-red-300 mx-auto mb-4" />
+                                        <h4 className="text-white font-semibold mb-2">Enfoque en el Problema</h4>
+                                        <p className="text-white/80 text-sm">Market pull vs Technology push</p>
+                                    </div>
+                                    <div className="bg-green-500/20 p-6 rounded-xl text-center">
+                                        <Icon name="sync" className="w-12 h-12 text-green-300 mx-auto mb-4" />
+                                        <h4 className="text-white font-semibold mb-2">Iterar Rápido</h4>
+                                        <p className="text-white/80 text-sm">Ciclos cortos de experimentación</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="glass-effect p-6 rounded-xl">
+                                <div className="text-center">
+                                    <Icon name="graduation-cap" className="w-12 h-12 text-blue-400 mx-auto mb-4" />
+                                    <h3 className="text-2xl font-bold text-white mb-4">¡Felicitaciones!</h3>
+                                    <p className="text-white/90 text-lg mb-2">
+                                        Has completado los fundamentos de Machine Learning
+                                    </p>
+                                    <p className="text-white/70">
+                                        Ahora tienes las bases para abordar problemas reales con datos
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                }
+            ];
+
+            const nextSlide = () => {
+                setCurrentSlide((prev) => (prev + 1) % slides.length);
+            };
+
+            const prevSlide = () => {
+                setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+            };
+
+            const goToSlide = (index) => {
+                setCurrentSlide(index);
+            };
+
+            const toggleFullscreen = () => {
+                if (!isFullscreen) {
+                    document.documentElement.requestFullscreen();
+                } else {
+                    document.exitFullscreen();
+                }
+                setIsFullscreen(!isFullscreen);
+            };
+
+            useEffect(() => {
+                const handleKeyPress = (e) => {
+                    if (e.key === 'ArrowRight' || e.key === ' ') {
+                        nextSlide();
+                    } else if (e.key === 'ArrowLeft') {
+                        prevSlide();
+                    } else if (e.key === 'f' || e.key === 'F') {
+                        toggleFullscreen();
+                    }
+                };
+
+                window.addEventListener('keydown', handleKeyPress);
+                return () => window.removeEventListener('keydown', handleKeyPress);
+            }, []);
+
+            const currentSlideData = slides[currentSlide];
+
+            return (
+                <div className="min-h-screen flex flex-col">
+                    {/* Barra de progreso */}
+                    {showProgress && (
+                        <div className="fixed top-0 left-0 w-full h-1 bg-black/20 z-50">
+                            <div 
+                                className="h-full bg-gradient-to-r from-blue-400 to-purple-400 transition-all duration-300"
+                                style={{ width: `${((currentSlide + 1) / slides.length) * 100}%` }}
+                            ></div>
+                        </div>
+                    )}
+
+                    {/* Contenido principal */}
+                    <div className="flex-1 flex flex-col p-8 pt-12">
+                        {/* Header con título */}
+                        <div className="text-center mb-8">
+                            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 gradient-text">
+                                {currentSlideData.title}
+                            </h1>
+                            {currentSlideData.subtitle && (
+                                <p className="text-xl text-white/80">{currentSlideData.subtitle}</p>
+                            )}
+                        </div>
+
+                        {/* Contenido del slide */}
+                        <div className="flex-1 flex items-center justify-center">
+                            <div className="w-full max-w-7xl mx-auto">
+                                {currentSlideData.content}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Controles de navegación */}
+                    <div className="fixed bottom-0 left-0 w-full p-6 glass-effect border-t border-white/10">
+                        <div className="flex items-center justify-between max-w-6xl mx-auto">
+                            {/* Botón anterior */}
+                            <button
+                                onClick={prevSlide}
+                                className="flex items-center px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-all duration-300 disabled:opacity-50"
+                                disabled={currentSlide === 0}
+                            >
+                                <Icon name="chevron-left" className="w-5 h-5 mr-2" />
+                                Anterior
+                            </button>
+
+                            {/* Indicadores de slides */}
+                            <div className="flex items-center space-x-2">
+                                <span className="text-white/80 text-sm mr-4">
+                                    {currentSlide + 1} / {slides.length}
+                                </span>
+                                <div className="flex space-x-1">
+                                    {slides.map((_, index) => (
+                                        <button
+                                            key={index}
+                                            onClick={() => goToSlide(index)}
+                                            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                                                index === currentSlide 
+                                                    ? 'bg-blue-400 scale-125' 
+                                                    : 'bg-white/30 hover:bg-white/50'
+                                            }`}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Botón siguiente */}
+                            <button
+                                onClick={nextSlide}
+                                className="flex items-center px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-all duration-300 disabled:opacity-50"
+                                disabled={currentSlide === slides.length - 1}
+                            >
+                                Siguiente
+                                <Icon name="chevron-right" className="w-5 h-5 ml-2" />
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Controles adicionales */}
+                    <div className="fixed top-4 right-4 flex space-x-2 z-40">
+                        <button
+                            onClick={() => setShowProgress(!showProgress)}
+                            className="p-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-all duration-300"
+                            title="Toggle progress bar"
+                        >
+                            <Icon name="chart-line" className="w-5 h-5" />
+                        </button>
+                        <button
+                            onClick={toggleFullscreen}
+                            className="p-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-all duration-300"
+                            title="Fullscreen (F)"
+                        >
+                            <Icon name="expand" className="w-5 h-5" />
+                        </button>
+                    </div>
+
+                    {/* Ayuda con teclas */}
+                    <div className="fixed bottom-20 right-4 text-white/60 text-xs">
+                        <p>Navegación: ← → ␣ | Pantalla completa: F</p>
+                    </div>
+                </div>
+            );
+        };
+
+        // Renderizar la aplicación
+        ReactDOM.render(<MLPresentation />, document.getElementById('root'));
+    </script>
+</body>
+</html>

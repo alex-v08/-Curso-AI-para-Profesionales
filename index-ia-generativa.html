@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Presentación interactiva sobre Inteligencia Artificial Generativa - La Revolución de la Creación de Contenido"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
+    <!-- Fuentes de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <title>IA Generativa - Presentación Interactiva</title>
+    
+    <style>
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+      
+      .presentation-selector {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+      }
+      
+      .selector-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        padding: 3rem;
+        text-align: center;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        width: 100%;
+      }
+      
+      .selector-title {
+        color: white;
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+      
+      .selector-subtitle {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1.5rem;
+        margin-bottom: 3rem;
+      }
+      
+      .presentation-button {
+        display: inline-block;
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        color: white;
+        text-decoration: none;
+        padding: 1.5rem 3rem;
+        border-radius: 15px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin: 1rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      }
+      
+      .presentation-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        text-decoration: none;
+        color: white;
+      }
+      
+      .features-list {
+        text-align: left;
+        margin: 2rem 0;
+        color: rgba(255, 255, 255, 0.9);
+      }
+      
+      .features-list ul {
+        list-style: none;
+        padding: 0;
+      }
+      
+      .features-list li {
+        padding: 0.5rem 0;
+        font-size: 1rem;
+      }
+      
+      .icon {
+        margin-right: 0.5rem;
+      }
+      
+      @media (max-width: 768px) {
+        .selector-title {
+          font-size: 2rem;
+        }
+        .selector-subtitle {
+          font-size: 1.2rem;
+        }
+        .presentation-button {
+          display: block;
+          margin: 1rem 0;
+          padding: 1rem 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="presentation-selector">
+      <div class="selector-card">
+        <h1 class="selector-title">🤖 IA Generativa</h1>
+        <p class="selector-subtitle">La Revolución de la Creación de Contenido</p>
+        
+        <div class="features-list">
+          <ul>
+            <li><i class="fas fa-brain icon"></i> Fundamentos de IA Generativa</li>
+            <li><i class="fas fa-microchip icon"></i> Funcionamiento de LLMs</li>
+            <li><i class="fas fa-database icon"></i> RAG - Retrieval Augmented Generation</li>
+            <li><i class="fas fa-users icon"></i> Aplicaciones Cotidianas</li>
+            <li><i class="fas fa-rocket icon"></i> Futuro y Consideraciones Éticas</li>
+            <li><i class="fas fa-mouse-pointer icon"></i> 3 Demos Interactivos</li>
+          </ul>
+        </div>
+        
+        <div>
+          <p style="color: rgba(255, 255, 255, 0.7); margin: 1rem 0;">
+            ⏱️ Duración: 1.75-2.5 horas | 📊 8 slides | 🎯 Nivel: Principiante-Intermedio
+          </p>
+        </div>
+        
+        <div style="margin-top: 2rem;">
+          <a href="#" onclick="startPresentation()" class="presentation-button">
+            <i class="fas fa-play icon"></i>
+            Iniciar Presentación
+          </a>
+        </div>
+        
+        <div style="margin-top: 2rem;">
+          <a href="index.html" style="color: rgba(255, 255, 255, 0.6); text-decoration: none; font-size: 0.9rem;">
+            ← Volver a Fundamentos de ML
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function startPresentation() {
+        // Aquí se cargaría la aplicación React de IA Generativa
+        // Por ahora, mostraremos un mensaje
+        alert('La presentación de IA Generativa se cargará aquí.\n\nPara implementar completamente:\n1. Configura el build de React para IA Generativa\n2. Actualiza las rutas en el servidor\n3. Conecta con IAGenerativaApp.js');
+      }
+    </script>
+  </body>
+</html>
