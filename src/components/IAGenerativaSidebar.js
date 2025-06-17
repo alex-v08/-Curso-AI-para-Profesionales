@@ -74,15 +74,15 @@ function IAGenerativaSidebar({ slides, currentSlide, onSlideChange, isOpen, onTo
 
   return (
     <>
-      {/* Botón de toggle para móvil */}
+      {/* Botón de toggle sobre el sidebar */}
       <button
         onClick={onToggle}
-        className={`fixed top-4 left-4 z-50 lg:hidden btn-secondary p-3 ${
-          isOpen ? 'bg-purple-600' : ''
+        className={`fixed top-4 z-50 control-btn transition-all duration-300 ${
+          isOpen ? 'left-[21rem] lg:left-[25rem]' : 'left-4'
         }`}
-        aria-label="Toggle sidebar"
+        title={isOpen ? "Ocultar menú" : "Mostrar menú"}
       >
-        <Icon name={isOpen ? 'times' : 'bars'} className="w-5 h-5" />
+        <Icon name={isOpen ? "chevron-left" : "bars"} className="w-5 h-5" />
       </button>
 
       {/* Overlay para móvil */}
@@ -95,10 +95,9 @@ function IAGenerativaSidebar({ slides, currentSlide, onSlideChange, isOpen, onTo
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 h-full w-80 bg-gray-900/95 backdrop-blur-lg 
+        className={`fixed lg:relative top-0 left-0 h-full w-80 lg:w-96 bg-gray-900/95 backdrop-blur-lg 
           transform transition-transform duration-300 z-40 overflow-hidden flex flex-col
-          ${isOpen ? 'translate-x-0' : '-translate-x-full'} 
-          lg:translate-x-0 lg:relative lg:w-96`}
+          ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
       >
         {/* Header */}
         <div className="p-6 border-b border-white/10">

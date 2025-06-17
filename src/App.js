@@ -16,12 +16,26 @@ function App() {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showProgress, setShowProgress] = useState(true);
   const [loading, setLoading] = useState(true);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth >= 1024);
 
   // Simulamos carga inicial
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1000);
     return () => clearTimeout(timer);
+  }, []);
+
+  // Manejar cambio de tamaño de pantalla para el sidebar
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setSidebarOpen(true);
+      } else {
+        setSidebarOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   // Navegación por teclado
@@ -136,7 +150,7 @@ function App() {
       />
       
       {/* Main content area */}
-      <div className="flex-1 relative">
+      <div className={`flex-1 relative main-content ${sidebarOpen ? 'with-sidebar' : 'without-sidebar'}`}>
         {/* Controles de presentación */}
         <div className="presentation-controls">
         <button

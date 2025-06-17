@@ -83,10 +83,11 @@ export const iaGenerativaSlides = [
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <ClickableInfo
-            title="IA Tradicional vs IA Generativa"
+            title="IA de Análisis vs IA Generativa"
             content={
               <div>
-                <h4 className="text-xl font-bold mb-4">IA Tradicional (Discriminativa)</h4>
+                <h4 className="text-xl font-bold mb-4">🔍 IA de Análisis (Tradicional)</h4>
+                <p className="text-gray-600 mb-4 italic">Analiza, clasifica y predice basándose en datos existentes</p>
                 <ul className="space-y-2 mb-6">
                   <li>• <strong>Clasificación:</strong> Determina si un email es spam o no</li>
                   <li>• <strong>Predicción:</strong> Estima el precio de una casa</li>
@@ -94,7 +95,8 @@ export const iaGenerativaSlides = [
                   <li>• <strong>Análisis:</strong> Extrae sentimientos de reseñas</li>
                 </ul>
                 
-                <h4 className="text-xl font-bold mb-4">IA Generativa</h4>
+                <h4 className="text-xl font-bold mb-4">✨ IA Generativa (Creativa)</h4>
+                <p className="text-gray-600 mb-4 italic">Crea contenido completamente nuevo e original</p>
                 <ul className="space-y-2">
                   <li>• <strong>Creación de texto:</strong> Escribe artículos, emails, código</li>
                   <li>• <strong>Generación de imágenes:</strong> Crea arte y diseños originales</li>
@@ -103,15 +105,15 @@ export const iaGenerativaSlides = [
                 </ul>
                 
                 <div className="bg-purple-50 p-4 rounded-lg mt-4">
-                  <p><strong>La clave:</strong> La IA Generativa crea contenido completamente nuevo que nunca existió antes, no solo analiza o clasifica lo existente.</p>
+                  <p><strong>La diferencia clave:</strong> La IA de Análisis examina y categoriza información existente, mientras que la IA Generativa crea contenido completamente nuevo que nunca existió antes.</p>
                 </div>
               </div>
             }
             className="glass-effect p-8 rounded-xl"
           >
             <div className="flex items-center mb-6">
-              <Icon name="lightbulb" className="w-10 h-10 text-yellow-400 mr-4" />
-              <h3 className="text-2xl font-bold text-white">IA Tradicional</h3>
+              <Icon name="search" className="w-10 h-10 text-yellow-400 mr-4" />
+              <h3 className="text-2xl font-bold text-white">IA de Análisis</h3>
             </div>
             <div className="space-y-4">
               <div className="bg-blue-500/20 p-4 rounded-lg">
@@ -1397,10 +1399,7 @@ export const iaGenerativaSlides = [
           <div className="glass-effect p-4 rounded-xl inline-block">
             <h3 className="text-xl font-bold text-white mb-2">Tres Técnicas Clave para Mejorar LLMs</h3>
             <p className="text-white/80 text-sm">
-              Basado en: <a href="https://www.youtube.com/watch?v=zYGDpG-pTho" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-200 underline">
-                <Icon name="video" className="w-4 h-4 inline mr-1" />
-                Video explicativo detallado
-              </a>
+              Comprende las diferencias y cuándo usar cada técnica
             </p>
           </div>
         </div>

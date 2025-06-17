@@ -105,9 +105,52 @@ code {
   transition: all 0.3s ease-in-out;
 }
 
+/* Ajustes dinámicos del contenido principal basado en el estado del sidebar */
+.main-content {
+  flex: 1;
+  transition: all 0.3s ease-in-out;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* En desktop, cuando el sidebar está abierto */
 @media (min-width: 1024px) {
-  .with-sidebar .main-content {
+  .main-content.with-sidebar {
     margin-left: 24rem; /* 384px sidebar width */
+    width: calc(100% - 24rem);
+  }
+  
+  .main-content.without-sidebar {
+    margin-left: 0;
+    width: 100%;
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+  
+  /* Mejor distribución del contenido sin centrado forzado */
+  .main-content.without-sidebar .flex-1 {
+    padding: 2rem 3rem;
+  }
+  
+  .main-content.without-sidebar .max-w-7xl {
+    max-width: none !important;
+    width: 100%;
+  }
+  
+  .main-content.without-sidebar .max-w-6xl {
+    max-width: none !important;
+    width: 100%;
+  }
+}
+
+/* En móvil, el contenido siempre ocupa todo el ancho */
+@media (max-width: 1023px) {
+  .main-content {
+    margin-left: 0 !important;
+    width: 100% !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
   }
 }
 
@@ -497,7 +540,46 @@ select:focus {
   right: 1rem;
   display: flex;
   gap: 0.5rem;
-  z-index: 30;
+}
+
+/* Mejor organización para contenido sin sidebar */
+.main-content.without-sidebar .grid {
+  gap: 2.5rem;
+  padding: 0;
+}
+
+.main-content.without-sidebar .grid-cols-3,
+.main-content.without-sidebar .lg\\:grid-cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+
+.main-content.without-sidebar .grid-cols-1 {
+  grid-template-columns: 1fr;
+}
+
+/* Espaciado mejorado para mejor organización */
+.main-content.without-sidebar .space-y-6 > * + * {
+  margin-top: 2.5rem !important;
+}
+
+.main-content.without-sidebar .mb-8 {
+  margin-bottom: 3rem !important;
+}
+
+.main-content.without-sidebar .mb-6 {
+  margin-bottom: 2.5rem !important;
+}
+
+/* Organización de tarjetas sin centrado forzado */
+.main-content.without-sidebar .glass-effect {
+  margin: 0;
+}
+
+/* Mejor distribución de altura */
+.main-content.without-sidebar .min-h-screen {
+  min-height: auto;
+  padding: 2rem 0;
 }
 
 .slide-navigation {
