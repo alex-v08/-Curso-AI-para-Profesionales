@@ -52,23 +52,30 @@ export const iaGenerativaPresentationMetadata = {
       icon: "database",
       color: "purple"
     },
+    optimizacion: {
+      name: "Optimización de LLMs",
+      slides: [7, 7], // Slide 7
+      description: "RAG vs Fine-tuning vs Prompt Engineering",
+      icon: "gear",
+      color: "cyan"
+    },
     proyectos: {
       name: "Ciclo de Vida de Proyectos",
-      slides: [7, 7], // Slide 7
+      slides: [8, 8], // Slide 8
       description: "De la idea a la implementación en producción",
       icon: "workflow",
       color: "indigo"
     },
     aplicaciones: {
       name: "Uso Cotidiano y Aplicaciones",
-      slides: [8, 8], // Slide 8
+      slides: [9, 9], // Slide 9
       description: "Herramientas prácticas para tu día a día",
       icon: "users",
       color: "orange"
     },
     futuro: {
       name: "Futuro y Consideraciones Éticas",
-      slides: [9, 9], // Slide 9
+      slides: [10, 10], // Slide 10
       description: "Casos de éxito, automatización y tendencias",
       icon: "rocket",
       color: "pink"
@@ -93,6 +100,7 @@ export const iaGenerativaPresentationMetadata = {
     "📝 Categorización: Escribir, Leer, Chat",
     "🎯 Consejos prácticos para prompting efectivo",
     "🔍 RAG con demos interactivos",
+    "⚙️ Comparación detallada: RAG vs Fine-tuning vs Prompt Engineering",
     "🔄 Ciclo de vida completo de proyectos",
     "🤖 Espectro de automatización de chatbots",
     "💰 Análisis detallado de costos y tokens",
@@ -107,6 +115,7 @@ export const iaGenerativaPresentationMetadata = {
     "Categorizar aplicaciones en: Escribir, Leer y Chat",
     "Entender el funcionamiento básico de los LLMs y sus limitaciones críticas",
     "Conocer la técnica RAG y sus aplicaciones empresariales",
+    "Comparar y elegir entre RAG, Fine-tuning y Prompt Engineering según el caso de uso",
     "Implementar el ciclo de vida completo de proyectos GenAI",
     "Evaluar el espectro de automatización para chatbots",
     "Calcular costos reales de implementación con tokens",

@@ -144,13 +144,15 @@ npm test           # Ejecutar tests
 4. Comparación de paradigmas
 5. Casos reales de aplicación
 
-### 🔹 IA Generativa (10 slides)
+### 🔹 IA Generativa (11 slides)
 1. Introducción a IA generativa
 2. Modelos de lenguaje (LLMs)
-3. Generación de imágenes
-4. Aplicaciones prácticas
-5. Consideraciones éticas
-6. Futuro de la IA generativa
+3. RAG (Retrieval Augmented Generation)
+4. RAG vs Fine-tuning vs Prompt Engineering
+5. Generación de imágenes
+6. Aplicaciones prácticas
+7. Consideraciones éticas
+8. Futuro de la IA generativa
 
 ## 🎨 Personalización
 
@@ -232,4 +234,3 @@ Para problemas o sugerencias:
 **Versión:** 5.0.0  
 **Última actualización:** Enero 2025  
 **Autor:** alex-v08  
-**Licencia:** MIT

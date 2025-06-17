@@ -1386,9 +1386,200 @@ export const iaGenerativaSlides = [
     )
   },
 
-  // Slide 7: Ciclo de Vida de Proyectos de IA Generativa
+  // Slide 7: RAG vs Fine-tuning vs Prompt Engineering
   {
     id: 7,
+    type: 'content',
+    title: 'Optimización de LLMs: RAG vs Fine-tuning vs Prompt Engineering',
+    content: (
+      <div className="space-y-6 fade-in">
+        <div className="text-center mb-6">
+          <div className="glass-effect p-4 rounded-xl inline-block">
+            <h3 className="text-xl font-bold text-white mb-2">Tres Técnicas Clave para Mejorar LLMs</h3>
+            <p className="text-white/80 text-sm">
+              Basado en: <a href="https://www.youtube.com/watch?v=zYGDpG-pTho" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-200 underline">
+                <Icon name="video" className="w-4 h-4 inline mr-1" />
+                Video explicativo detallado
+              </a>
+            </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Prompt Engineering */}
+          <div className="glass-effect p-6 rounded-xl hover:scale-105 transition-transform">
+            <div className="text-center mb-4">
+              <div className="w-16 h-16 bg-blue-500/30 rounded-full flex items-center justify-center mx-auto mb-3">
+                <Icon name="edit" className="w-8 h-8 text-blue-400" />
+              </div>
+              <h4 className="text-lg font-bold text-white">Prompt Engineering</h4>
+            </div>
+            
+            <div className="space-y-3">
+              <div className="bg-blue-500/10 p-3 rounded-lg">
+                <p className="text-white/90 text-sm font-semibold mb-1">¿Qué es?</p>
+                <p className="text-white/70 text-xs">
+                  Optimizar las instrucciones que le das al modelo para obtener mejores respuestas
+                </p>
+              </div>
+              
+              <div className="bg-white/5 p-3 rounded-lg">
+                <p className="text-green-300 text-sm font-semibold mb-1">✅ Ventajas</p>
+                <ul className="text-white/70 text-xs space-y-1">
+                  <li>• Rápido de implementar</li>
+                  <li>• Sin costos adicionales</li>
+                  <li>• Flexible y reversible</li>
+                </ul>
+              </div>
+              
+              <div className="bg-white/5 p-3 rounded-lg">
+                <p className="text-red-300 text-sm font-semibold mb-1">❌ Limitaciones</p>
+                <ul className="text-white/70 text-xs space-y-1">
+                  <li>• Límite de contexto</li>
+                  <li>• No agrega conocimiento nuevo</li>
+                  <li>• Resultados variables</li>
+                </ul>
+              </div>
+              
+              <div className="bg-yellow-500/10 p-3 rounded-lg">
+                <p className="text-yellow-300 text-sm font-semibold mb-1">💡 Ejemplo</p>
+                <p className="text-white/70 text-xs italic">
+                  "Actúa como un experto en finanzas. Analiza este balance..."
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* RAG */}
+          <div className="glass-effect p-6 rounded-xl hover:scale-105 transition-transform">
+            <div className="text-center mb-4">
+              <div className="w-16 h-16 bg-green-500/30 rounded-full flex items-center justify-center mx-auto mb-3">
+                <Icon name="database" className="w-8 h-8 text-green-400" />
+              </div>
+              <h4 className="text-lg font-bold text-white">RAG</h4>
+              <p className="text-white/60 text-xs">Retrieval Augmented Generation</p>
+            </div>
+            
+            <div className="space-y-3">
+              <div className="bg-green-500/10 p-3 rounded-lg">
+                <p className="text-white/90 text-sm font-semibold mb-1">¿Qué es?</p>
+                <p className="text-white/70 text-xs">
+                  Buscar información relevante en una base de datos y pasársela al modelo como contexto
+                </p>
+              </div>
+              
+              <div className="bg-white/5 p-3 rounded-lg">
+                <p className="text-green-300 text-sm font-semibold mb-1">✅ Ventajas</p>
+                <ul className="text-white/70 text-xs space-y-1">
+                  <li>• Información actualizada</li>
+                  <li>• Datos específicos de tu empresa</li>
+                  <li>• Sin reentrenamiento</li>
+                </ul>
+              </div>
+              
+              <div className="bg-white/5 p-3 rounded-lg">
+                <p className="text-red-300 text-sm font-semibold mb-1">❌ Limitaciones</p>
+                <ul className="text-white/70 text-xs space-y-1">
+                  <li>• Requiere infraestructura</li>
+                  <li>• Calidad depende de los datos</li>
+                  <li>• Latencia adicional</li>
+                </ul>
+              </div>
+              
+              <div className="bg-yellow-500/10 p-3 rounded-lg">
+                <p className="text-yellow-300 text-sm font-semibold mb-1">💡 Ejemplo</p>
+                <p className="text-white/70 text-xs italic">
+                  Chatbot que busca en manuales internos antes de responder
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Fine-tuning */}
+          <div className="glass-effect p-6 rounded-xl hover:scale-105 transition-transform">
+            <div className="text-center mb-4">
+              <div className="w-16 h-16 bg-purple-500/30 rounded-full flex items-center justify-center mx-auto mb-3">
+                <Icon name="gear" className="w-8 h-8 text-purple-400" />
+              </div>
+              <h4 className="text-lg font-bold text-white">Fine-tuning</h4>
+            </div>
+            
+            <div className="space-y-3">
+              <div className="bg-purple-500/10 p-3 rounded-lg">
+                <p className="text-white/90 text-sm font-semibold mb-1">¿Qué es?</p>
+                <p className="text-white/70 text-xs">
+                  Reentrenar el modelo con datos específicos para especializar su comportamiento
+                </p>
+              </div>
+              
+              <div className="bg-white/5 p-3 rounded-lg">
+                <p className="text-green-300 text-sm font-semibold mb-1">✅ Ventajas</p>
+                <ul className="text-white/70 text-xs space-y-1">
+                  <li>• Comportamiento consistente</li>
+                  <li>• Especialización profunda</li>
+                  <li>• No requiere prompts largos</li>
+                </ul>
+              </div>
+              
+              <div className="bg-white/5 p-3 rounded-lg">
+                <p className="text-red-300 text-sm font-semibold mb-1">❌ Limitaciones</p>
+                <ul className="text-white/70 text-xs space-y-1">
+                  <li>• Costoso (tiempo y dinero)</li>
+                  <li>• Requiere muchos datos</li>
+                  <li>• Puede perder capacidades</li>
+                </ul>
+              </div>
+              
+              <div className="bg-yellow-500/10 p-3 rounded-lg">
+                <p className="text-yellow-300 text-sm font-semibold mb-1">💡 Ejemplo</p>
+                <p className="text-white/70 text-xs italic">
+                  Modelo especializado en jerga médica o código específico
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Comparación y Recomendaciones */}
+        <div className="glass-effect p-6 rounded-xl mt-6">
+          <h4 className="text-lg font-bold text-white mb-4 text-center">
+            <Icon name="balance-scale" className="w-5 h-5 inline mr-2" />
+            ¿Cuándo usar cada técnica?
+          </h4>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="bg-gradient-to-r from-blue-500/10 to-green-500/10 p-4 rounded-lg">
+              <h5 className="text-white font-semibold mb-2">🚀 Comienza con Prompt Engineering + RAG</h5>
+              <p className="text-white/80 text-sm">
+                La combinación más práctica: rápida de implementar, flexible y con buenos resultados. 
+                Ideal para la mayoría de casos de uso empresariales.
+              </p>
+            </div>
+            
+            <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 p-4 rounded-lg">
+              <h5 className="text-white font-semibold mb-2">🎯 Fine-tuning para casos específicos</h5>
+              <p className="text-white/80 text-sm">
+                Solo cuando necesites comportamientos muy específicos o tengas requisitos 
+                de latencia/costo que justifiquen la inversión.
+              </p>
+            </div>
+          </div>
+          
+          <div className="mt-4 bg-yellow-500/10 p-4 rounded-lg">
+            <p className="text-white text-sm text-center">
+              <Icon name="lightbulb" className="w-4 h-4 inline mr-2 text-yellow-400" />
+              <strong>Pro tip:</strong> No son mutuamente excluyentes. Puedes usar las tres técnicas juntas 
+              para maximizar el rendimiento de tu aplicación.
+            </p>
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 8: Ciclo de Vida de Proyectos de IA Generativa
+  {
+    id: 8,
     type: 'content',
     title: 'Ciclo de Vida de Proyectos de IA Generativa',
     content: (
@@ -1587,9 +1778,9 @@ export const iaGenerativaSlides = [
     )
   },
 
-  // Slide 8: Uso Cotidiano - Introducción
+  // Slide 9: Uso Cotidiano - Introducción
   {
-    id: 8,
+    id: 9,
     type: 'content',
     title: 'IA Generativa en tu Día a Día',
     content: (
@@ -1904,9 +2095,9 @@ def validate_email(email):
     )
   },
 
-  // Slide 9: Casos de Éxito y Futuro
+  // Slide 10: Casos de Éxito y Futuro
   {
-    id: 9,
+    id: 10,
     type: 'content',
     title: 'Casos de Éxito y el Futuro de la IA Generativa',
     content: (
