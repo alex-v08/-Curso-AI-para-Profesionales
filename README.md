@@ -1,61 +1,81 @@
-# Presentación Machine Learning - Proyecto React Completo
+# Curso AI para Profesionales - Presentaciones Interactivas
 
 ## 🎯 Descripción
 
-Presentación interactiva completa sobre **Fundamentos de Machine Learning** construida en React. Incluye conceptos teóricos, componentes interactivos, definiciones expandidas y casos de negocio reales.
+Suite completa de presentaciones interactivas sobre **Inteligencia Artificial y Machine Learning** construidas en React. El proyecto incluye tres aplicaciones independientes que cubren desde fundamentos hasta aplicaciones avanzadas de IA.
+
+## 🚀 Aplicaciones Disponibles
+
+### 1. 📊 Fundamentos de Machine Learning (`/`)
+Presentación principal con 18 slides sobre conceptos fundamentales:
+- Introducción a la IA y tipos de inteligencia
+- Regresión lineal y múltiple
+- Algoritmos de optimización
+- Métricas y evaluación
+- Casos de negocio reales
+
+### 2. 🧠 Paradigmas de Aprendizaje (`/paradigmas`)
+7 slides interactivos sobre diferentes paradigmas:
+- Aprendizaje supervisado con ejemplos prácticos
+- Aprendizaje no supervisado y clustering
+- Comparación dinámica entre paradigmas
+- Casos reales: detección de spam, análisis de Instagram
+
+### 3. 🎨 IA Generativa (`/ia-generativa`)
+10 slides sobre tecnologías generativas:
+- Fundamentos de IA generativa
+- Modelos de lenguaje (GPT)
+- Generación de imágenes (DALL-E, Stable Diffusion)
+- Aplicaciones prácticas y casos de uso
+- Consideraciones éticas
 
 ## ✨ Características Principales
 
-### 📚 Contenido Educativo Completo
-- **18 slides** organizados pedagógicamente
-- **Introducción conceptual:** IA, tipos de IA, niveles de inteligencia
-- **Fundamentos técnicos:** Regresión lineal, cuadrados ordinarios, descenso de gradiente
-- **Aspectos prácticos:** Overfitting, métricas, metodología, casos de negocio
-
 ### 🎮 Componentes Interactivos
-- **InteractiveRegressionDemo:** Ajuste manual de parámetros de regresión
-- **MultipleRegressionDemo:** Regresión múltiple con múltiples variables
-- **GradientDescentDemo:** Visualización del algoritmo de descenso de gradiente
-- **OverfittingDemo:** Demostración del balance bias-variance
-- **InteractiveMetricsDemo:** Comparación visual de métricas de evaluación
+- **Demos de regresión:** Ajuste manual de parámetros
+- **Descenso de gradiente:** Visualización del algoritmo
+- **Clustering interactivo:** Agrupación de datos en tiempo real
+- **Comparación de paradigmas:** Visualización dinámica
+- **Métricas en vivo:** Comparación visual de evaluaciones
 
-### 🔗 Sistema de Definiciones Clickeables
+### 🔗 Sistema de Definiciones
 - **50+ definiciones** organizadas por categoría
-- **Modal system** con contenido expandido
+- **Modal expandible** con contenido detallado
 - **Navegación intuitiva** con indicadores visuales
 
 ### 🎨 Diseño Moderno
-- **Gradientes dinámicos** y efectos glass morphism
-- **Animaciones fluidas** y transiciones
-- **Responsive design** para múltiples dispositivos
-- **Navegación con teclado** (← → ␣ F)
+- **Gradientes dinámicos** y glass morphism
+- **Animaciones fluidas** con transiciones suaves
+- **100% responsive** para todos los dispositivos
+- **Navegación completa:** teclado (← → ␣ F), mouse y touch
 
 ## 📁 Estructura del Proyecto
 
 ```
-src/
-├── components/
-│   ├── Icon.js                    # Componente de iconos FontAwesome
-│   ├── InfoModal.js               # Modal para definiciones expandidas
-│   ├── ClickableInfo.js           # Wrapper para elementos clickeables
-│   └── InteractiveComponents/     # Componentes interactivos
-│       ├── InteractiveRegressionDemo.js
-│       ├── MultipleRegressionDemo.js
-│       ├── GradientDescentDemo.js
-│       ├── OverfittingDemo.js
-│       ├── InteractiveMetricsDemo.js
-│       └── index.js
-├── data/
-│   ├── definitions/               # Sistema de definiciones
-│   │   ├── aiDefinitions.js       # Definiciones de IA
-│   │   ├── mlDefinitions.js       # Definiciones de ML
-│   │   ├── businessDefinitions.js # Casos de negocio
-│   │   └── index.js               # Exportador central
-│   ├── slidesData.js              # Slides principales (1-10)
-│   ├── additionalSlidesData.js    # Slides adicionales (11-18)
-│   └── extendedSlidesData.js      # Slides experimentales
-└── styles/
-    └── App.css                    # Estilos principales
+presentacion2_C/
+├── public/
+│   └── index.html
+├── src/
+│   ├── App.js                     # Aplicación principal (ML)
+│   ├── IAGenerativaApp.js         # Aplicación IA Generativa
+│   ├── index.js                   # Router principal
+│   ├── components/
+│   │   ├── Sidebar.js             # Navegación principal
+│   │   ├── IAGenerativaSidebar.js # Navegación IA Generativa
+│   │   ├── Icon.js                # Iconos FontAwesome
+│   │   ├── InfoModal.js           # Modales de información
+│   │   ├── ClickableInfo.js       # Elementos interactivos
+│   │   ├── InteractiveComponents/ # Demos ML
+│   │   └── ParadigmasAprendizaje/ # Demos paradigmas
+│   ├── data/
+│   │   ├── slidesData.js          # Datos slides ML
+│   │   ├── paradigmasAprendizajeSlides.js
+│   │   ├── iaGenerativaSlides.js
+│   │   └── definitions/           # Sistema de definiciones
+│   └── styles/
+│       └── App.css                # Estilos principales
+├── package.json
+└── README.md
 ```
 
 ## 🚀 Instalación y Uso
@@ -69,7 +89,8 @@ npm >= 6.0.0
 ### Instalación
 ```bash
 # Clonar el repositorio
-cd /home/alexv/workspace/UgrMono/ugr/UGRBackend/PresentacionClase2
+git clone https://github.com/alex-v08/-Curso-AI-para-Profesionales.git
+cd presentacion2_C
 
 # Instalar dependencias
 npm install
@@ -82,107 +103,93 @@ npm start
 ```bash
 npm start          # Servidor de desarrollo (puerto 3000)
 npm run build      # Build para producción
-npm run serve      # Servir build de producción
 npm test           # Ejecutar tests
 ```
 
-## 🎯 Cómo Usar la Presentación
+### Acceder a las Aplicaciones
+- **ML Fundamentos:** http://localhost:3000/
+- **Paradigmas:** http://localhost:3000/paradigmas
+- **IA Generativa:** http://localhost:3000/ia-generativa
+
+## 🎯 Cómo Usar las Presentaciones
 
 ### Navegación
-- **Teclado:** `←` `→` `␣` para navegar entre slides
-- **Mouse:** Botones de navegación en la parte inferior
-- **Pantalla completa:** Tecla `F`
+- **Teclado:** 
+  - `←` `→` para navegar entre slides
+  - `␣` (espacio) para siguiente slide
+  - `F` para pantalla completa
+- **Mouse:** Botones de navegación y barra de progreso
+- **Touch:** Swipe para cambiar slides
 
 ### Elementos Interactivos
-- **Tarjetas clickeables:** Busca el ícono ℹ️ al hacer hover
-- **Demos interactivos:** Ajusta controles deslizantes y observa cambios en tiempo real
-- **Definiciones:** Haz clic en términos destacados para ver explicaciones detalladas
+- **Términos clickeables:** Busca el ícono ℹ️ al hacer hover
+- **Demos interactivos:** Ajusta controles y observa cambios en tiempo real
+- **Definiciones:** Click en términos destacados para explicaciones
 
-### Características Avanzadas
-- **Indicadores de progreso:** Barra superior muestra avance
-- **Navegación directa:** Puntos en la barra inferior para saltar a cualquier slide
-- **Modo presentación:** Pantalla completa para presentar
+## 📖 Contenido de las Presentaciones
 
-## 📖 Contenido de los Slides
+### 🔹 ML Fundamentos (18 slides)
+1. Introducción a la IA
+2. Tipos de IA y aplicaciones
+3. Machine Learning en negocios
+4. Fundamentos matemáticos
+5. Algoritmos y optimización
+6. Métricas y evaluación
+7. Casos prácticos y código
 
-### Parte I: Introducción Conceptual (Slides 1-7)
-1. **Portada** - Introducción y navegación
-2. **¿Qué es la IA?** - Definiciones fundamentales
-3. **Tipos de IA por función** - Predictiva, Generativa, Agentes
-4. **Niveles de inteligencia** - Estrecha, General, Superinteligencia
-5. **ML en Negocios** - Market Pull, equipos, Pareto
-6. **Caso de negocio** - Predicción de precios de vivienda
-7. **Fundamentos** - Ecuación de la recta
+### 🔹 Paradigmas de Aprendizaje (7 slides)
+1. Introducción a paradigmas
+2. Aprendizaje supervisado
+3. Aprendizaje no supervisado
+4. Comparación de paradigmas
+5. Casos reales de aplicación
 
-### Parte II: Aspectos Técnicos (Slides 8-18)
-8. **Regresión múltiple** - Demo interactivo
-9. **Cuadrados ordinarios** - Demo interactivo de ajuste
-10. **Descenso de gradiente** - Demo de optimización iterativa
-11. **Overfitting/Underfitting** - Demo del balance bias-variance
-12. **Aprendizaje supervisado** - Regresión vs clasificación
-13. **Otros modelos** - Árboles, SVM, redes neuronales
-14. **Métricas** - MSE, MAE, R², RMSE con demo interactivo
-15. **Metodología** - End-to-end, análisis de errores
-16. **Ejemplo práctico** - Implementación código Python
-17. **Casos de negocio** - E-commerce, bienes raíces
-18. **Conclusiones** - Resumen y próximos pasos
-
-## 🧩 Sistema de Definiciones
-
-### Categorías Disponibles
-- **IA:** 6 definiciones (tipos, niveles, características)
-- **ML:** 8 definiciones (regresión, métricas, algoritmos)
-- **Business:** 4 definiciones (casos de uso, estrategias)
-
-### Uso Programático
-```javascript
-import { getDefinition, getDefinitionsByType } from './data/definitions';
-
-// Obtener una definición específica
-const regresionDef = getDefinition('regresion_simple');
-
-// Obtener todas las definiciones de IA
-const aiDefs = getDefinitionsByType('ai');
-
-// Usar en componente ClickableInfo
-<ClickableInfo definitionKey="ia_predictiva">
-  <div>Contenido clickeable</div>
-</ClickableInfo>
-```
+### 🔹 IA Generativa (10 slides)
+1. Introducción a IA generativa
+2. Modelos de lenguaje (LLMs)
+3. Generación de imágenes
+4. Aplicaciones prácticas
+5. Consideraciones éticas
+6. Futuro de la IA generativa
 
 ## 🎨 Personalización
 
-### Temas y Colores
-Los colores principales se definen en CSS custom properties:
-```css
-:root {
-  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --glass-bg: rgba(255, 255, 255, 0.1);
-  --glass-border: rgba(255, 255, 255, 0.2);
-}
-```
-
-### Agregar Nuevas Definiciones
+### Agregar Nuevos Slides
 ```javascript
-// En /data/definitions/tuCategoria.js
-export const nuevasDefiniciones = {
-  tu_concepto: {
-    title: "Tu Concepto",
-    content: <div>Contenido JSX aquí</div>,
-    type: 'tu_categoria'
+// En data/tusSlides.js
+export const nuevosSlides = [
+  {
+    id: 'nuevo-1',
+    title: 'Mi Nuevo Slide',
+    content: (
+      <div>
+        <h2>Contenido del slide</h2>
+        <p>Tu contenido aquí</p>
+      </div>
+    )
   }
-};
+];
 ```
 
-### Crear Nuevos Componentes Interactivos
+### Crear Componentes Interactivos
 ```javascript
-// En /components/InteractiveComponents/TuDemo.js
-const TuDemo = () => {
-  // Tu lógica aquí
-  return <div>Tu componente interactivo</div>;
+// En components/InteractiveComponents/MiDemo.js
+const MiDemo = () => {
+  const [valor, setValor] = useState(0);
+  
+  return (
+    <div className="demo-container">
+      <input 
+        type="range" 
+        value={valor} 
+        onChange={(e) => setValor(e.target.value)}
+      />
+      <div>Valor: {valor}</div>
+    </div>
+  );
 };
 
-export default TuDemo;
+export default MiDemo;
 ```
 
 ## 🚀 Deployment
@@ -192,68 +199,37 @@ export default TuDemo;
 npm run build
 ```
 
-### Servir Localmente
-```bash
-npm run serve
-```
-
 ### Deploy en Vercel/Netlify
 1. Conecta tu repositorio
 2. Build command: `npm run build`
 3. Publish directory: `build`
 
-## 🤝 Contribuir
-
-### Agregando Contenido
-1. **Nuevas definiciones:** Agrega en `/data/definitions/`
-2. **Nuevos slides:** Extiende `additionalSlidesData.js`
-3. **Componentes interactivos:** Crea en `/InteractiveComponents/`
-
-### Guidelines
-- Mantén la consistencia visual con el tema existente
-- Usa TypeScript para componentes complejos (opcional)
-- Incluye definiciones clickeables para términos técnicos
-- Agrega animaciones suaves para transiciones
-
 ## 📊 Métricas del Proyecto
 
-- **📝 25+ slides** completos en 3 módulos
-- **🧠 NUEVO: 7 slides** de paradigmas de aprendizaje
-- **🎮 8 componentes** interactivos (3 nuevos de paradigmas)
-- **📚 18+ definiciones** expandidas
-- **⏱️ 3-4 horas** de contenido educativo
-- **📱 100% responsive** design
-- **♿ Accesible** con navegación por teclado
-- **🎆 Nuevas características:**
-  - Clustering interactivo de idiomas
-  - Operaciones con espacios latentes
-  - Comparación dinámica de paradigmas
-  - Casos reales de Instagram y spam
+- **📝 35+ slides** en total
+- **🎮 15+ componentes** interactivos
+- **📚 50+ definiciones** expandidas
+- **⏱️ 4-5 horas** de contenido educativo
+- **📱 100% responsive** 
+- **♿ Accesible** con navegación completa
 
-## 🔧 Solución de Problemas
+## 🤝 Contribuir
 
-### Errores Comunes
-1. **Módulo no encontrado:** Verifica rutas de import
-2. **Componente no renderiza:** Revisa sintaxis JSX
-3. **Estilos no aplican:** Verifica clases de Tailwind
-
-### Performance
-- Los componentes usan `React.memo` cuando es necesario
-- Las animaciones están optimizadas con CSS transforms
-- Los assets se cargan de forma lazy cuando es posible
+1. Fork el proyecto
+2. Crea tu feature branch (`git checkout -b feature/NuevaCaracteristica`)
+3. Commit tus cambios (`git commit -m 'Add: Nueva característica'`)
+4. Push a la branch (`git push origin feature/NuevaCaracteristica`)
+5. Abre un Pull Request
 
 ## 📞 Soporte
 
 Para problemas o sugerencias:
-1. Revisa la documentación existente
-2. Busca en issues del repositorio
-3. Crea un nuevo issue con detalles específicos
+- Crea un issue en el repositorio
+- Contacta a través de GitHub
 
 ---
 
-**Version:** 4.0.0 - Con Paradigmas de Aprendizaje  
-**Última actualización:** 10 de Junio del 2025  
-**Nuevas características:** Módulo completo de paradigmas, ejemplos interactivos, casos reales  
-**Documentación adicional:** Ver `PARADIGMAS-APRENDIZAJE.md` para detalles del nuevo módulo  
-**Verificación:** Ejecutar `bash verificar-paradigmas.sh` para validar la instalación  
+**Versión:** 5.0.0  
+**Última actualización:** Enero 2025  
+**Autor:** alex-v08  
 **Licencia:** MIT
