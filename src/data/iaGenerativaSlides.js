@@ -238,8 +238,260 @@ export const iaGenerativaSlides = [
       <div className="space-y-8 fade-in">
         <div className="text-center mb-8">
           <div className="glass-effect p-6 rounded-xl inline-block">
-            <h3 className="text-2xl font-bold text-white mb-2">La magia de la predicción de palabras</h3>
-            <p className="text-white/80">Cómo algo tan simple produce resultados tan complejos</p>
+            <h3 className="text-2xl font-bold text-white mb-2">El Modelo Mental del "Recién Graduado Universitario"</h3>
+            <p className="text-white/80">Una forma simple de entender qué pueden hacer los LLMs</p>
+          </div>
+        </div>
+
+        <div className="glass-effect p-8 rounded-xl mb-8">
+          <h3 className="text-xl font-bold text-white mb-6 text-center">
+            🎓 ¿Cómo saber si un LLM puede hacer una tarea?
+          </h3>
+          
+          <div className="bg-blue-500/20 p-6 rounded-xl mb-6">
+            <h4 className="text-white font-bold text-lg mb-4 text-center">
+              Pregunta clave: "¿Podría un recién graduado universitario hacer esta tarea?"
+            </h4>
+            <p className="text-white/90 text-center text-lg">
+              Si la respuesta es <strong>SÍ</strong>, probablemente un LLM también puede hacerla
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h4 className="text-white font-semibold mb-4 text-center">
+                <Icon name="check-circle" className="w-5 h-5 inline mr-2 text-green-400" />
+                ✅ Tareas que SÍ puede hacer
+              </h4>
+              <div className="space-y-3">
+                <div className="bg-green-500/20 p-3 rounded-lg">
+                  <p className="text-white/90 text-sm">
+                    <strong>Determinar si un email es una queja</strong> - Solo necesita leer y clasificar
+                  </p>
+                </div>
+                <div className="bg-green-500/20 p-3 rounded-lg">
+                  <p className="text-white/90 text-sm">
+                    <strong>Evaluar si una reseña es positiva o negativa</strong> - Análisis de sentimientos básico
+                  </p>
+                </div>
+                <div className="bg-green-500/20 p-3 rounded-lg">
+                  <p className="text-white/90 text-sm">
+                    <strong>Escribir un comunicado de prensa</strong> - Con información del contexto proporcionado
+                  </p>
+                </div>
+                <div className="bg-green-500/20 p-3 rounded-lg">
+                  <p className="text-white/90 text-sm">
+                    <strong>Traducir texto entre idiomas</strong> - Conocimiento general disponible
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h4 className="text-white font-semibold mb-4 text-center">
+                <Icon name="times-circle" className="w-5 h-5 inline mr-2 text-red-400" />
+                ❌ Tareas que NO puede hacer bien
+              </h4>
+              <div className="space-y-3">
+                <div className="bg-red-500/20 p-3 rounded-lg">
+                  <p className="text-white/90 text-sm">
+                    <strong>Escribir sobre tu empresa específica</strong> - Sin contexto interno
+                  </p>
+                </div>
+                <div className="bg-red-500/20 p-3 rounded-lg">
+                  <p className="text-white/90 text-sm">
+                    <strong>Acceder a información después de su entrenamiento</strong> - Corte de conocimiento
+                  </p>
+                </div>
+                <div className="bg-red-500/20 p-3 rounded-lg">
+                  <p className="text-white/90 text-sm">
+                    <strong>Analizar datos tabulares complejos</strong> - Mejor usar aprendizaje supervisado
+                  </p>
+                </div>
+                <div className="bg-red-500/20 p-3 rounded-lg">
+                  <p className="text-white/90 text-sm">
+                    <strong>Recordar conversaciones previas</strong> - Sin memoria entre sesiones
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-6 bg-yellow-500/20 p-4 rounded-lg">
+            <h4 className="text-white font-semibold mb-2">
+              <Icon name="lightbulb" className="w-5 h-5 inline mr-2" />
+              Características del "Recién Graduado"
+            </h4>
+            <ul className="space-y-1 text-white/80 text-sm">
+              <li>• Tiene mucho conocimiento general (como el que está en internet)</li>
+              <li>• NO tiene acceso a internet u otros recursos externos</li>
+              <li>• NO tiene entrenamiento específico sobre tu empresa o negocio</li>
+              <li>• NO tiene memoria de tareas o conversaciones previas</li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="glass-effect p-8 rounded-xl mb-8">
+          <h3 className="text-xl font-bold text-white mb-6 text-center">
+            <Icon name="brain" className="w-6 h-6 inline mr-2 text-blue-400" />
+            Cómo Funciona Internamente: La Predicción de Palabras
+          </h3>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div>
+              <h4 className="text-white font-semibold mb-4">🔍 El Proceso Básico</h4>
+              <div className="space-y-4">
+                <div className="bg-blue-500/20 p-4 rounded-lg">
+                  <h5 className="text-white font-semibold mb-2">1. Predicción de la Siguiente Palabra</h5>
+                  <p className="text-white/80 text-sm mb-2">
+                    El modelo analiza el contexto y predice qué palabra es más probable que siga
+                  </p>
+                  <div className="bg-white/10 p-3 rounded">
+                    <p className="text-white/90 font-mono text-sm">
+                      "El cielo es" → <span className="text-blue-300">azul</span> (85% probabilidad)
+                    </p>
+                  </div>
+                </div>
+
+                <div className="bg-green-500/20 p-4 rounded-lg">
+                  <h5 className="text-white font-semibold mb-2">2. Generación Iterativa</h5>
+                  <p className="text-white/80 text-sm mb-2">
+                    Repite el proceso para construir oraciones completas
+                  </p>
+                  <div className="bg-white/10 p-3 rounded space-y-1">
+                    <p className="text-white/90 font-mono text-sm">
+                      "El cielo es azul" → <span className="text-green-300">y</span>
+                    </p>
+                    <p className="text-white/90 font-mono text-sm">
+                      "El cielo es azul y" → <span className="text-green-300">despejado</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h4 className="text-white font-semibold mb-4">⚠️ Limitaciones Clave</h4>
+              <div className="space-y-3">
+                <div className="bg-orange-500/20 p-3 rounded-lg">
+                  <h5 className="text-orange-100 font-semibold text-sm">📅 Corte de Conocimiento</h5>
+                  <p className="text-white/80 text-xs">
+                    Solo sabe hasta su fecha de entrenamiento. No puede acceder a información nueva.
+                  </p>
+                </div>
+                <div className="bg-red-500/20 p-3 rounded-lg">
+                  <h5 className="text-red-100 font-semibold text-sm">🤥 Alucinaciones</h5>
+                  <p className="text-white/80 text-xs">
+                    Puede inventar información que parece real pero es completamente falsa.
+                  </p>
+                </div>
+                <div className="bg-purple-500/20 p-3 rounded-lg">
+                  <h5 className="text-purple-100 font-semibold text-sm">📊 Datos Estructurados</h5>
+                  <p className="text-white/80 text-xs">
+                    No es bueno con tablas o datos numéricos complejos.
+                  </p>
+                </div>
+                <div className="bg-yellow-500/20 p-3 rounded-lg">
+                  <h5 className="text-yellow-100 font-semibold text-sm">📏 Longitud Limitada</h5>
+                  <p className="text-white/80 text-xs">
+                    Solo puede procesar una cantidad limitada de texto de entrada.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="glass-effect p-8 rounded-xl mb-8">
+          <h3 className="text-xl font-bold text-white mb-6 text-center">
+            <Icon name="layers" className="w-6 h-6 inline mr-2 text-purple-400" />
+            Las Tres Categorías de Tareas que Dominan los LLMs
+          </h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-blue-500/20 p-6 rounded-xl text-center">
+              <Icon name="pen" className="w-12 h-12 text-blue-400 mx-auto mb-4" />
+              <h4 className="text-white font-bold text-lg mb-3">📝 ESCRIBIR</h4>
+              <div className="space-y-2 text-white/80 text-sm">
+                <p>• Generar ideas y conceptos</p>
+                <p>• Redactar emails profesionales</p>
+                <p>• Crear contenido original</p>
+                <p>• Traducir entre idiomas</p>
+                <p>• Mejorar y editar textos</p>
+              </div>
+              <div className="mt-4 bg-white/10 p-3 rounded">
+                <p className="text-white/90 text-xs italic">
+                  "Escribe un email solicitando una reunión para discutir el proyecto X"
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-green-500/20 p-6 rounded-xl text-center">
+              <Icon name="book-open" className="w-12 h-12 text-green-400 mx-auto mb-4" />
+              <h4 className="text-white font-bold text-lg mb-3">📚 LEER</h4>
+              <div className="space-y-2 text-white/80 text-sm">
+                <p>• Resumir documentos largos</p>
+                <p>• Extraer información clave</p>
+                <p>• Clasificar sentimientos</p>
+                <p>• Responder preguntas sobre textos</p>
+                <p>• Analizar y categorizar contenido</p>
+              </div>
+              <div className="mt-4 bg-white/10 p-3 rounded">
+                <p className="text-white/90 text-xs italic">
+                  "Clasifica esta reseña como positiva o negativa: ¡El servicio fue excelente!"
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-purple-500/20 p-6 rounded-xl text-center">
+              <Icon name="message-circle" className="w-12 h-12 text-purple-400 mx-auto mb-4" />
+              <h4 className="text-white font-bold text-lg mb-3">💬 CHATEAR</h4>
+              <div className="space-y-2 text-white/80 text-sm">
+                <p>• Mantener conversaciones</p>
+                <p>• Asistencia al cliente 24/7</p>
+                <p>• Tutorías personalizadas</p>
+                <p>• Compañero de pensamiento</p>
+                <p>• Resolución de problemas</p>
+              </div>
+              <div className="mt-4 bg-white/10 p-3 rounded">
+                <p className="text-white/90 text-xs italic">
+                  "Hola, ¿cómo puedo ayudarte con tu pedido hoy?"
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8 bg-gradient-to-r from-blue-500/10 to-purple-500/10 p-6 rounded-xl">
+            <h4 className="text-white font-semibold mb-4 text-center">
+              <Icon name="globe" className="w-5 h-5 inline mr-2" />
+              Interfaces Web vs Aplicaciones de Software
+            </h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-white/5 p-4 rounded-lg">
+                <h5 className="text-white font-semibold mb-2">🌐 Interfaces Web</h5>
+                <p className="text-white/80 text-sm mb-3">
+                  Acceso directo a través del navegador
+                </p>
+                <div className="space-y-1 text-white/70 text-xs">
+                  <p>• ChatGPT, Claude, Bard</p>
+                  <p>• Ideal para exploración y creatividad</p>
+                  <p>• Conversaciones generales</p>
+                  <p>• Tareas de escritura y brainstorming</p>
+                </div>
+              </div>
+              <div className="bg-white/5 p-4 rounded-lg">
+                <h5 className="text-white font-semibold mb-2">📱 Aplicaciones de Software</h5>
+                <p className="text-white/80 text-sm mb-3">
+                  Integrados en sistemas específicos
+                </p>
+                <div className="space-y-1 text-white/70 text-xs">
+                  <p>• GitHub Copilot, Notion AI</p>
+                  <p>• Funciones especializadas</p>
+                  <p>• Enrutamiento de emails</p>
+                  <p>• Chatbots de servicio al cliente</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -247,41 +499,35 @@ export const iaGenerativaSlides = [
           <div className="glass-effect p-8 rounded-xl">
             <h3 className="text-xl font-bold text-white mb-6">
               <Icon name="brain" className="w-6 h-6 inline mr-2 text-blue-400" />
-              El Mecanismo Fundamental
+              Ejemplos Detallados del Curso
             </h3>
+            
             <div className="space-y-4">
               <div className="bg-blue-500/20 p-4 rounded-lg">
-                <h4 className="text-white font-semibold mb-2">1. Predicción de la Siguiente Palabra</h4>
-                <p className="text-white/80 text-sm mb-2">
-                  El modelo analiza el contexto y predice qué palabra es más probable que siga
-                </p>
-                <div className="bg-white/10 p-3 rounded">
-                  <p className="text-white/90 font-mono text-sm">
-                    "El cielo es" → <span className="text-blue-300">azul</span> (85% probabilidad)
-                  </p>
+                <h4 className="text-white font-semibold mb-2">📝 Escribir - Ejemplos</h4>
+                <div className="space-y-2 text-white/80 text-sm">
+                  <p>• <strong>"Sugerir tres nombres para nuestra nueva plataforma de analítica"</strong></p>
+                  <p>• <strong>"Traducir a Hindi formal"</strong> / <strong>"Traducir a inglés pirata"</strong></p>
+                  <p>• <strong>"Escribir comunicado de prensa para nuevo COO"</strong></p>
                 </div>
               </div>
 
               <div className="bg-green-500/20 p-4 rounded-lg">
-                <h4 className="text-white font-semibold mb-2">2. Generación Iterativa</h4>
-                <p className="text-white/80 text-sm mb-2">
-                  Repite el proceso para construir oraciones completas
-                </p>
-                <div className="bg-white/10 p-3 rounded space-y-1">
-                  <p className="text-white/90 font-mono text-sm">
-                    "El cielo es azul" → <span className="text-green-300">y</span>
-                  </p>
-                  <p className="text-white/90 font-mono text-sm">
-                    "El cielo es azul y" → <span className="text-green-300">despejado</span>
-                  </p>
+                <h4 className="text-white font-semibold mb-2">📚 Leer - Ejemplos</h4>
+                <div className="space-y-2 text-white/80 text-sm">
+                  <p>• <strong>Corrección:</strong> "Revisar gramática en texto del osito de peluche"</p>
+                  <p>• <strong>Resumen:</strong> "Resumir artículo 'The Turing Trap'"</p>
+                  <p>• <strong>Clasificación:</strong> "¿Es queja? → SÍ/NO" + "Departamento: Ropa"</p>
                 </div>
               </div>
 
               <div className="bg-purple-500/20 p-4 rounded-lg">
-                <h4 className="text-white font-semibold mb-2">3. Contexto es Clave</h4>
-                <p className="text-white/80 text-sm">
-                  La misma palabra inicial puede llevar a resultados diferentes según el contexto
-                </p>
+                <h4 className="text-white font-semibold mb-2">💬 Chat - Ejemplos</h4>
+                <div className="space-y-2 text-white/80 text-sm">
+                  <p>• <strong>BettaBurgers:</strong> "¡Bienvenido! ¿Qué te gustaría ordenar?"</p>
+                  <p>• <strong>Coach de carrera:</strong> "Estoy nervioso por mi presentación..."</p>
+                  <p>• <strong>Planificador de viajes:</strong> "Vacaciones baratas en París"</p>
+                </div>
               </div>
             </div>
           </div>
@@ -313,11 +559,27 @@ export const iaGenerativaSlides = [
                   <li>• Un artículo de 3,000 palabras ≈ 4,000 tokens</li>
                 </ul>
                 
-                <h5 className="font-bold mt-4 mb-2">Ejemplo de Costos (GPT-3.5):</h5>
+                <h5 className="font-bold mt-4 mb-2">Precios Actuales de Ejemplo:</h5>
                 <div className="bg-yellow-50 p-3 rounded">
-                  <p>• <strong>Input:</strong> $0.0005 por 1K tokens</p>
-                  <p>• <strong>Output:</strong> $0.0015 por 1K tokens</p>
-                  <p>• <strong>Conversación típica (2K tokens):</strong> ~$0.002 (0.2 centavos)</p>
+                  <p>• <strong>OpenAI GPT-3.5:</strong> Input $0.0015/1K tokens, Output $0.002/1K tokens</p>
+                  <p>• <strong>OpenAI GPT-4:</strong> Input $0.03/1K tokens, Output $0.06/1K tokens</p>
+                  <p>• <strong>Google PaLM 2:</strong> $0.00025/1K caracteres</p>
+                  <p>• <strong>Amazon Titan Lite:</strong> Input $0.0003/1K tokens</p>
+                </div>
+                
+                <h5 className="font-bold mt-4 mb-2">Cálculo Real: ¿Cuánto cuesta mantener a alguien leyendo 1 hora?</h5>
+                <div className="bg-blue-50 p-4 rounded space-y-2">
+                  <p><strong>Premisas:</strong></p>
+                  <p>• Velocidad de lectura: 250 palabras/minuto</p>
+                  <p>• 1 hora = 60 min × 250 palabras = 15,000 palabras de salida</p>
+                  <p>• Prompt similar = ~15,000 palabras adicionales</p>
+                  <p>• Total: 30,000 palabras ≈ 40,000 tokens</p>
+                  
+                  <p className="font-semibold text-green-700 text-lg">💰 Costo total con GPT-3.5: ~$0.08 (8 centavos)</p>
+                  
+                  <p className="text-sm text-gray-600">
+                    <strong>Contexto:</strong> Para un empleado que gana $15/hora, el costo de IA es solo 0.5% de su salario.
+                  </p>
                 </div>
                 
                 <div className="bg-red-50 p-4 rounded-lg mt-4">
@@ -429,9 +691,157 @@ export const iaGenerativaSlides = [
     )
   },
 
-  // Slide 3: Demo Interactivo de Generación de Texto
+  // Slide 3: Consejos para Prompting Efectivo
   {
     id: 3,
+    type: 'content',
+    title: 'Consejos para Prompting Efectivo',
+    content: (
+      <div className="space-y-8 fade-in">
+        <div className="text-center mb-8">
+          <div className="glass-effect p-6 rounded-xl inline-block">
+            <h3 className="text-2xl font-bold text-white mb-2">Los 3 Principios del Prompting Exitoso</h3>
+            <p className="text-white/80">Cómo obtener mejores resultados de cualquier LLM</p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div className="glass-effect p-6 rounded-xl text-center">
+            <Icon name="detail" className="w-16 h-16 text-blue-400 mx-auto mb-4" />
+            <h3 className="text-xl font-bold text-white mb-4">1️⃣ Sé Detallado y Específico</h3>
+            <p className="text-white/80 text-sm mb-4">
+              Proporciona contexto suficiente y describe la tarea claramente
+            </p>
+            <div className="bg-white/10 p-4 rounded-lg text-left">
+              <p className="text-red-200 text-xs font-semibold mb-2">❌ Prompt Vago:</p>
+              <p className="text-white/70 text-xs mb-3 italic">
+                "Ayúdame a escribir un email solicitando el proyecto de documentos legales."
+              </p>
+              <p className="text-green-200 text-xs font-semibold mb-2">✅ Prompt Mejorado:</p>
+              <p className="text-white/70 text-xs italic">
+                "Ayúdame a escribir un email solicitando ser asignado al proyecto de documentos legales. 
+                Estoy aplicando para un trabajo que verificará documentos legales usando LLMs. 
+                Tengo amplia experiencia formulando prompts para generar texto preciso en tono profesional."
+              </p>
+            </div>
+          </div>
+
+          <div className="glass-effect p-6 rounded-xl text-center">
+            <Icon name="brain" className="w-16 h-16 text-green-400 mx-auto mb-4" />
+            <h3 className="text-xl font-bold text-white mb-4">2️⃣ Guía el Pensamiento</h3>
+            <p className="text-white/80 text-sm mb-4">
+              Divide tareas complejas en pasos claros
+            </p>
+            <div className="bg-white/10 p-4 rounded-lg text-left">
+              <p className="text-green-200 text-xs font-semibold mb-2">📝 Ejemplo - Nombres para juguetes:</p>
+              <div className="space-y-2 text-white/70 text-xs">
+                <p><strong>Paso 1:</strong> Piensa en 5 palabras divertidas relacionadas con gatos</p>
+                <p><strong>Paso 2:</strong> Para cada palabra, crea un nombre que rime</p>
+                <p><strong>Paso 3:</strong> Añade un emoji relevante a cada nombre</p>
+              </div>
+              <div className="mt-3 bg-green-500/20 p-2 rounded">
+                <p className="text-green-100 text-xs">
+                  <strong>Resultado:</strong> Purr-Twirl 🌀, Whisker-Whisper 😻, Pounce-Bounce ⚽
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="glass-effect p-6 rounded-xl text-center">
+            <Icon name="refresh" className="w-16 h-16 text-purple-400 mx-auto mb-4" />
+            <h3 className="text-xl font-bold text-white mb-4">3️⃣ Experimenta e Itera</h3>
+            <p className="text-white/80 text-sm mb-4">
+              El prompting perfecto es un proceso iterativo
+            </p>
+            <div className="bg-white/10 p-4 rounded-lg text-left">
+              <div className="space-y-2 text-white/70 text-xs">
+                <p><strong>Ciclo de Mejora:</strong></p>
+                <p>💡 <strong>Idea</strong> → Ten clara la tarea</p>
+                <p>✍️ <strong>Prompt inicial</strong> → Escribe primera versión</p>
+                <p>🤖 <strong>Respuesta LLM</strong> → Observa el resultado</p>
+                <p>🔄 <strong>Evaluar y refinar</strong> → Mejora el prompt</p>
+                <p>🎯 <strong>Repetir</strong> → Hasta obtener el resultado deseado</p>
+              </div>
+              <div className="mt-3 bg-yellow-500/20 p-2 rounded">
+                <p className="text-yellow-100 text-xs">
+                  <strong>Consejo:</strong> ¡No pienses demasiado el primer prompt! Es mejor probar rápido y mejorar.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="glass-effect p-8 rounded-xl">
+          <h3 className="text-xl font-bold text-white mb-6 text-center">
+            <Icon name="target" className="w-6 h-6 inline mr-2 text-yellow-400" />
+            Ejemplo Práctico: Evolución de un Prompt
+          </h3>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-red-500/20 p-4 rounded-lg">
+              <h4 className="text-red-200 font-semibold mb-2">Intento 1 - Básico</h4>
+              <p className="text-white/80 text-sm italic mb-2">
+                "Ayúdame a reescribir esto: [texto]"
+              </p>
+              <p className="text-white/70 text-xs">
+                Resultado: Muy genérico, no sabe qué tipo de mejora necesitas.
+              </p>
+            </div>
+
+            <div className="bg-yellow-500/20 p-4 rounded-lg">
+              <h4 className="text-yellow-200 font-semibold mb-2">Intento 2 - Más Específico</h4>
+              <p className="text-white/80 text-sm italic mb-2">
+                "Corrige cualquier error gramatical y de ortografía en esto: [texto]"
+              </p>
+              <p className="text-white/70 text-xs">
+                Resultado: Mejor, pero aún falta contexto sobre el propósito.
+              </p>
+            </div>
+
+            <div className="bg-green-500/20 p-4 rounded-lg">
+              <h4 className="text-green-200 font-semibold mb-2">Intento 3 - Optimizado</h4>
+              <p className="text-white/80 text-sm italic mb-2">
+                "Corrige errores gramaticales y reescribe en tono apropiado para un currículum profesional: [texto]"
+              </p>
+              <p className="text-white/70 text-xs">
+                Resultado: ¡Perfecto! Contexto claro y objetivo específico.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="glass-effect p-6 rounded-xl bg-gradient-to-r from-orange-500/10 to-red-500/10">
+          <h3 className="text-xl font-bold text-white mb-4 text-center">
+            <Icon name="alert-triangle" className="w-6 h-6 inline mr-2 text-orange-400" />
+            Advertencias Importantes
+          </h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h4 className="text-orange-200 font-semibold mb-3">🔒 Información Confidencial</h4>
+              <ul className="space-y-1 text-white/80 text-sm">
+                <li>• No compartas datos sensibles o privados</li>
+                <li>• Verifica las políticas de tu empresa sobre IA</li>
+                <li>• Entiende cómo el proveedor maneja tus datos</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-red-200 font-semibold mb-3">⚠️ Verificación</h4>
+              <ul className="space-y-1 text-white/80 text-sm">
+                <li>• Siempre verifica información crítica</li>
+                <li>• Los LLMs pueden "alucinar" datos</li>
+                <li>• Especial cuidado con fechas y números</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 4: Demo Interactivo de Generación de Texto
+  {
+    id: 4,
     type: 'content',
     title: 'Demo Interactivo: Generación de Texto en Acción',
     content: (
@@ -476,45 +886,156 @@ export const iaGenerativaSlides = [
     )
   },
 
-  // Slide 4: RAG - Introducción
+  // Slide 5: RAG - Introducción
   {
-    id: 4,
+    id: 5,
     type: 'content',
     title: 'RAG: Generación Aumentada por Recuperación',
     content: (
       <div className="space-y-8 fade-in">
         <div className="text-center mb-8">
           <div className="glass-effect p-6 rounded-xl inline-block">
-            <h3 className="text-2xl font-bold text-white mb-2">Superando las limitaciones de los LLMs</h3>
-            <p className="text-white/80">Acceso a información actualizada y específica</p>
+            <h3 className="text-2xl font-bold text-white mb-2">LLM como Motor de Razonamiento</h3>
+            <p className="text-white/80">Más allá del simple prompting - Acceso a información específica y actualizada</p>
           </div>
         </div>
 
         <div className="glass-effect p-8 rounded-xl mb-8">
           <h3 className="text-xl font-bold text-white mb-6 text-center">
-            🤔 El Problema con los LLMs Tradicionales
+            🔍 Ejemplo Práctico: Chatbot Empresarial
+          </h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-red-500/20 p-6 rounded-xl">
+              <h4 className="text-red-200 font-bold mb-4">❌ Sin RAG - Respuesta Genérica</h4>
+              <div className="space-y-3">
+                <div className="bg-white/10 p-4 rounded-lg">
+                  <p className="text-white font-semibold text-sm mb-2">👤 Empleado Pregunta:</p>
+                  <p className="text-white/80 text-sm italic">"¿Hay estacionamiento para empleados?"</p>
+                </div>
+                <div className="bg-white/10 p-4 rounded-lg">
+                  <p className="text-red-200 font-semibold text-sm mb-2">🤖 LLM Responde:</p>
+                  <p className="text-white/80 text-sm italic">
+                    "Necesito información más específica sobre su lugar de trabajo para responder esa pregunta."
+                  </p>
+                </div>
+                <div className="bg-red-500/30 p-3 rounded text-center">
+                  <p className="text-red-100 text-xs font-semibold">No tiene acceso a información interna</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-green-500/20 p-6 rounded-xl">
+              <h4 className="text-green-200 font-bold mb-4">✅ Con RAG - Respuesta Específica</h4>
+              <div className="space-y-3">
+                <div className="bg-white/10 p-4 rounded-lg">
+                  <p className="text-white font-semibold text-sm mb-2">👤 Empleado Pregunta:</p>
+                  <p className="text-white/80 text-sm italic">"¿Hay estacionamiento para empleados?"</p>
+                </div>
+                <div className="bg-blue-500/20 p-3 rounded-lg">
+                  <p className="text-blue-200 font-semibold text-xs mb-1">🔍 RAG Busca en: "Documento de Instalaciones"</p>
+                </div>
+                <div className="bg-white/10 p-4 rounded-lg">
+                  <p className="text-green-200 font-semibold text-sm mb-2">🤖 LLM Responde:</p>
+                  <p className="text-white/80 text-sm italic">
+                    "Sí, los empleados pueden estacionar en los niveles 1 y 2 del estacionamiento de la oficina. 
+                    Puede obtener una calcomanía en recepción usando la entrada de Front St."
+                  </p>
+                </div>
+                <div className="bg-green-500/30 p-3 rounded text-center">
+                  <p className="text-green-100 text-xs font-semibold">Respuesta precisa basada en documentos internos</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="glass-effect p-8 rounded-xl mb-8">
+          <h3 className="text-xl font-bold text-white mb-6 text-center">
+            🚀 Aplicaciones RAG que Usas a Diario
+          </h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="bg-blue-500/20 p-4 rounded-xl text-center">
+              <Icon name="file-text" className="w-12 h-12 text-blue-400 mx-auto mb-3" />
+              <h4 className="text-white font-bold mb-2">Chatear con PDFs</h4>
+              <p className="text-white/70 text-sm mb-3">
+                ChatPDF, AskYourPDF, PDF.ai
+              </p>
+              <div className="bg-white/10 p-2 rounded text-xs text-white/60">
+                Sube un informe y haz preguntas sobre su contenido
+              </div>
+            </div>
+
+            <div className="bg-green-500/20 p-4 rounded-xl text-center">
+              <Icon name="search" className="w-12 h-12 text-green-400 mx-auto mb-3" />
+              <h4 className="text-white font-bold mb-2">Búsqueda Web IA</h4>
+              <p className="text-white/70 text-sm mb-3">
+                Bing Chat, You.com
+              </p>
+              <div className="bg-white/10 p-2 rounded text-xs text-white/60">
+                Búsquedas que generan respuestas conversacionales
+              </div>
+            </div>
+
+            <div className="bg-purple-500/20 p-4 rounded-xl text-center">
+              <Icon name="graduation-cap" className="w-12 h-12 text-purple-400 mx-auto mb-3" />
+              <h4 className="text-white font-bold mb-2">Asistentes de Sitios</h4>
+              <p className="text-white/70 text-sm mb-3">
+                Coursera Coach, Snapchat Help
+              </p>
+              <div className="bg-white/10 p-2 rounded text-xs text-white/60">
+                Responden basándose en contenido del sitio web
+              </div>
+            </div>
+
+            <div className="bg-orange-500/20 p-4 rounded-xl text-center">
+              <Icon name="briefcase" className="w-12 h-12 text-orange-400 mx-auto mb-3" />
+              <h4 className="text-white font-bold mb-2">Chatbots Empresariales</h4>
+              <p className="text-white/70 text-sm mb-3">
+                HubSpot, Zendesk
+              </p>
+              <div className="bg-white/10 p-2 rounded text-xs text-white/60">
+                Integrados con bases de conocimiento internas
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="glass-effect p-8 rounded-xl mb-8">
+          <h3 className="text-xl font-bold text-white mb-6 text-center">
+            🤔 El Problema que RAG Resuelve
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-red-500/20 p-4 rounded-lg text-center">
               <Icon name="calendar-times" className="w-12 h-12 text-red-400 mx-auto mb-3" />
-              <h4 className="text-white font-semibold mb-2">Conocimiento Desactualizado</h4>
-              <p className="text-white/70 text-sm">
-                Entrenados con datos hasta una fecha específica
+              <h4 className="text-white font-semibold mb-2">Corte de Conocimiento</h4>
+              <p className="text-white/70 text-sm mb-3">
+                LLMs solo saben hasta su fecha de entrenamiento
               </p>
+              <div className="bg-white/10 p-2 rounded text-xs text-white/60">
+                ej. ChatGPT no sabe noticias de hoy
+              </div>
             </div>
             <div className="bg-orange-500/20 p-4 rounded-lg text-center">
-              <Icon name="building" className="w-12 h-12 text-orange-400 mx-auto mb-3" />
-              <h4 className="text-white font-semibold mb-2">Sin Datos Privados</h4>
-              <p className="text-white/70 text-sm">
-                No conocen información interna de empresas
+              <Icon name="lock" className="w-12 h-12 text-orange-400 mx-auto mb-3" />
+              <h4 className="text-white font-semibold mb-2">Datos Privados/Empresariales</h4>
+              <p className="text-white/70 text-sm mb-3">
+                No conocen información interna específica
               </p>
+              <div className="bg-white/10 p-2 rounded text-xs text-white/60">
+                ej. Políticas de tu empresa
+              </div>
             </div>
             <div className="bg-yellow-500/20 p-4 rounded-lg text-center">
-              <Icon name="exclamation-triangle" className="w-12 h-12 text-yellow-400 mx-auto mb-3" />
-              <h4 className="text-white font-semibold mb-2">Alucinaciones</h4>
-              <p className="text-white/70 text-sm">
-                Pueden inventar información cuando no la conocen
+              <Icon name="brain" className="w-12 h-12 text-yellow-400 mx-auto mb-3" />
+              <h4 className="text-white font-semibold mb-2">LLM como Base de Datos</h4>
+              <p className="text-white/70 text-sm mb-3">
+                Depender solo de su "memoria" interna es limitante
               </p>
+              <div className="bg-white/10 p-2 rounded text-xs text-white/60">
+                Mejor como motor de razonamiento
+              </div>
             </div>
           </div>
         </div>
@@ -550,6 +1071,38 @@ export const iaGenerativaSlides = [
                 
                 <div className="bg-yellow-50 p-4 rounded-lg mt-4">
                   <p><strong>Ventaja clave:</strong> Combina la capacidad de comprensión y generación del LLM con información actualizada y específica de tu organización.</p>
+                </div>
+                
+                <h4 className="text-xl font-bold mb-3 mt-6">RAG vs Fine-tuning vs Pre-training</h4>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="bg-green-50 p-4 rounded-lg">
+                    <h5 className="font-bold text-green-800 mb-2">🔍 RAG</h5>
+                    <p className="text-sm mb-2"><strong>Propósito:</strong> Acceso a información externa</p>
+                    <p className="text-sm mb-2"><strong>Costo:</strong> Bajo - Solo almacenamiento y búsqueda</p>
+                    <p className="text-sm mb-2"><strong>Tiempo:</strong> Horas a días para implementar</p>
+                    <p className="text-sm"><strong>Uso ideal:</strong> Documentos empresariales, bases de conocimiento</p>
+                  </div>
+                  
+                  <div className="bg-blue-50 p-4 rounded-lg">
+                    <h5 className="font-bold text-blue-800 mb-2">🎯 Fine-tuning</h5>
+                    <p className="text-sm mb-2"><strong>Propósito:</strong> Comportamiento y estilo específico</p>
+                    <p className="text-sm mb-2"><strong>Costo:</strong> Medio - Entrenamiento especializado</p>
+                    <p className="text-sm mb-2"><strong>Tiempo:</strong> Días a semanas</p>
+                    <p className="text-sm"><strong>Uso ideal:</strong> Tono de marca, tareas muy específicas</p>
+                  </div>
+                  
+                  <div className="bg-purple-50 p-4 rounded-lg">
+                    <h5 className="font-bold text-purple-800 mb-2">🏗️ Pre-training</h5>
+                    <p className="text-sm mb-2"><strong>Propósito:</strong> Crear modelo desde cero</p>
+                    <p className="text-sm mb-2"><strong>Costo:</strong> Alto - Millones de dólares</p>
+                    <p className="text-sm mb-2"><strong>Tiempo:</strong> Meses a años</p>
+                    <p className="text-sm"><strong>Uso ideal:</strong> Solo para empresas grandes (Google, OpenAI)</p>
+                  </div>
+                </div>
+                
+                <div className="bg-blue-50 p-4 rounded-lg mt-4">
+                  <p><strong>Consejo práctico:</strong> Para la mayoría de casos empresariales, RAG es la opción más práctica y costo-efectiva. Puedes implementar un sistema RAG funcional en una semana.</p>
                 </div>
               </div>
             }
@@ -649,9 +1202,9 @@ export const iaGenerativaSlides = [
     )
   },
 
-  // Slide 5: Demo Interactivo de RAG
+  // Slide 6: Demo Interactivo de RAG
   {
-    id: 5,
+    id: 6,
     type: 'content',
     title: 'Demo: RAG en Acción',
     content: (
@@ -705,14 +1258,338 @@ export const iaGenerativaSlides = [
               </div>
             </div>
           </div>
+          
+          <div className="mt-8">
+            <h4 className="text-white font-semibold mb-4 text-center">
+              <Icon name="workflow" className="w-6 h-6 inline mr-2 text-purple-400" />
+              Arquitectura RAG Típica - Proceso Paso a Paso
+            </h4>
+            
+            <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 p-6 rounded-xl">
+              <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 items-center">
+                <div className="bg-blue-500/20 p-4 rounded-lg text-center">
+                  <Icon name="user" className="w-8 h-8 text-blue-400 mx-auto mb-2" />
+                  <h5 className="text-white font-semibold text-sm mb-1">1. Usuario Pregunta</h5>
+                  <p className="text-white/70 text-xs">"¿Cuál es la política de trabajo remoto?"</p>
+                </div>
+                
+                <div className="hidden lg:flex justify-center">
+                  <Icon name="arrow-right" className="w-6 h-6 text-white/50" />
+                </div>
+                
+                <div className="bg-green-500/20 p-4 rounded-lg text-center">
+                  <Icon name="search" className="w-8 h-8 text-green-400 mx-auto mb-2" />
+                  <h5 className="text-white font-semibold text-sm mb-1">2. Buscar Documentos</h5>
+                  <p className="text-white/70 text-xs">Base vectorial encuentra docs relevantes</p>
+                </div>
+                
+                <div className="hidden lg:flex justify-center">
+                  <Icon name="arrow-right" className="w-6 h-6 text-white/50" />
+                </div>
+                
+                <div className="bg-purple-500/20 p-4 rounded-lg text-center">
+                  <Icon name="brain" className="w-8 h-8 text-purple-400 mx-auto mb-2" />
+                  <h5 className="text-white font-semibold text-sm mb-1">3. LLM Genera</h5>
+                  <p className="text-white/70 text-xs">Respuesta con contexto específico</p>
+                </div>
+              </div>
+              
+              <div className="mt-6 bg-white/10 p-4 rounded-lg">
+                <h6 className="text-white font-semibold text-sm mb-2">💡 Detalles Técnicos:</h6>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                  <div>
+                    <p className="text-white/80"><strong>Vectorización:</strong> Convierte texto en números para búsqueda semántica</p>
+                  </div>
+                  <div>
+                    <p className="text-white/80"><strong>Similitud coseno:</strong> Encuentra documentos más parecidos a la pregunta</p>
+                  </div>
+                  <div>
+                    <p className="text-white/80"><strong>Context window:</strong> Límite de información que puede procesar el LLM</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div className="glass-effect p-8 rounded-xl">
+          <h3 className="text-xl font-bold text-white mb-6 text-center">
+            🛠️ Herramientas y Agentes: Más Allá de RAG
+          </h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h4 className="text-white font-semibold mb-4">
+                <Icon name="tools" className="w-5 h-5 inline mr-2 text-orange-400" />
+                Tool Use (Uso de Herramientas)
+              </h4>
+              <div className="space-y-3">
+                <p className="text-white/80 text-sm">
+                  Los LLMs pueden usar herramientas externas para ejecutar acciones específicas más allá de solo generar texto.
+                </p>
+                <div className="bg-orange-500/20 p-3 rounded-lg">
+                  <h5 className="text-orange-100 font-semibold text-sm mb-2">Ejemplos de Herramientas:</h5>
+                  <ul className="text-white/70 text-xs space-y-1">
+                    <li>• <strong>Calculadora:</strong> Para cálculos matemáticos precisos</li>
+                    <li>• <strong>Búsqueda web:</strong> Para información en tiempo real</li>
+                    <li>• <strong>APIs de weather:</strong> Para datos meteorológicos</li>
+                    <li>• <strong>Bases de datos:</strong> Para consultas SQL</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="text-white font-semibold mb-4">
+                <Icon name="users" className="w-5 h-5 inline mr-2 text-cyan-400" />
+                Agentes IA
+              </h4>
+              <div className="space-y-3">
+                <p className="text-white/80 text-sm">
+                  Sistemas que pueden planificar, ejecutar múltiples pasos y usar varias herramientas para completar tareas complejas.
+                </p>
+                <div className="bg-cyan-500/20 p-3 rounded-lg">
+                  <h5 className="text-cyan-100 font-semibold text-sm mb-2">Capacidades de Agentes:</h5>
+                  <ul className="text-white/70 text-xs space-y-1">
+                    <li>• <strong>Planificación:</strong> Dividir tareas complejas en pasos</li>
+                    <li>• <strong>Memoria:</strong> Recordar contexto entre interacciones</li>
+                    <li>• <strong>Herramientas múltiples:</strong> Combinar RAG + APIs + cálculos</li>
+                    <li>• <strong>Auto-corrección:</strong> Verificar y mejorar sus propias respuestas</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="mt-6 bg-gradient-to-r from-orange-500/20 to-cyan-500/20 p-4 rounded-lg">
+            <h5 className="text-white font-semibold mb-2">🎯 Ejemplo Práctico: Agente de Viajes</h5>
+            <div className="text-white/80 text-sm space-y-2">
+              <p><strong>Tarea:</strong> "Planifica un viaje de trabajo a Madrid para la próxima semana"</p>
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mt-3">
+                <div className="bg-white/10 p-2 rounded text-xs">
+                  <strong>1. Buscar vuelos</strong><br/>API de aerolíneas
+                </div>
+                <div className="bg-white/10 p-2 rounded text-xs">
+                  <strong>2. Revisar calendario</strong><br/>Integración Google Calendar
+                </div>
+                <div className="bg-white/10 p-2 rounded text-xs">
+                  <strong>3. Buscar hoteles</strong><br/>APIs de booking
+                </div>
+                <div className="bg-white/10 p-2 rounded text-xs">
+                  <strong>4. Consultar políticas</strong><br/>RAG con docs internos
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     )
   },
 
-  // Slide 6: Uso Cotidiano - Introducción
+  // Slide 7: Ciclo de Vida de Proyectos de IA Generativa
   {
-    id: 6,
+    id: 7,
+    type: 'content',
+    title: 'Ciclo de Vida de Proyectos de IA Generativa',
+    content: (
+      <div className="space-y-8 fade-in">
+        <div className="text-center mb-8">
+          <div className="glass-effect p-6 rounded-xl inline-block">
+            <h3 className="text-2xl font-bold text-white mb-2">De la Idea a la Implementación</h3>
+            <p className="text-white/80">El proceso para construir aplicaciones exitosas con IA Generativa</p>
+          </div>
+        </div>
+
+        <div className="glass-effect p-8 rounded-xl mb-8">
+          <h3 className="text-xl font-bold text-white mb-6 text-center">
+            <Icon name="workflow" className="w-6 h-6 inline mr-2 text-purple-400" />
+            Las 4 Fases del Desarrollo
+          </h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div className="bg-blue-500/20 p-6 rounded-xl text-center">
+              <div className="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-lg">1</div>
+              <h4 className="text-white font-bold mb-3">📋 Definir Alcance</h4>
+              <p className="text-white/80 text-sm mb-4">
+                Decide qué quieres que haga tu aplicación
+              </p>
+              <div className="space-y-2 text-white/70 text-xs">
+                <p>• Identifica el problema específico</p>
+                <p>• Define usuarios objetivo</p>
+                <p>• Establece métricas de éxito</p>
+                <p>• Evalúa si IA Generativa es la solución correcta</p>
+              </div>
+            </div>
+
+            <div className="bg-green-500/20 p-6 rounded-xl text-center">
+              <div className="w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-lg">2</div>
+              <h4 className="text-white font-bold mb-3">🔨 Construir/Mejorar</h4>
+              <p className="text-white/80 text-sm mb-4">
+                Desarrolla un prototipo rápido
+              </p>
+              <div className="space-y-2 text-white/70 text-xs">
+                <p>• Prototipo inicial (1-2 días)</p>
+                <p>• Iteración de prompts</p>
+                <p>• Integración con datos (RAG si es necesario)</p>
+                <p>• Mejora continua basada en feedback</p>
+              </div>
+            </div>
+
+            <div className="bg-orange-500/20 p-6 rounded-xl text-center">
+              <div className="w-12 h-12 bg-orange-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-lg">3</div>
+              <h4 className="text-white font-bold mb-3">🧪 Evaluación Interna</h4>
+              <p className="text-white/80 text-sm mb-4">
+                Tu equipo prueba el sistema
+              </p>
+              <div className="space-y-2 text-white/70 text-xs">
+                <p>• Pruebas con diferentes entradas</p>
+                <p>• Identificación de errores y limitaciones</p>
+                <p>• Refinamiento de prompts</p>
+                <p>• Ajustes antes del lanzamiento</p>
+              </div>
+            </div>
+
+            <div className="bg-purple-500/20 p-6 rounded-xl text-center">
+              <div className="w-12 h-12 bg-purple-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-lg">4</div>
+              <h4 className="text-white font-bold mb-3">🚀 Desplegar y Monitorear</h4>
+              <p className="text-white/80 text-sm mb-4">
+                Lanza para usuarios reales
+              </p>
+              <div className="space-y-2 text-white/70 text-xs">
+                <p>• Implementación para usuarios externos</p>
+                <p>• Monitoreo continuo del rendimiento</p>
+                <p>• Respuesta a casos no anticipados</p>
+                <p>• Mejoras basadas en uso real</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+          <div className="glass-effect p-6 rounded-xl">
+            <h3 className="text-lg font-bold text-white mb-4">
+              <Icon name="coffee" className="w-5 h-5 inline mr-2 text-brown-400" />
+              Ejemplo: Chatbot para Pedidos de Restaurante
+            </h3>
+            <div className="space-y-4 text-white/80 text-sm">
+              <div className="bg-blue-500/20 p-3 rounded">
+                <p><strong>1. Alcance:</strong> Tomar pedidos de hamburguesas</p>
+              </div>
+              <div className="bg-green-500/20 p-3 rounded">
+                <p><strong>2. Construir:</strong> Prototipo rápido con ChatGPT</p>
+              </div>
+              <div className="bg-orange-500/20 p-3 rounded">
+                <p><strong>3. Evaluar:</strong> Equipo interno hace pedidos de prueba</p>
+                <p className="text-xs mt-1">• "¿Tienen pepinillos?" → "Sí, ¿quieres añadir algunos?"</p>
+                <p className="text-xs text-red-200">• "Hamburguesa de champiñones" → "No tenemos champiñones" (Error detectado)</p>
+              </div>
+              <div className="bg-purple-500/20 p-3 rounded">
+                <p><strong>4. Desplegar:</strong> Clientes reales hacen pedidos</p>
+                <p className="text-xs mt-1 text-yellow-200">• Cliente pregunta calorías → Error no anticipado → Mejora</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="glass-effect p-6 rounded-xl">
+            <h3 className="text-lg font-bold text-white mb-4">
+              <Icon name="chart-bar" className="w-5 h-5 inline mr-2 text-blue-400" />
+              Ejemplo: Monitor de Reputación de Restaurante
+            </h3>
+            <div className="space-y-4 text-white/80 text-sm">
+              <div className="bg-blue-500/20 p-3 rounded">
+                <p><strong>1. Alcance:</strong> Clasificar reseñas como positivas/negativas</p>
+              </div>
+              <div className="bg-green-500/20 p-3 rounded">
+                <p><strong>2. Construir:</strong> Prompt: "Clasifica la siguiente reseña..."</p>
+              </div>
+              <div className="bg-orange-500/20 p-3 rounded">
+                <p><strong>3. Evaluar:</strong> Pruebas internas revelan errores</p>
+                <p className="text-xs mt-1 text-green-200">• "¡El mochi es excelente!" → Positivo ✓</p>
+                <p className="text-xs text-red-200">• "Mi pasta estaba fría" → Positivo ✗ (Error detectado)</p>
+              </div>
+              <div className="bg-purple-500/20 p-3 rounded">
+                <p><strong>4. Desplegar:</strong> Sistema automático en producción</p>
+                <p className="text-xs mt-1 text-yellow-200">• "Mi ramen miso sabía a tonkotsu" → Requiere más contexto</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="glass-effect p-8 rounded-xl">
+          <h3 className="text-xl font-bold text-white mb-6 text-center">
+            <Icon name="tools" className="w-6 h-6 inline mr-2 text-yellow-400" />
+            Herramientas y Técnicas Avanzadas
+          </h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div className="bg-blue-500/20 p-4 rounded-xl text-center">
+              <Icon name="message-square" className="w-12 h-12 text-blue-400 mx-auto mb-3" />
+              <h4 className="text-white font-bold mb-2">Prompting</h4>
+              <p className="text-white/70 text-sm">
+                Proceso iterativo de mejora de instrucciones
+              </p>
+            </div>
+
+            <div className="bg-green-500/20 p-4 rounded-xl text-center">
+              <Icon name="database" className="w-12 h-12 text-green-400 mx-auto mb-3" />
+              <h4 className="text-white font-bold mb-2">RAG</h4>
+              <p className="text-white/70 text-sm">
+                Acceso a datos externos y actualizados
+              </p>
+            </div>
+
+            <div className="bg-purple-500/20 p-4 rounded-xl text-center">
+              <Icon name="settings" className="w-12 h-12 text-purple-400 mx-auto mb-3" />
+              <h4 className="text-white font-bold mb-2">Fine-tuning</h4>
+              <p className="text-white/70 text-sm">
+                Adaptación del modelo a tareas específicas
+              </p>
+            </div>
+
+            <div className="bg-orange-500/20 p-4 rounded-xl text-center">
+              <Icon name="cpu" className="w-12 h-12 text-orange-400 mx-auto mb-3" />
+              <h4 className="text-white font-bold mb-2">Pre-training</h4>
+              <p className="text-white/70 text-sm">
+                Entrenar un modelo desde cero (muy avanzado)
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="glass-effect p-6 rounded-xl bg-gradient-to-r from-yellow-500/10 to-orange-500/10">
+          <h3 className="text-xl font-bold text-white mb-4 text-center">
+            <Icon name="lightbulb" className="w-6 h-6 inline mr-2 text-yellow-400" />
+            Características del Desarrollo con IA Generativa
+          </h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h4 className="text-yellow-200 font-semibold mb-3">✨ Ventajas Únicas</h4>
+              <ul className="space-y-2 text-white/80 text-sm">
+                <li>• <strong>Desarrollo ultrarrápido:</strong> Prototipos en horas/días vs meses</li>
+                <li>• <strong>Barrera de entrada baja:</strong> No requiere expertise en ML</li>
+                <li>• <strong>Experimentación fácil:</strong> Cambios rápidos de prompts</li>
+                <li>• <strong>Resultados inmediatos:</strong> Feedback instantáneo</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-orange-200 font-semibold mb-3">🔄 Proceso Empírico</h4>
+              <ul className="space-y-2 text-white/80 text-sm">
+                <li>• <strong>Altamente experimental:</strong> Encontrar y corregir errores</li>
+                <li>• <strong>Iterativo por naturaleza:</strong> Mejora continua necesaria</li>
+                <li>• <strong>Casos inesperados:</strong> Usuarios siempre sorprenden</li>
+                <li>• <strong>Monitoreo esencial:</strong> Vigilar comportamiento en producción</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 8: Uso Cotidiano - Introducción
+  {
+    id: 8,
     type: 'content',
     title: 'IA Generativa en tu Día a Día',
     content: (
@@ -1027,9 +1904,9 @@ def validate_email(email):
     )
   },
 
-  // Slide 7: Casos de Éxito y Futuro
+  // Slide 9: Casos de Éxito y Futuro
   {
-    id: 7,
+    id: 9,
     type: 'content',
     title: 'Casos de Éxito y el Futuro de la IA Generativa',
     content: (
@@ -1104,6 +1981,107 @@ def validate_email(email):
                 <p>• <strong>Calidad:</strong> +25% en evaluaciones de clientes</p>
                 <p>• <strong>Velocidad:</strong> Análisis en horas vs días</p>
                 <p>• <strong>Innovación:</strong> Nuevos servicios basados en IA</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="glass-effect p-8 rounded-xl mb-8">
+          <h3 className="text-xl font-bold text-white mb-6 text-center">
+            <Icon name="users" className="w-6 h-6 inline mr-2 text-blue-400" />
+            El Espectro de Automatización en Servicio al Cliente
+          </h3>
+          
+          <p className="text-white/90 text-center mb-6">
+            Las empresas están implementando chatbots de diferentes formas según su nivel de confianza y necesidades
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="bg-red-500/20 p-4 rounded-xl text-center">
+              <Icon name="users" className="w-12 h-12 text-red-400 mx-auto mb-3" />
+              <h4 className="text-white font-bold mb-2">Solo Humanos</h4>
+              <p className="text-white/70 text-sm mb-3">
+                Centros de atención tradicionales donde agentes humanos manejan todo
+              </p>
+              <div className="bg-white/10 p-2 rounded text-xs text-white/60">
+                Control total, pero costoso y lento
+              </div>
+            </div>
+
+            <div className="bg-orange-500/20 p-4 rounded-xl text-center">
+              <Icon name="user-check" className="w-12 h-12 text-orange-400 mx-auto mb-3" />
+              <h4 className="text-white font-bold mb-2">Bot Apoya Humano</h4>
+              <p className="text-white/70 text-sm mb-3">
+                IA sugiere respuestas, humano revisa y envía
+              </p>
+              <div className="bg-white/10 p-2 rounded text-xs text-white/60">
+                Seguro: humano siempre supervisa
+              </div>
+            </div>
+
+            <div className="bg-yellow-500/20 p-4 rounded-xl text-center">
+              <Icon name="filter" className="w-12 h-12 text-yellow-400 mx-auto mb-3" />
+              <h4 className="text-white font-bold mb-2">Bot Clasifica</h4>
+              <p className="text-white/70 text-sm mb-3">
+                Bot maneja casos fáciles, escala los complejos a humanos
+              </p>
+              <div className="bg-white/10 p-2 rounded text-xs text-white/60">
+                Eficiente: humanos se enfocan en casos difíciles
+              </div>
+            </div>
+
+            <div className="bg-green-500/20 p-4 rounded-xl text-center">
+              <Icon name="robot" className="w-12 h-12 text-green-400 mx-auto mb-3" />
+              <h4 className="text-white font-bold mb-2">Solo Chatbots</h4>
+              <p className="text-white/70 text-sm mb-3">
+                IA responde directamente sin intervención humana
+              </p>
+              <div className="bg-white/10 p-2 rounded text-xs text-white/60">
+                Rápido y barato, pero riesgo de errores
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-6 bg-gradient-to-r from-blue-500/10 to-purple-500/10 p-6 rounded-xl">
+            <h4 className="text-white font-semibold mb-4 text-center">
+              <Icon name="shield-check" className="w-5 h-5 inline mr-2" />
+              Consejos para Implementación Segura
+            </h4>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="bg-white/5 p-4 rounded-lg">
+                <h5 className="text-blue-200 font-semibold mb-2">🏢 Empezar Internamente</h5>
+                <p className="text-white/80 text-sm">
+                  Primero usa el chatbot con empleados para probar y mejorar antes de exponerlo a clientes.
+                </p>
+              </div>
+              <div className="bg-white/5 p-4 rounded-lg">
+                <h5 className="text-green-200 font-semibold mb-2">👨‍💼 Human-in-the-Loop</h5>
+                <p className="text-white/80 text-sm">
+                  Comienza con supervisión humana para identificar problemas y ajustar respuestas.
+                </p>
+              </div>
+              <div className="bg-white/5 p-4 rounded-lg">
+                <h5 className="text-purple-200 font-semibold mb-2">📈 Evolucionar Gradualmente</h5>
+                <p className="text-white/80 text-sm">
+                  Aumenta la autonomía del bot conforme demuestre confiabilidad y precisión.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-6 bg-yellow-500/20 p-4 rounded-lg">
+            <h4 className="text-yellow-100 font-semibold mb-2">
+              <Icon name="lightbulb" className="w-5 h-5 inline mr-2" />
+              Ejemplo Real: Sistema de Monitoreo
+            </h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-white/80 text-sm">
+              <div>
+                <p><strong>Consulta simple:</strong> "¿Cuál es el estado de mi pedido?"</p>
+                <p className="text-green-200">→ Bot puede manejar automáticamente</p>
+              </div>
+              <div>
+                <p><strong>Consulta compleja:</strong> "Mi producto llegó dañado y necesito una solución especial"</p>
+                <p className="text-orange-200">→ Bot escala a agente humano</p>
               </div>
             </div>
           </div>

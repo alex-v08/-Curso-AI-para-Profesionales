@@ -26,43 +26,57 @@ export const iaGenerativaPresentationMetadata = {
   sections: {
     fundamentos: {
       name: "Fundamentos de IA Generativa",
-      slides: [0, 3], // Slides 0-3
-      description: "Qué es, cómo funciona y diferencias con IA tradicional",
+      slides: [0, 2], // Slides 0-2
+      description: "Qué es, cómo funciona y modelo mental del recién graduado",
       icon: "brain",
       color: "blue"
     },
+    prompting: {
+      name: "Consejos para Prompting Efectivo", 
+      slides: [3, 3], // Slide 3
+      description: "Los 3 principios para obtener mejores resultados",
+      icon: "target",
+      color: "yellow"
+    },
     llms: {
-      name: "Modelos de Lenguaje Grandes", 
-      slides: [4, 5], // Slides 4-5
-      description: "Funcionamiento interno y limitaciones de los LLMs",
-      icon: "microchip",
+      name: "Categorización de Tareas LLM", 
+      slides: [4, 4], // Slide 4
+      description: "Demo interactivo de generación de texto",
+      icon: "layers",
       color: "green"
     },
     rag: {
       name: "RAG - Retrieval Augmented Generation",
-      slides: [6, 7], // Slides 6-7
+      slides: [5, 6], // Slides 5-6
       description: "Aumentando capacidades con información externa",
       icon: "database",
       color: "purple"
     },
+    proyectos: {
+      name: "Ciclo de Vida de Proyectos",
+      slides: [7, 7], // Slide 7
+      description: "De la idea a la implementación en producción",
+      icon: "workflow",
+      color: "indigo"
+    },
     aplicaciones: {
       name: "Uso Cotidiano y Aplicaciones",
-      slides: [8, 9], // Slides 8-9
+      slides: [8, 8], // Slide 8
       description: "Herramientas prácticas para tu día a día",
       icon: "users",
       color: "orange"
     },
     futuro: {
       name: "Futuro y Consideraciones Éticas",
-      slides: [10, 11], // Slides 10-11
-      description: "Casos de éxito, tendencias y responsabilidad",
+      slides: [9, 9], // Slide 9
+      description: "Casos de éxito, automatización y tendencias",
       icon: "rocket",
       color: "pink"
     }
   },
   
   // Slides que tienen componentes interactivos
-  interactiveSlides: [3, 5, 7], // Demo de generación, Demo RAG, Casos de uso interactivos
+  interactiveSlides: [4, 6], // Demo de generación, Demo RAG
   
   duration: {
     fundamentos: "20-30 minutos",
@@ -75,20 +89,27 @@ export const iaGenerativaPresentationMetadata = {
   
   features: [
     "🤖 Introducción completa a IA Generativa",
-    "🧠 Funcionamiento detallado de LLMs", 
+    "🎓 Modelo mental del 'recién graduado universitario'", 
+    "📝 Categorización: Escribir, Leer, Chat",
+    "🎯 Consejos prácticos para prompting efectivo",
     "🔍 RAG con demos interactivos",
-    "💼 6 categorías de aplicaciones prácticas",
-    "🎯 Casos de éxito empresariales reales",
-    "⚖️ Consideraciones éticas y sociales",
-    "🚀 Perspectivas de futuro y tendencias"
+    "🔄 Ciclo de vida completo de proyectos",
+    "🤖 Espectro de automatización de chatbots",
+    "💰 Análisis detallado de costos y tokens",
+    "🏆 Casos de éxito empresariales reales",
+    "⚖️ Consideraciones éticas y sociales"
   ],
   
   learningObjectives: [
     "Comprender qué es la IA Generativa y cómo difiere de la IA tradicional",
-    "Entender el funcionamiento básico de los LLMs y sus limitaciones",
+    "Aplicar el modelo mental del 'recién graduado' para evaluar tareas LLM",
+    "Dominar los 3 principios del prompting efectivo",
+    "Categorizar aplicaciones en: Escribir, Leer y Chat",
+    "Entender el funcionamiento básico de los LLMs y sus limitaciones críticas",
     "Conocer la técnica RAG y sus aplicaciones empresariales",
-    "Identificar oportunidades de uso en el trabajo diario",
-    "Evaluar herramientas de IA Generativa para diferentes tareas",
+    "Implementar el ciclo de vida completo de proyectos GenAI",
+    "Evaluar el espectro de automatización para chatbots",
+    "Calcular costos reales de implementación con tokens",
     "Aplicar mejores prácticas y consideraciones éticas"
   ],
   
