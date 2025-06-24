@@ -1,4 +1,7 @@
 /* src/styles/App.css */
+@import url('./ChatbotInspiredStyles.css');
+@import url('./ProfessionalDesignSystem.css');
+@import url('./ProfessionalEnhancements.css');
 
 /* Reset y configuración base */
 * {
@@ -8,14 +11,14 @@
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #1976d2 0%, #1565c0 50%, #0d47a1 100%);
   min-height: 100vh;
   overflow-x: hidden;
 }
@@ -119,28 +122,44 @@ code {
   .main-content.with-sidebar {
     margin-left: 24rem; /* 384px sidebar width */
     width: calc(100% - 24rem);
+    padding: 0 2rem; /* Add horizontal padding */
   }
   
   .main-content.without-sidebar {
     margin-left: 0;
     width: 100%;
-    padding-left: 3rem;
-    padding-right: 3rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
   }
   
   /* Mejor distribución del contenido sin centrado forzado */
   .main-content.without-sidebar .flex-1 {
-    padding: 2rem 3rem;
+    padding: 3rem 4rem;
   }
   
   .main-content.without-sidebar .max-w-7xl {
-    max-width: none !important;
+    max-width: 1400px !important; /* Allow more width but with limit */
     width: 100%;
+    margin: 0 auto;
   }
   
   .main-content.without-sidebar .max-w-6xl {
-    max-width: none !important;
+    max-width: 1200px !important;
     width: 100%;
+    margin: 0 auto;
+  }
+  
+  /* Better spacing for content with sidebar */
+  .main-content.with-sidebar .max-w-7xl {
+    max-width: 1000px !important;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .main-content.with-sidebar .max-w-6xl {
+    max-width: 900px !important;
+    width: 100%;
+    margin: 0 auto;
   }
 }
 
@@ -542,33 +561,101 @@ select:focus {
   gap: 0.5rem;
 }
 
-/* Mejor organización para contenido sin sidebar */
-.main-content.without-sidebar .grid {
-  gap: 2.5rem;
-  padding: 0;
+/* Improved spacing for slide content */
+.slide-content .grid {
+  gap: 4rem;
+  padding: 2rem 0;
+  margin: 2rem 0;
 }
 
-.main-content.without-sidebar .grid-cols-3,
-.main-content.without-sidebar .lg\\:grid-cols-3 {
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2.5rem;
-}
-
-.main-content.without-sidebar .grid-cols-1 {
+.slide-content .grid-cols-1 {
   grid-template-columns: 1fr;
+  gap: 3rem;
 }
 
-/* Espaciado mejorado para mejor organización */
-.main-content.without-sidebar .space-y-6 > * + * {
-  margin-top: 2.5rem !important;
+.slide-content .grid-cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4rem;
 }
 
-.main-content.without-sidebar .mb-8 {
+.slide-content .grid-cols-3,
+.slide-content .lg\\:grid-cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+}
+
+/* Better spacing for content elements */
+.slide-content .space-y-6 > * + * {
+  margin-top: 3rem !important;
+}
+
+.slide-content .space-y-8 > * + * {
+  margin-top: 4rem !important;
+}
+
+.slide-content .mb-8 {
+  margin-bottom: 4rem !important;
+}
+
+.slide-content .mb-6 {
   margin-bottom: 3rem !important;
 }
 
-.main-content.without-sidebar .mb-6 {
-  margin-bottom: 2.5rem !important;
+.slide-content .mb-4 {
+  margin-bottom: 2rem !important;
+}
+
+/* Better spacing for cards and containers */
+.slide-content .glass-effect,
+.slide-content .chatbot-glass,
+.slide-content .chatbot-glass-strong,
+.slide-content .content-card {
+  margin-bottom: 3rem;
+  padding: 2rem !important;
+}
+
+/* Center content better */
+.slide-content {
+  text-align: center;
+}
+
+.slide-content .text-left {
+  text-align: left;
+}
+
+/* Improve blockquote spacing and centering */
+.slide-content blockquote {
+  margin: 3rem auto;
+  max-width: 4xl;
+  text-align: center;
+}
+
+/* Responsive improvements for mobile */
+@media (max-width: 768px) {
+  .slide-content .grid {
+    gap: 2rem;
+    padding: 1rem 0;
+    margin: 1rem 0;
+  }
+  
+  .slide-content .grid-cols-2 {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .slide-content .grid-cols-3,
+  .slide-content .lg\\:grid-cols-3 {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .slide-content .glass-effect,
+  .slide-content .chatbot-glass,
+  .slide-content .chatbot-glass-strong,
+  .slide-content .content-card {
+    margin-bottom: 2rem;
+    padding: 1.5rem !important;
+  }
 }
 
 /* Organización de tarjetas sin centrado forzado */
@@ -613,3 +700,57 @@ select:focus {
 .bg-orange-500\/20 { background-color: rgba(249, 115, 22, 0.2); }
 .bg-pink-500\/10 { background-color: rgba(236, 72, 153, 0.1); }
 .bg-pink-500\/20 { background-color: rgba(236, 72, 153, 0.2); }
+
+/* Improve text spacing and readability */
+.slide-content p {
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+
+.slide-content h2,
+.slide-content h3,
+.slide-content h4 {
+  margin-bottom: 1.5rem;
+  margin-top: 2rem;
+}
+
+.slide-content h2:first-child,
+.slide-content h3:first-child,
+.slide-content h4:first-child {
+  margin-top: 0;
+}
+
+.slide-content ul,
+.slide-content ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.slide-content li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+/* Better spacing for buttons and interactive elements */
+.slide-content button {
+  margin: 0.5rem;
+}
+
+.slide-content .flex.gap-2 {
+  gap: 1rem !important;
+}
+
+.slide-content .flex.gap-4 {
+  gap: 1.5rem !important;
+}
+
+/* Improve quote styling */
+.slide-content blockquote {
+  margin: 2rem 0;
+  padding: 1.5rem 2rem;
+  border-left: 4px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  line-height: 1.8;
+}

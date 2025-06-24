@@ -16,3 +16,10 @@ export {
   AprendizajeNoSupervisadoDemo,
   ComparacionParadigmas
 } from '../ParadigmasAprendizaje';
+
+// Componentes de agentes inteligentes
+export {
+  AgentArchitectureDemo,
+  MultiAgentSwarmDemo,
+  N8nFlowDemo
+} from '../AgentesInteligentes';

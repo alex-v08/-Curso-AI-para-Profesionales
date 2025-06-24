@@ -1,13 +1,14 @@
 import React from 'react';
 import Icon from '../components/Icon';
 import ClickableInfo from '../components/ClickableInfo';
+import { promptingSlides } from './promptingSlides';
 
 /**
  * Slides del capítulo de IA Generativa
  * Incluye fundamentos, RAG, y uso cotidiano
  */
 
-export const iaGenerativaSlides = [
+const baseIaGenerativaSlides = [
   // Slide 0: Portada del capítulo
   {
     id: 0,
@@ -475,7 +476,7 @@ export const iaGenerativaSlides = [
                   Acceso directo a través del navegador
                 </p>
                 <div className="space-y-1 text-white/70 text-xs">
-                  <p>• ChatGPT, Claude, Bard</p>
+                  <p>• ChatGPT, Claude, Google Gemini</p>
                   <p>• Ideal para exploración y creatividad</p>
                   <p>• Conversaciones generales</p>
                   <p>• Tareas de escritura y brainstorming</p>
@@ -899,6 +900,99 @@ export const iaGenerativaSlides = [
           <div className="glass-effect p-6 rounded-xl inline-block">
             <h3 className="text-2xl font-bold text-white mb-2">LLM como Motor de Razonamiento</h3>
             <p className="text-white/80">Más allá del simple prompting - Acceso a información específica y actualizada</p>
+          </div>
+        </div>
+
+        {/* Diagrama RAG */}
+        <div className="glass-effect p-6 rounded-xl mb-8">
+          <h3 className="text-xl font-bold text-white mb-4 text-center">
+            🔄 Cómo Funciona RAG: Flujo de Información
+          </h3>
+          <div className="flex justify-center">
+            <div className="bg-white/10 p-4 rounded-xl">
+              <div className="text-center space-y-6">
+                {/* Representación visual del flujo RAG */}
+                <div className="flex items-center justify-center space-x-8">
+                  {/* Documentos */}
+                  <div className="text-center">
+                    <div className="bg-red-500/30 p-4 rounded-lg mb-2">
+                      <Icon name="file" className="w-8 h-8 text-red-300 mx-auto" />
+                    </div>
+                    <p className="text-white/80 text-sm">Documentos PDF</p>
+                    <p className="text-white/60 text-xs">blog_apache_kafka.pdf</p>
+                    <p className="text-white/60 text-xs">don_quijote.pdf</p>
+                    <p className="text-white/60 text-xs">notas_proyecto_canavis.pdf</p>
+                  </div>
+
+                  {/* Flecha */}
+                  <div className="text-center">
+                    <div className="text-white/60">→</div>
+                    <p className="text-white/60 text-xs mt-2">Búsqueda</p>
+                  </div>
+
+                  {/* Sistema RAG */}
+                  <div className="text-center">
+                    <div className="bg-blue-500/30 p-4 rounded-lg mb-2 border border-dashed border-blue-300">
+                      <Icon name="database" className="w-8 h-8 text-blue-300 mx-auto" />
+                    </div>
+                    <p className="text-white/80 text-sm font-semibold">RAG System</p>
+                    <p className="text-white/60 text-xs">¿Cuál es el objetivo del proyecto con el nuevo cliente?</p>
+                  </div>
+
+                  {/* Flecha */}
+                  <div className="text-center">
+                    <div className="text-white/60">→</div>
+                    <p className="text-white/60 text-xs mt-2">Contexto</p>
+                  </div>
+
+                  {/* LLM */}
+                  <div className="text-center">
+                    <div className="bg-purple-500/30 p-4 rounded-lg mb-2 border border-dashed border-purple-300">
+                      <Icon name="brain" className="w-8 h-8 text-purple-300 mx-auto" />
+                    </div>
+                    <p className="text-white/80 text-sm font-semibold">LLM</p>
+                    <div className="flex space-x-2 mt-1">
+                      <Icon name="image" className="w-4 h-4 text-green-300" title="ChatGPT" />
+                      <Icon name="search" className="w-4 h-4 text-blue-300" title="Claude" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Usuario y respuesta */}
+                <div className="border-t border-white/20 pt-4">
+                  <div className="flex items-center justify-between">
+                    <div className="text-left">
+                      <div className="flex items-center space-x-2 mb-2">
+                        <Icon name="user" className="w-5 h-5 text-yellow-300" />
+                        <p className="text-white/80 text-sm">Usuario pregunta:</p>
+                      </div>
+                      <p className="text-white/90 text-sm italic bg-white/10 p-2 rounded">
+                        "¿Cuál es el objetivo del proyecto con el nuevo cliente?"
+                      </p>
+                    </div>
+                    
+                    <div className="text-white/60 mx-4">↓</div>
+                    
+                    <div className="text-right">
+                      <div className="flex items-center justify-end space-x-2 mb-2">
+                        <p className="text-white/80 text-sm">LLM responde:</p>
+                        <Icon name="message-circle" className="w-5 h-5 text-green-300" />
+                      </div>
+                      <p className="text-white/90 text-sm bg-green-500/20 p-2 rounded">
+                        "El objetivo es optimizar costos de infraestructura"
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="mt-4 text-center">
+            <p className="text-white/70 text-sm">
+              <Icon name="info" className="w-4 h-4 inline mr-1" />
+              RAG permite que el LLM acceda a información específica y actualizada sin reentrenamiento
+            </p>
           </div>
         </div>
 
@@ -2110,67 +2204,92 @@ def validate_email(email):
 
         <div className="glass-effect p-8 rounded-xl mb-8">
           <h3 className="text-xl font-bold text-white mb-6 text-center">
-            🏆 Casos de Éxito Empresariales
+            🏆 Casos de Éxito Empresariales 2024
           </h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-blue-500/20 p-6 rounded-lg">
               <div className="flex items-center mb-4">
-                <Icon name="shopping-cart" className="w-8 h-8 text-blue-400 mr-3" />
-                <h4 className="text-white font-bold">E-commerce: Klarna</h4>
+                <Icon name="server" className="w-8 h-8 text-blue-400 mr-3" />
+                <h4 className="text-white font-bold">Amazon Q - Modernización de Software</h4>
               </div>
               <p className="text-white/90 mb-3">
-                Redujo el equipo de marketing de 40 a 5 personas usando IA para contenido
+                Redujo actualización de Java de 50 días-desarrollador a pocas horas
               </p>
               <div className="space-y-2 text-white/70 text-sm">
-                <p>• <strong>Resultado:</strong> Mismo output con 87% menos recursos</p>
-                <p>• <strong>Aplicación:</strong> Generación de descripciones de productos</p>
-                <p>• <strong>ROI:</strong> Millones en ahorro anual</p>
+                <p>• <strong>Ahorro:</strong> 4,500 años-desarrollador de trabajo</p>
+                <p>• <strong>Resultado:</strong> $260 millones en eficiencia anual</p>
+                <p>• <strong>Impacto:</strong> 50% de sistemas Java modernizados en 6 meses</p>
+                <p>• <a href="https://www.aboutamazon.com/news/aws/amazon-q-ai-java-upgrades" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-200 underline text-xs">Ver más detalles →</a></p>
               </div>
             </div>
 
             <div className="bg-green-500/20 p-6 rounded-lg">
               <div className="flex items-center mb-4">
-                <Icon name="code" className="w-8 h-8 text-green-400 mr-3" />
-                <h4 className="text-white font-bold">Desarrollo: GitHub</h4>
+                <Icon name="shopping-bag" className="w-8 h-8 text-green-400 mr-3" />
+                <h4 className="text-white font-bold">Best Buy + Google Gemini</h4>
               </div>
               <p className="text-white/90 mb-3">
-                Copilot genera el 46% del código en proyectos activos
+                Asistente virtual potenciado por Gemini para servicio al cliente
               </p>
               <div className="space-y-2 text-white/70 text-sm">
-                <p>• <strong>Productividad:</strong> 55% más rápido en tareas</p>
-                <p>• <strong>Adopción:</strong> 1.2 millones de desarrolladores</p>
-                <p>• <strong>Satisfacción:</strong> 88% no quieren trabajar sin él</p>
+                <p>• <strong>Funciones:</strong> Solución de problemas, reprogramación de entregas</p>
+                <p>• <strong>Integración:</strong> Gestión de suscripciones Geek Squad</p>
+                <p>• <strong>Experiencia:</strong> Servicio omnicanal en tienda y digital</p>
+                <p>• <strong>Lanzamiento:</strong> Verano 2024</p>
               </div>
             </div>
 
             <div className="bg-purple-500/20 p-6 rounded-lg">
               <div className="flex items-center mb-4">
-                <Icon name="graduation-cap" className="w-8 h-8 text-purple-400 mr-3" />
-                <h4 className="text-white font-bold">Educación: Duolingo</h4>
+                <Icon name="mobile-alt" className="w-8 h-8 text-purple-400 mr-3" />
+                <h4 className="text-white font-bold">Samsung Galaxy S24 + Gemini Pro</h4>
               </div>
               <p className="text-white/90 mb-3">
-                IA personaliza lecciones y proporciona tutorías conversacionales
+                IA integrada en smartphones para experiencias mágicas
               </p>
               <div className="space-y-2 text-white/70 text-sm">
-                <p>• <strong>Engagement:</strong> +30% en tiempo de práctica</p>
-                <p>• <strong>Retención:</strong> +25% en completar cursos</p>
-                <p>• <strong>Costo:</strong> Tutoría a fracción del precio tradicional</p>
+                <p>• <strong>Resumen de texto:</strong> Condensa información automáticamente</p>
+                <p>• <strong>Edición mágica:</strong> Imagen 2 para transformación de fotos</p>
+                <p>• <strong>Organización:</strong> IA para gestión inteligente de contenido</p>
+                <p>• <strong>Robot Ballie:</strong> Compañero doméstico con IA conversacional</p>
               </div>
             </div>
 
             <div className="bg-orange-500/20 p-6 rounded-lg">
               <div className="flex items-center mb-4">
-                <Icon name="briefcase" className="w-8 h-8 text-orange-400 mr-3" />
-                <h4 className="text-white font-bold">Consultoría: BCG</h4>
+                <Icon name="bolt" className="w-8 h-8 text-orange-400 mr-3" />
+                <h4 className="text-white font-bold">AES + Claude (Anthropic)</h4>
               </div>
               <p className="text-white/90 mb-3">
-                Consultores con IA son 40% más productivos en tareas complejas
+                Automatización de auditorías de seguridad energética con IA
               </p>
               <div className="space-y-2 text-white/70 text-sm">
-                <p>• <strong>Calidad:</strong> +25% en evaluaciones de clientes</p>
-                <p>• <strong>Velocidad:</strong> Análisis en horas vs días</p>
-                <p>• <strong>Innovación:</strong> Nuevos servicios basados en IA</p>
+                <p>• <strong>Reducción costos:</strong> 99% menos en auditorías</p>
+                <p>• <strong>Tiempo:</strong> De 14 días a 1 hora</p>
+                <p>• <strong>Precisión:</strong> +10-20% de mejora</p>
+                <p>• <strong>Tecnología:</strong> Vertex AI + Claude models</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-6 bg-gradient-to-r from-blue-500/10 to-purple-500/10 p-4 rounded-lg">
+            <h4 className="text-white font-semibold mb-2 text-center">
+              <Icon name="chart-line" className="w-5 h-5 inline mr-2" />
+              Estadísticas Clave de Adopción 2024
+            </h4>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+              <div className="bg-white/5 p-3 rounded">
+                <p className="text-2xl font-bold text-blue-300">72%</p>
+                <p className="text-white/70 text-sm">de organizaciones usan IA regularmente</p>
+              </div>
+              <div className="bg-white/5 p-3 rounded">
+                <p className="text-2xl font-bold text-green-300">63%</p>
+                <p className="text-white/70 text-sm">generan texto con IA generativa</p>
+              </div>
+              <div className="bg-white/5 p-3 rounded">
+                <p className="text-2xl font-bold text-purple-300">53%</p>
+                <p className="text-white/70 text-sm">de ejecutivos la usan regularmente</p>
               </div>
             </div>
           </div>
@@ -2403,6 +2522,14 @@ def validate_email(email):
       </div>
     )
   }
+];
+
+// Combinamos las slides con el nuevo capítulo de Prompting
+// Insertamos las slides de Prompting después del slide 2 (índice 2)
+export const iaGenerativaSlides = [
+  ...baseIaGenerativaSlides.slice(0, 3), // Slides 0-2 (hasta "Cómo funcionan los LLMs")
+  ...promptingSlides, // Nuevo capítulo completo de Prompting
+  ...baseIaGenerativaSlides.slice(3) // Resto de slides (desde el antiguo slide 3 en adelante)
 ];
 
 // Componente Demo de Generación de Texto

@@ -32,50 +32,50 @@ export const iaGenerativaPresentationMetadata = {
       color: "blue"
     },
     prompting: {
-      name: "Consejos para Prompting Efectivo", 
-      slides: [3, 3], // Slide 3
-      description: "Los 3 principios para obtener mejores resultados",
-      icon: "target",
+      name: "Prompting - El Arte de Comunicarse con la IA", 
+      slides: [3, 8], // Slides 3-8 (6 slides del nuevo capítulo)
+      description: "Fórmula, técnicas avanzadas y herramientas de ChatGPT",
+      icon: "lightbulb",
       color: "yellow"
     },
     llms: {
       name: "Categorización de Tareas LLM", 
-      slides: [4, 4], // Slide 4
+      slides: [9, 9], // Slide 9 (antes era 4)
       description: "Demo interactivo de generación de texto",
       icon: "layers",
       color: "green"
     },
     rag: {
       name: "RAG - Retrieval Augmented Generation",
-      slides: [5, 6], // Slides 5-6
+      slides: [10, 11], // Slides 10-11 (antes eran 5-6)
       description: "Aumentando capacidades con información externa",
       icon: "database",
       color: "purple"
     },
     optimizacion: {
       name: "Optimización de LLMs",
-      slides: [7, 7], // Slide 7
+      slides: [12, 12], // Slide 12 (antes era 7)
       description: "RAG vs Fine-tuning vs Prompt Engineering",
       icon: "gear",
       color: "cyan"
     },
     proyectos: {
       name: "Ciclo de Vida de Proyectos",
-      slides: [8, 8], // Slide 8
+      slides: [13, 13], // Slide 13 (antes era 8)
       description: "De la idea a la implementación en producción",
       icon: "workflow",
       color: "indigo"
     },
     aplicaciones: {
       name: "Uso Cotidiano y Aplicaciones",
-      slides: [9, 9], // Slide 9
+      slides: [14, 14], // Slide 14 (antes era 9)
       description: "Herramientas prácticas para tu día a día",
       icon: "users",
       color: "orange"
     },
     futuro: {
       name: "Futuro y Consideraciones Éticas",
-      slides: [10, 10], // Slide 10
+      slides: [15, 15], // Slide 15 (antes era 10)
       description: "Casos de éxito, automatización y tendencias",
       icon: "rocket",
       color: "pink"
@@ -83,22 +83,25 @@ export const iaGenerativaPresentationMetadata = {
   },
   
   // Slides que tienen componentes interactivos
-  interactiveSlides: [4, 6], // Demo de generación, Demo RAG
+  interactiveSlides: [8, 9, 11], // Demo de Prompting, Demo de generación, Demo RAG
   
   duration: {
     fundamentos: "20-30 minutos",
+    prompting: "30-40 minutos",
     llms: "15-25 minutos",
     rag: "25-35 minutos", 
     aplicaciones: "30-40 minutos",
     futuro: "15-25 minutos",
-    total: "105-155 minutos (1.75-2.5 horas)"
+    total: "135-195 minutos (2.25-3.25 horas)"
   },
   
   features: [
     "🤖 Introducción completa a IA Generativa",
     "🎓 Modelo mental del 'recién graduado universitario'", 
     "📝 Categorización: Escribir, Leer, Chat",
-    "🎯 Consejos prácticos para prompting efectivo",
+    "🎯 Capítulo completo de Prompting con fórmula CTIC",
+    "🧪 Laboratorio interactivo de técnicas de prompting",
+    "🛠️ Herramientas avanzadas de ChatGPT",
     "🔍 RAG con demos interactivos",
     "⚙️ Comparación detallada: RAG vs Fine-tuning vs Prompt Engineering",
     "🔄 Ciclo de vida completo de proyectos",

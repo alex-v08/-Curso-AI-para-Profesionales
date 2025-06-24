@@ -31,24 +31,32 @@ function Sidebar({ slides, currentSlide, onSlideChange, isOpen, onToggle }) {
       name: 'IA Generativa',
       icon: 'magic',
       color: 'pink',
-      slides: slides.slice(17, 25),
+      slides: slides.slice(17, 36), // Corregido: 19 slides de IA Generativa (17-35)
       subsections: presentationMetadata.sections.iaGenerativa.subsections
+    },
+    {
+      id: 'agentesInteligentes',
+      name: 'Agentes Inteligentes',
+      icon: 'robot',
+      color: 'cyan',
+      slides: slides.slice(36, 55), // 19 slides de Agentes (36-54)
+      subsections: presentationMetadata.sections.agentesInteligentes?.subsections || []
+    },
+    {
+      id: 'vibeCoding',
+      name: 'Vibe Coding',
+      icon: 'magic',
+      color: 'purple',
+      slides: slides.slice(55, 63), // 8 slides de Vibe Coding (55-62)
+      subsections: presentationMetadata.sections.vibeCoding?.subsections || []
     },
     {
       id: 'technical',
       name: 'Aspectos Técnicos',
       icon: 'cogs',
       color: 'green',
-      slides: slides.slice(25, 28),
+      slides: slides.slice(63), // Movido al final después de Vibe Coding (desde 63)
       subsections: presentationMetadata.sections.technical?.subsections || []
-    },
-    {
-      id: 'avanzados',
-      name: 'Casos Avanzados',
-      icon: 'rocket',
-      color: 'orange',
-      slides: slides.slice(28),
-      subsections: presentationMetadata.sections.avanzados?.subsections || []
     }
   ];
 
@@ -99,20 +107,20 @@ function Sidebar({ slides, currentSlide, onSlideChange, isOpen, onToggle }) {
 
       {/* Sidebar */}
       <aside
-        className={`fixed lg:relative top-0 left-0 h-full w-80 lg:w-96 bg-gray-900/95 backdrop-blur-lg 
+        className={`fixed lg:relative top-0 left-0 h-full w-80 lg:w-96 ml-glass-elevated
           transform transition-transform duration-300 z-40 overflow-hidden flex flex-col
           ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
       >
         {/* Header */}
         <div className="p-6 border-b border-white/10">
-          <h2 className="text-2xl font-bold text-white mb-2">
+          <h2 className="ml-heading-3">
             {presentationMetadata.title}
           </h2>
-          <p className="text-white/60 text-sm">
+          <p className="ml-text-caption">
             {presentationMetadata.subtitle}
           </p>
-          <div className="mt-4 flex items-center justify-between">
-            <span className="text-white/40 text-xs">
+          <div className="mt-4 ml-flex ml-flex--between">
+            <span className="ml-text-caption">
               Slide {currentSlide + 1} de {slides.length}
             </span>
             <div className="w-24 bg-white/10 rounded-full h-2">
@@ -130,16 +138,16 @@ function Sidebar({ slides, currentSlide, onSlideChange, isOpen, onToggle }) {
             <div key={section.id} className="space-y-2">
               <button
                 onClick={() => toggleSection(section.id)}
-                className={`w-full flex items-center justify-between p-3 rounded-lg
+                className={`w-full ml-flex ml-flex--between p-3 rounded-lg ml-interactive
                   bg-${section.color}-500/10 hover:bg-${section.color}-500/20 
                   transition-colors group`}
               >
-                <div className="flex items-center">
+                <div className="ml-flex">
                   <Icon 
                     name={section.icon} 
                     className={`w-5 h-5 text-${section.color}-400 mr-3`} 
                   />
-                  <span className="text-white font-medium">{section.name}</span>
+                  <span className="ml-text-body font-medium">{section.name}</span>
                 </div>
                 <Icon
                   name={expandedSections[section.id] ? 'chevron-up' : 'chevron-down'}

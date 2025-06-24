@@ -180,46 +180,50 @@ function App() {
       <div className="relative min-h-screen flex flex-col">
         {slide.type === 'cover' ? (
           // Slide de portada
-          <div className="flex-1 flex items-center justify-center p-8">
-            <div className="max-w-6xl mx-auto w-full">
-              <div className="text-center mb-8">
-                <h1 className="text-4xl lg:text-6xl font-bold enhanced-title mb-4">
+          <div className="flex-1 flex items-center justify-center min-h-screen py-20 px-8 lg:px-20">
+            <div className="max-w-5xl mx-auto w-full text-center">
+              <div className="mb-20">
+                <h1 className="text-4xl lg:text-6xl xl:text-7xl font-bold enhanced-title-chatbot mb-12">
                   {slide.title}
                 </h1>
                 {slide.subtitle && (
-                  <h2 className="text-2xl lg:text-3xl text-white/80 mb-8">
+                  <h2 className="text-2xl lg:text-3xl xl:text-4xl text-white/80 mb-16 max-w-4xl mx-auto">
                     {slide.subtitle}
                   </h2>
                 )}
               </div>
-              {slide.content}
+              <div className="max-w-4xl mx-auto">
+                {slide.content}
+              </div>
             </div>
           </div>
         ) : (
           // Slides de contenido
-          <div className="flex-1 p-6 lg:p-8">
-            <div className="max-w-7xl mx-auto">
+          <div className="flex-1 min-h-screen flex flex-col justify-center py-16 px-8 lg:px-16">
+            <div className="max-w-6xl mx-auto w-full">
               {/* Header del slide */}
-              <div className="mb-8">
-                <h1 className="text-3xl lg:text-4xl font-bold enhanced-title mb-4">
+              <div className="mb-16 text-center">
+                <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold enhanced-title-chatbot mb-8">
                   {slide.title}
                 </h1>
                 {showProgress && (
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="text-white/60 text-sm">
-                      <span className={`px-3 py-1 rounded-full text-xs mr-3 ${
-                        isConceptual ? 'bg-blue-500/20' : 'bg-green-500/20'
+                  <div className="flex items-center justify-center mb-8">
+                    <div className="text-white/70 text-base">
+                      <span className={`px-6 py-3 rounded-full text-sm mr-6 ${
+                        isConceptual ? 'bg-blue-500/30' : 'bg-green-500/30'
                       }`}>
                         {section}
                       </span>
-                      Slide {currentSlide + 1} de {allSlides.length}
+                      <span className="bg-white/10 px-6 py-3 rounded-full text-sm">
+                        Slide {currentSlide + 1} de {allSlides.length}
+                      </span>
                     </div>
                   </div>
                 )}
               </div>
               
               {/* Contenido del slide */}
-              <div className="slide-content">
+              <div className="slide-content max-w-5xl mx-auto">
                 {slide.content}
               </div>
             </div>
@@ -233,7 +237,7 @@ function App() {
             <button
               onClick={prevSlide}
               disabled={currentSlide === 0}
-              className={`btn-secondary ${currentSlide === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+              className={`btn-chatbot-secondary ${currentSlide === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
               title="Slide anterior (←)"
             >
               <Icon name="chevron-left" className="w-4 h-4 mr-2" />
@@ -276,7 +280,7 @@ function App() {
             <button
               onClick={nextSlide}
               disabled={currentSlide === allSlides.length - 1}
-              className={`btn-secondary ${
+              className={`btn-chatbot-secondary ${
                 currentSlide === allSlides.length - 1 ? 'opacity-50 cursor-not-allowed' : ''
               }`}
               title="Siguiente slide (→ o Espacio)"

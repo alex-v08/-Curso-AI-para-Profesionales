@@ -92,7 +92,7 @@ const GradientDescentDemo = () => {
   const optimalCost = calculateCost(-1, 2); // Solución conocida
 
   return (
-    <div className="glass-effect p-8 rounded-xl">
+    <div className="chatbot-glass-strong p-8 rounded-xl">
       <h3 className="text-xl font-bold text-white mb-6 text-center">
         <Icon name="chart-line" className="w-6 h-6 inline mr-2" />
         Demo: Descenso de Gradiente en Acción
@@ -101,7 +101,7 @@ const GradientDescentDemo = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Controles */}
         <div className="space-y-6">
-          <div className="bg-blue-500/20 p-4 rounded-lg">
+          <div className="content-card bg-blue-500/20 p-4 rounded-lg">
             <h4 className="text-white font-semibold mb-3">Parámetros del Modelo</h4>
             <div className="space-y-3">
               <div>
@@ -137,7 +137,7 @@ const GradientDescentDemo = () => {
             </div>
           </div>
 
-          <div className="bg-green-500/20 p-4 rounded-lg">
+          <div className="message-card bot-style bg-green-500/20 p-4 rounded-lg">
             <h4 className="text-white font-semibold mb-3">Hiperparámetros</h4>
             <div>
               <label className="block text-white text-sm mb-1">
@@ -160,7 +160,7 @@ const GradientDescentDemo = () => {
             </div>
           </div>
 
-          <div className="bg-purple-500/20 p-4 rounded-lg">
+          <div className="message-card user-style bg-purple-500/20 p-4 rounded-lg">
             <h4 className="text-white font-semibold mb-3">Métricas</h4>
             <div className="space-y-2 text-white/90">
               <p>Iteración: <strong>{iteration}</strong></p>
@@ -170,7 +170,7 @@ const GradientDescentDemo = () => {
             </div>
           </div>
 
-          <div className="bg-orange-500/20 p-4 rounded-lg">
+          <div className="content-card bg-orange-500/20 p-4 rounded-lg">
             <h4 className="text-white font-semibold mb-3">Controles</h4>
             <div className="flex flex-wrap gap-2">
               <button
@@ -186,19 +186,19 @@ const GradientDescentDemo = () => {
               <button
                 onClick={performIteration}
                 disabled={isTraining}
-                className="px-4 py-2 bg-blue-500 hover:bg-blue-600 disabled:bg-gray-500 text-white rounded-lg font-medium transition-colors"
+                className="btn-chatbot-primary disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 1 Paso
               </button>
               <button
                 onClick={reset}
-                className="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg font-medium transition-colors"
+                className="btn-chatbot-secondary"
               >
                 Reset
               </button>
               <button
                 onClick={goToOptimal}
-                className="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg font-medium transition-colors"
+                className="btn-chatbot-primary bg-yellow-500 hover:bg-yellow-600"
               >
                 Óptimo
               </button>
@@ -209,7 +209,7 @@ const GradientDescentDemo = () => {
         {/* Visualización */}
         <div className="space-y-6">
           {/* Gráfico principal */}
-          <div className="bg-white p-4 rounded-lg">
+          <div className="content-card bg-white p-4 rounded-lg">
             <h4 className="text-gray-800 font-semibold mb-2 text-center">Regresión Lineal</h4>
             <svg width="400" height="300" className="w-full h-auto">
               {/* Grid */}
@@ -293,7 +293,7 @@ const GradientDescentDemo = () => {
           </div>
 
           {/* Gráfico de convergencia */}
-          <div className="bg-white p-4 rounded-lg">
+          <div className="content-card bg-white p-4 rounded-lg">
             <h4 className="text-gray-800 font-semibold mb-2 text-center">Convergencia del Costo</h4>
             <svg width="400" height="200" className="w-full h-auto">
               <rect width="400" height="200" fill="#f9fafb" />
@@ -344,7 +344,7 @@ const GradientDescentDemo = () => {
         </div>
       </div>
 
-      <div className="mt-6 bg-yellow-500/20 p-4 rounded-lg">
+      <div className="mt-6 message-card system-style bg-yellow-500/20 p-4 rounded-lg">
         <h4 className="text-white font-semibold mb-2">
           <Icon name="lightbulb" className="w-5 h-5 inline mr-2" />
           Experimenta:
@@ -355,6 +355,18 @@ const GradientDescentDemo = () => {
           <p>• <strong>Observa la línea roja:</strong> Muestra los residuos (errores)</p>
           <p>• <strong>Gráfico de convergencia:</strong> El costo debe disminuir con las iteraciones</p>
           <p>• <strong>Objetivo:</strong> Llegar a la línea verde punteada (óptimo)</p>
+        </div>
+      </div>
+
+      <div className="mt-4 content-card bg-blue-500/20 p-4 rounded-lg">
+        <h4 className="text-white font-semibold mb-2">
+          <Icon name="external-link-alt" className="w-5 h-5 inline mr-2" />
+          Recursos Adicionales:
+        </h4>
+        <div className="text-white/90 text-sm space-y-2">
+          <p>• <a href="https://developers.google.com/machine-learning/crash-course/linear-regression/gradient-descent" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-200 underline">Google ML Crash Course - Gradient Descent</a>: Ejercicio interactivo oficial</p>
+          <p>• <strong>Resultado típico:</strong> Con learning rate 0.03, converge en ~30s a MSE &lt; 3</p>
+          <p>• <strong>Fórmula matemática:</strong> xt+1 = xt - η∆xt donde η es el learning rate</p>
         </div>
       </div>
     </div>

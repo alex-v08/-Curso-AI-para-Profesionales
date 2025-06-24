@@ -11,15 +11,18 @@ import {
 import additionalSlidesData from './additionalSlidesData';
 import paradigmasAprendizajeSlides from './paradigmasAprendizajeSlides';
 import { iaGenerativaSlides } from './iaGenerativaSlides';
+import { agentesInteligentesSlides } from './agentesInteligentesSlides';
+import { vibeCodingSlides } from './vibeCodingSlides';
 
 /**
  * Datos completos de la presentación - Fundamentos de Machine Learning e IA
- * ESTRUCTURA COMPLETA:
+ * ESTRUCTURA COMPLETA ACTUALIZADA:
  * 1. Paradigmas de Aprendizaje (0-6): Inspiración cerebral, supervisado, no supervisado
  * 2. Introducción a IA/ML (7-16): Conceptos generales, tipos de IA, casos de negocio
- * 3. Aspectos Técnicos ML (17-19): Regresión lineal, descenso de gradiente, métricas
- * 4. IA Generativa (20-27): Fundamentos, LLMs, RAG, aplicaciones cotidianas
- * 5. Casos Avanzados (28+): Demos interactivos y aplicaciones adicionales
+ * 3. IA Generativa (17-35): Fundamentos, LLMs, RAG, prompting, aplicaciones cotidianas
+ * 4. Agentes Inteligentes (36-54): Sistemas autónomos, MCP, n8n, automatización
+ * 5. Vibe Coding (55-62): Desarrollo asistido por IA, herramientas, casos de uso
+ * 6. Aspectos Técnicos (63+): Demos interactivos y aplicaciones adicionales
  */
 
 // Función para renumerar slides y ajustar IDs
@@ -40,44 +43,44 @@ const baseSlidesData = [
     title: 'Fundamentos de Machine Learning',
     subtitle: 'Aplicaciones Técnicas y Casos de Negocio',
     content: (
-      <div className="text-center space-y-8 fade-in">
-        <div className="flex justify-center mb-8">
+      <div className="ml-text-center ml-space-y-8 fade-in">
+        <div className="ml-flex ml-flex--center mb-8">
           <div className="relative">
             <Icon name="brain" className="w-32 h-32 text-blue-400 pulse-animation" />
             <div className="absolute -inset-4 border-2 border-blue-300 rounded-full animate-spin opacity-30"></div>
           </div>
         </div>
-        <p className="text-2xl text-white/80">Módulo Técnico - Clase 2</p>
-        <div className="grid grid-cols-3 gap-6 mt-12 max-w-4xl mx-auto">
+        <p className="ml-heading-2">Módulo Técnico - Clase 2</p>
+        <div className="ml-grid ml-grid--3 mt-12 max-w-4xl mx-auto">
           <ClickableInfo 
             definitionKey="regresion_simple"
-            className="glass-effect p-6 rounded-xl hover:scale-105 transition-transform"
+            className="ml-card ml-card--interactive ml-text-center"
           >
             <Icon name="chart-line" className="w-12 h-12 text-blue-300 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-white mb-2">Regresión Lineal</h3>
-            <p className="text-white/70 text-sm">Fundamentos matemáticos y aplicaciones prácticas</p>
+            <h3 className="ml-heading-4">Regresión Lineal</h3>
+            <p className="ml-text-caption">Fundamentos matemáticos y aplicaciones prácticas</p>
           </ClickableInfo>
           <ClickableInfo 
             definitionKey="ia_predictiva"
-            className="glass-effect p-6 rounded-xl hover:scale-105 transition-transform"
+            className="ml-card ml-card--interactive ml-text-center"
           >
             <Icon name="robot" className="w-12 h-12 text-green-300 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-white mb-2">Tipos de IA</h3>
-            <p className="text-white/70 text-sm">Predictiva, Generativa y Agentes</p>
+            <h3 className="ml-heading-4">Tipos de IA</h3>
+            <p className="ml-text-caption">Predictiva, Generativa y Agentes</p>
           </ClickableInfo>
           <ClickableInfo 
             definitionKey="market_pull"
-            className="glass-effect p-6 rounded-xl hover:scale-105 transition-transform"
+            className="ml-card ml-card--interactive ml-text-center"
           >
             <Icon name="briefcase" className="w-12 h-12 text-purple-300 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-white mb-2">Casos de Negocio</h3>
-            <p className="text-white/70 text-sm">Aplicaciones reales en la industria</p>
+            <h3 className="ml-heading-4">Casos de Negocio</h3>
+            <p className="ml-text-caption">Aplicaciones reales en la industria</p>
           </ClickableInfo>
         </div>
         
         {/* Indicador de interactividad */}
-        <div className="mt-12 glass-effect p-4 rounded-xl inline-block">
-          <p className="text-white/90 text-lg">
+        <div className="mt-12 ml-glass inline-block">
+          <p className="ml-text-body">
             <Icon name="mouse-pointer" className="w-5 h-5 inline mr-2 text-yellow-400" />
             <strong>¡Presentación Interactiva!</strong> Haz clic en las tarjetas para más información
           </p>
@@ -879,21 +882,29 @@ const paradigmasRenumbered = renumberSlides(paradigmasAprendizajeSlides, 0);
 // Renumerar slides de IA Generativa después del contenido base
 const iaGenerativaRenumbered = renumberSlides(iaGenerativaSlides, baseSlidesData.length + paradigmasRenumbered.length);
 
+// Renumerar slides de Agentes Inteligentes después de IA Generativa
+const agentesInteligentesRenumbered = renumberSlides(agentesInteligentesSlides, baseSlidesData.length + paradigmasRenumbered.length + iaGenerativaSlides.length);
+
+// Renumerar slides de Vibe Coding después de Agentes Inteligentes
+const vibeCodingRenumbered = renumberSlides(vibeCodingSlides, baseSlidesData.length + paradigmasRenumbered.length + iaGenerativaSlides.length + agentesInteligentesSlides.length);
+
 // Renumerar slides adicionales para que sigan después
-const additionalRenumbered = renumberSlides(additionalSlidesData, baseSlidesData.length + paradigmasRenumbered.length + iaGenerativaSlides.length);
+const additionalRenumbered = renumberSlides(additionalSlidesData, baseSlidesData.length + paradigmasRenumbered.length + iaGenerativaSlides.length + agentesInteligentesSlides.length + vibeCodingSlides.length);
 
 // Combinar todos los slides en el orden correcto:
 // 1. Paradigmas de Aprendizaje (0-6)
 // 2. Introducción IA/ML y Casos de Negocio (7-16) 
-// 3. IA Generativa (17-24)
-// 4. Aspectos Técnicos Adicionales (25+)
-export const slidesData = [...paradigmasRenumbered, ...baseSlidesData, ...iaGenerativaRenumbered, ...additionalRenumbered];
+// 3. IA Generativa (17-35)
+// 4. Agentes Inteligentes (36-54)
+// 5. Vibe Coding (55-62)
+// 6. Aspectos Técnicos Adicionales (63+)
+export const slidesData = [...paradigmasRenumbered, ...baseSlidesData, ...iaGenerativaRenumbered, ...agentesInteligentesRenumbered, ...vibeCodingRenumbered, ...additionalRenumbered];
 
 // Exportar también metadata útil
 export const presentationMetadata = {
   title: "Fundamentos de Machine Learning e IA",
   subtitle: "Del Cerebro a la Innovación",
-  totalSlides: paradigmasAprendizajeSlides.length + baseSlidesData.length + iaGenerativaSlides.length + additionalSlidesData.length,
+  totalSlides: paradigmasAprendizajeSlides.length + baseSlidesData.length + iaGenerativaSlides.length + agentesInteligentesSlides.length + vibeCodingSlides.length + additionalSlidesData.length,
   
   sections: {
     paradigmas: {
@@ -929,59 +940,113 @@ export const presentationMetadata = {
     },
     iaGenerativa: {
       name: "IA Generativa",
-      slides: [17, 24], // Slides 17-24
-      description: "Fundamentos, LLMs, RAG y aplicaciones cotidianas",
+      slides: [17, 35], // Slides 17-35 (ampliado para incluir todos los contenidos)
+      description: "Fundamentos, Prompting, LLMs, RAG, optimización y aplicaciones cotidianas",
       subsections: [
         { name: "Inteligencia Artificial Generativa", slide: 17 },
         { name: "¿Qué es la Inteligencia Artificial Generativa?", slide: 18 },
-        { name: "El Cerebro de la IA: Modelos de Lenguaje Grandes (LLMs)", slide: 19 },
-        { name: "Demo Interactivo: Generación de Texto en Acción", slide: 20 },
-        { name: "RAG: Generación Aumentada por Recuperación", slide: 21 },
-        { name: "Demo: RAG en Acción", slide: 22 },
-        { name: "IA Generativa en tu Día a Día", slide: 23 },
-        { name: "Casos de Éxito y el Futuro de la IA Generativa", slide: 24 }
+        { name: "Modelo Mental del Recién Graduado", slide: 19 },
+        { name: "Prompting: El Arte de Comunicarse con la IA", slide: 20 },
+        { name: "Fórmula de Prompting", slide: 21 },
+        { name: "Principios de Prompt Engineering", slide: 22 },
+        { name: "Técnicas Avanzadas de Prompting", slide: 23 },
+        { name: "Herramientas Avanzadas de ChatGPT", slide: 24 },
+        { name: "Practica con Prompting", slide: 25 },
+        { name: "Caso Práctico: Optimización de Campañas con IA", slide: 26 },
+        { name: "Ejemplo Práctico: Lanzamiento de Smartphone", slide: 27 },
+        { name: "Categorización de Tareas LLM", slide: 28 },
+        { name: "RAG: Generación Aumentada por Recuperación", slide: 29 },
+        { name: "Demo: RAG en Acción", slide: 30 },
+        { name: "Optimización de LLMs: RAG vs Fine-tuning vs Prompt Engineering", slide: 31 },
+        { name: "Ciclo de Vida de Proyectos de IA Generativa", slide: 32 },
+        { name: "IA Generativa en tu Día a Día", slide: 33 },
+        { name: "Casos de Éxito y el Futuro de la IA Generativa", slide: 34 }
+      ]
+    },
+    agentesInteligentes: {
+      name: "Agentes Inteligentes",
+      slides: [36, 54], // Slides de Agentes Inteligentes (corregido)
+      description: "Sistemas autónomos, arquitecturas, MAS, MCP, n8n y automatización",
+      subsections: [
+        { name: "Agentes Inteligentes y Sistemas Multiagente", slide: 36 },
+        { name: "¿Qué es un Agente Inteligente?", slide: 37 },
+        { name: "Ejemplos de Agentes en el Mundo Real", slide: 38 },
+        { name: "Tipos de Agentes y Arquitecturas", slide: 39 },
+        { name: "Arquitecturas Internas de Agentes", slide: 40 },
+        { name: "Demo: Arquitecturas de Agentes en Acción", slide: 41 },
+        { name: "Sistemas Multiagente (MAS)", slide: 42 },
+        { name: "Comunicación y Coordinación en MAS", slide: 43 },
+        { name: "Aplicaciones Reales de Sistemas Multiagente", slide: 44 },
+        { name: "Demo: Sistemas Multiagente en Acción", slide: 45 },
+        { name: "¿Qué es Model Context Protocol (MCP)?", slide: 46 },
+        { name: "Aplicaciones Prácticas del MCP", slide: 47 },
+        { name: "n8n: Automatización como Sistema de Agentes", slide: 48 },
+        { name: "Ejemplo Práctico: Flujo Automatizado en n8n", slide: 49 },
+        { name: "Demo: n8n como Sistema de Agentes", slide: 50 },
+        { name: "Casos de Uso Avanzados con n8n", slide: 51 },
+        { name: "Vibe Coding y Agentes: El Futuro del Desarrollo", slide: 52 },
+        { name: "El Futuro de los Agentes y Consideraciones Éticas", slide: 53 },
+        { name: "Recursos y Próximos Pasos", slide: 54 }
+      ]
+    },
+    vibeCoding: {
+      name: "Vibe Coding",
+      slides: [55, 62], // Slides 55-62
+      description: "Desarrollo asistido por IA, herramientas modernas y democratización del software",
+      subsections: [
+        { name: "Vibe Coding: El Futuro del Desarrollo", slide: 55 },
+        { name: "¿Qué es Vibe Coding?", slide: 56 },
+        { name: "¿Cómo Funciona Vibe Coding?", slide: 57 },
+        { name: "Herramientas de Vibe Coding", slide: 58 },
+        { name: "Casos de Uso y Ejemplos Reales", slide: 59 },
+        { name: "Beneficios y Democratización del Desarrollo", slide: 60 },
+        { name: "Limitaciones y Mejores Prácticas", slide: 61 },
+        { name: "El Futuro del Vibe Coding", slide: 62 }
       ]
     },
     technical: {
       name: "Aspectos Técnicos",
-      slides: [25, 31], // Slides 25+
+      slides: [63, 69], // Slides técnicos movidos al final (corregido)
       description: "Métricas, overfitting y demos avanzados",
       subsections: [
-        { name: "El Equilibrio Perfecto: Overfitting vs Underfitting", slide: 25 },
-        { name: "Métricas y Evaluación de Modelos", slide: 26 },
-        { name: "Casos Avanzados", slide: 27 }
+        { name: "El Equilibrio Perfecto: Overfitting vs Underfitting", slide: 63 },
+        { name: "Métricas y Evaluación de Modelos", slide: 64 },
+        { name: "Metodología Práctica", slide: 65 },
+        { name: "Ejemplo Práctico: Predicción de Precios", slide: 66 },
+        { name: "Casos de Negocio: De la Teoría a la Práctica", slide: 67 },
+        { name: "Conclusiones y Próximos Pasos", slide: 68 }
       ]
-    },
-    avanzados: {
-      name: "Casos Avanzados",
-      slides: [28, 35], // Slides restantes
-      description: "Demos interactivos y aplicaciones prácticas"
     }
   },
   
-  interactiveSlides: [2, 4, 6, 14, 15, 16, 20, 22, 25], // Slides con componentes interactivos
+  interactiveSlides: [2, 4, 6, 14, 15, 16, 20, 22, 25, 41, 45, 50], // Slides con componentes interactivos (corregidas demos de agentes)
   
   duration: {
     paradigmas: "45-60 minutos",
     conceptual: "45-60 minutos", 
-    iaGenerativa: "60-90 minutos",
+    iaGenerativa: "120-180 minutos", // Ampliado para incluir todo el contenido de IA Generativa
+    agentesInteligentes: "120 minutos (2 horas)", // Nuevo capítulo completo
+    vibeCoding: "90-120 minutos (1.5-2 horas)", // Nuevo capítulo sobre desarrollo asistido por IA
     technical: "30-45 minutos",
-    avanzados: "30-45 minutos",
-    total: "210-300 minutos (3.5-5 horas)"
+    total: "450-585 minutos (7.5-9.75 horas)"
   },
   
   features: [
     "🧠 Módulo completo: Paradigmas de Aprendizaje",
     "🎯 Ejemplos interactivos de aprendizaje supervisado/no supervisado", 
     "🤖 Capítulo completo de IA Generativa con RAG",
+    "🤖 Capítulo completo de Agentes Inteligentes y Sistemas Multiagente",
+    "✨ Capítulo completo de Vibe Coding: Desarrollo asistido por IA",
     "📊 Demos prácticos con casos reales",
     "💼 Aplicaciones cotidianas y empresariales",
     "🔄 Comparaciones dinámicas entre enfoques",
     "🎨 Visualizaciones de espacios latentes",
-    "⚡ Enfoque técnico en regresión y métricas"
+    "⚡ Enfoque técnico en regresión y métricas",
+    "🚀 MCP, n8n y automatización inteligente",
+    "🔮 Vibe Coding y desarrollo asistido por IA"
   ],
   
   author: "Curso de Machine Learning",
   date: "10 de Junio del 2025",
-  version: "5.0.0 - ML e IA Generativa Completo"
+  version: "6.0.0 - ML, IA Generativa y Agentes Inteligentes Completo"
 };
