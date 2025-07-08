@@ -55,7 +55,7 @@ export const additionalSlidesData = [
 
           <div className="glass-effect p-6 rounded-xl border-l-4 border-green-400">
             <div className="text-center mb-4">
-              <Icon name="check-circle" className="w-12 h-12 text-green-400 mx-auto mb-2" />
+              <Icon name="check" className="w-12 h-12 text-green-400 mx-auto mb-2" />
               <h4 className="text-xl font-bold text-white">Balance Perfecto</h4>
             </div>
             <p className="text-white/90 text-center mb-4">
@@ -715,7 +715,7 @@ w0, w1 = W[0], W[1]  # Intercepto y pendiente`}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="glass-effect p-8 rounded-xl">
             <h3 className="text-xl font-bold text-white mb-6">
-              <Icon name="check-circle" className="w-6 h-6 inline mr-2 text-green-400" />
+              <Icon name="check" className="w-6 h-6 inline mr-2 text-green-400" />
               Conceptos Dominados
             </h3>
             <div className="space-y-3">

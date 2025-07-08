@@ -283,7 +283,7 @@ const AprendizajeSupervisadoDemo = () => {
 
               <div className="mt-4 bg-yellow-500/20 p-4 rounded-lg">
                 <p className="text-yellow-100 text-sm">
-                  <Icon name="info-circle" className="w-4 h-4 inline mr-2" />
+                  <Icon name="info" className="w-4 h-4 inline mr-2" />
                   <strong>Nota importante:</strong> Este es un ejemplo educativo. En aplicaciones reales, 
                   la privacidad y el consentimiento son fundamentales.
                 </p>

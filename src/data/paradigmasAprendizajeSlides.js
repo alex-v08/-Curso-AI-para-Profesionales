@@ -43,7 +43,7 @@ export const paradigmasAprendizajeSlides = [
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           <div className="glass-effect p-6 rounded-xl hover:scale-105 transition-transform">
-            <Icon name="question-circle" className="w-12 h-12 text-blue-300 mx-auto mb-4" />
+            <Icon name="question" className="w-12 h-12 text-blue-300 mx-auto mb-4" />
             <h3 className="text-lg font-semibold text-white mb-2">¿De dónde emerge la inteligencia?</h3>
             <p className="text-white/70 text-sm">Los procesos que dan lugar al pensamiento y la consciencia</p>
           </div>

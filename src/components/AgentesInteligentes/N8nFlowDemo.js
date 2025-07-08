@@ -51,7 +51,7 @@ const N8nFlowDemo = () => {
           id: 'data-validator',
           name: 'Data Validator',
           type: 'processor',
-          icon: 'check-circle',
+          icon: 'check',
           color: 'text-green-400',
           description: 'Valida los datos extraídos',
           config: { required: ['fecha', 'monto'], format: 'json' },

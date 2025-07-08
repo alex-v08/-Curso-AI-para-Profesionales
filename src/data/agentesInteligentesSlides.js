@@ -497,7 +497,7 @@ const agentesInteligentesSlides = [
 
         <div className="glass-effect p-6 rounded-xl bg-gradient-to-r from-cyan-500/10 to-blue-500/10">
           <h3 className="text-xl font-bold text-white mb-4">
-            <Icon name="info-circle" className="w-6 h-6 inline mr-2 text-cyan-400" />
+            <Icon name="info" className="w-6 h-6 inline mr-2 text-cyan-400" />
             Consideraciones de Diseño
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-white/80">
@@ -1001,15 +1001,15 @@ const agentesInteligentesSlides = [
               </h3>
               <ul className="space-y-3 text-white/80">
                 <li className="flex items-start">
-                  <Icon name="check-circle" className="w-5 h-5 text-green-400 mr-2 mt-0.5" />
+                  <Icon name="check" className="w-5 h-5 text-green-400 mr-2 mt-0.5" />
                   <span>Integraciones pre-construidas para LLMs</span>
                 </li>
                 <li className="flex items-start">
-                  <Icon name="check-circle" className="w-5 h-5 text-green-400 mr-2 mt-0.5" />
+                  <Icon name="check" className="w-5 h-5 text-green-400 mr-2 mt-0.5" />
                   <span>Flexibilidad para cambiar proveedores</span>
                 </li>
                 <li className="flex items-start">
-                  <Icon name="check-circle" className="w-5 h-5 text-green-400 mr-2 mt-0.5" />
+                  <Icon name="check" className="w-5 h-5 text-green-400 mr-2 mt-0.5" />
                   <span>Mejores prácticas de seguridad</span>
                 </li>
               </ul>
@@ -1067,7 +1067,7 @@ const agentesInteligentesSlides = [
 
           <div className="mt-6 p-4 bg-gradient-to-r from-green-500/10 to-blue-500/10 rounded-lg">
             <p className="text-white/80">
-              <Icon name="info-circle" className="w-5 h-5 inline mr-2 text-cyan-400" />
+              <Icon name="info" className="w-5 h-5 inline mr-2 text-cyan-400" />
               <strong>Ejemplo:</strong> Un LLM puede acceder a tu base de datos local, archivos del proyecto 
               y APIs externas a través de servidores MCP, todo con un protocolo unificado.
             </p>
@@ -1919,7 +1919,7 @@ class MyMCPServer {
 
         <div className="glass-effect p-6 rounded-xl bg-gradient-to-r from-cyan-500/20 to-purple-500/20">
           <h3 className="text-xl font-bold text-white mb-4 text-center">
-            <Icon name="question-circle" className="w-6 h-6 inline mr-2 text-cyan-400" />
+            <Icon name="question" className="w-6 h-6 inline mr-2 text-cyan-400" />
             Pregunta para Reflexionar
           </h3>
           <p className="text-2xl text-white text-center font-light">

@@ -310,7 +310,7 @@ export const additionalSlides = [
       <div className="space-y-8 fade-in">
         <div className="text-center mb-8">
           <div className="glass-effect p-8 rounded-xl">
-            <Icon name="question-circle" className="w-16 h-16 text-yellow-400 mx-auto mb-4" />
+            <Icon name="question" className="w-16 h-16 text-yellow-400 mx-auto mb-4" />
             <h3 className="text-2xl font-bold text-white mb-4">Pregunta Clave</h3>
             <p className="text-xl text-white/90">
               ¿Por qué el Deep Learning ha <strong>"explotado"</strong> precisamente ahora?
@@ -454,7 +454,7 @@ export const additionalSlides = [
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="glass-effect p-6 rounded-xl">
             <h4 className="text-xl font-semibold text-white mb-4 flex items-center">
-              <Icon name="check-circle" className="w-6 h-6 mr-3 text-green-400" />
+              <Icon name="check" className="w-6 h-6 mr-3 text-green-400" />
               Resumen de Relaciones
             </h4>
             <div className="space-y-3 text-white/80">

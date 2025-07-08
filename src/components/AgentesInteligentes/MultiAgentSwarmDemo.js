@@ -507,7 +507,7 @@ const MultiAgentSwarmDemo = () => {
 
       <div className="mt-6 p-4 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-lg">
         <p className="text-white/80 text-sm">
-          <Icon name="info-circle" className="w-4 h-4 inline mr-2 text-purple-400" />
+          <Icon name="info" className="w-4 h-4 inline mr-2 text-purple-400" />
           <strong>Observa</strong> cómo los agentes se coordinan sin control centralizado. 
           Cada uno sigue reglas simples, pero emergen comportamientos complejos del grupo.
         </p>

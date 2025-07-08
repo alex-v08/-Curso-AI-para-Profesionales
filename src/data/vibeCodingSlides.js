@@ -716,7 +716,7 @@ const vibeCodingSlides = [
 
           <div className="ml-card">
             <h3 className="ml-heading-3 mb-4 text-center">
-              <Icon name="check-circle" className="w-8 h-8 inline mr-2 text-green-400" />
+              <Icon name="check" className="w-8 h-8 inline mr-2 text-green-400" />
               Mejores Prácticas
             </h3>
             <div className="ml-space-y-4">

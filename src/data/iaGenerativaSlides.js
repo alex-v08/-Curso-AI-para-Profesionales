@@ -263,7 +263,7 @@ const baseIaGenerativaSlides = [
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
               <h4 className="text-white font-semibold mb-4 text-center">
-                <Icon name="check-circle" className="w-5 h-5 inline mr-2 text-green-400" />
+                <Icon name="check" className="w-5 h-5 inline mr-2 text-green-400" />
                 ✅ Tareas que SÍ puede hacer
               </h4>
               <div className="space-y-3">
@@ -292,7 +292,7 @@ const baseIaGenerativaSlides = [
 
             <div>
               <h4 className="text-white font-semibold mb-4 text-center">
-                <Icon name="times-circle" className="w-5 h-5 inline mr-2 text-red-400" />
+                <Icon name="times" className="w-5 h-5 inline mr-2 text-red-400" />
                 ❌ Tareas que NO puede hacer bien
               </h4>
               <div className="space-y-3">
@@ -1245,7 +1245,7 @@ const baseIaGenerativaSlides = [
           <div className="space-y-6">
             <div className="glass-effect p-6 rounded-xl">
               <h3 className="text-lg font-bold text-white mb-4">
-                <Icon name="check-circle" className="w-5 h-5 inline mr-2 text-green-400" />
+                <Icon name="check" className="w-5 h-5 inline mr-2 text-green-400" />
                 Ventajas de RAG
               </h3>
               <div className="space-y-3">

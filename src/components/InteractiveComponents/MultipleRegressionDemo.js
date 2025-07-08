@@ -161,7 +161,7 @@ const MultipleRegressionDemo = () => {
       
       <div className="mt-6 bg-blue-500/20 p-4 rounded-lg">
         <h4 className="text-white font-semibold mb-2">
-          <Icon name="info-circle" className="w-5 h-5 inline mr-2" />
+          <Icon name="info" className="w-5 h-5 inline mr-2" />
           Observaciones:
         </h4>
         <div className="text-white/90 text-sm space-y-1">

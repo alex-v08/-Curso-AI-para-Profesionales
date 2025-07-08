@@ -322,7 +322,7 @@ const AgentArchitectureDemo = () => {
                 }`}
               >
                 <Icon 
-                  name={environmentState.obstacle ? "exclamation-triangle" : "check-circle"} 
+                  name={environmentState.obstacle ? "exclamation-triangle" : "check"} 
                   className="w-5 h-5 inline mr-2" 
                 />
                 {environmentState.obstacle ? 'Obstáculo Presente' : 'Camino Libre'}

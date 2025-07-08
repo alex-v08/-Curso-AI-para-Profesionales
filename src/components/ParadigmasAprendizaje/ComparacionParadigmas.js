@@ -148,7 +148,7 @@ const ComparacionParadigmas = () => {
           aspect: 'Precisión/Exactitud',
           supervised: 'Accuracy, Precision, Recall, F1-Score',
           unsupervised: 'No aplicable (no hay verdad absoluta)',
-          icon: 'check-circle'
+          icon: 'check'
         },
         {
           aspect: 'Calidad de clusters',

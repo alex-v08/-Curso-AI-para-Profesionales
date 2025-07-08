@@ -35,11 +35,19 @@ function Sidebar({ slides, currentSlide, onSlideChange, isOpen, onToggle }) {
       subsections: presentationMetadata.sections.iaGenerativa.subsections
     },
     {
+      id: 'lowCodeNoCode',
+      name: 'Low-Code vs No-Code',
+      icon: 'code',
+      color: 'orange',
+      slides: slides.slice(36, 42), // 6 slides de Low-Code/No-Code (36-41)
+      subsections: presentationMetadata.sections.lowCodeNoCode?.subsections || []
+    },
+    {
       id: 'agentesInteligentes',
       name: 'Agentes Inteligentes',
       icon: 'robot',
       color: 'cyan',
-      slides: slides.slice(36, 55), // 19 slides de Agentes (36-54)
+      slides: slides.slice(42, 61), // 19 slides de Agentes (42-60)
       subsections: presentationMetadata.sections.agentesInteligentes?.subsections || []
     },
     {
@@ -47,15 +55,23 @@ function Sidebar({ slides, currentSlide, onSlideChange, isOpen, onToggle }) {
       name: 'Vibe Coding',
       icon: 'magic',
       color: 'purple',
-      slides: slides.slice(55, 63), // 8 slides de Vibe Coding (55-62)
+      slides: slides.slice(61, 69), // 8 slides de Vibe Coding (61-68)
       subsections: presentationMetadata.sections.vibeCoding?.subsections || []
+    },
+    {
+      id: 'n8nWorkflows',
+      name: 'n8n: Workflow Automation',
+      icon: 'sitemap',
+      color: 'indigo',
+      slides: slides.slice(69, 82), // 13 slides de n8n (69-81)
+      subsections: presentationMetadata.sections.n8nWorkflows?.subsections || []
     },
     {
       id: 'technical',
       name: 'Aspectos Técnicos',
       icon: 'cogs',
       color: 'green',
-      slides: slides.slice(63), // Movido al final después de Vibe Coding (desde 63)
+      slides: slides.slice(82), // Movido al final después de n8n (desde 82)
       subsections: presentationMetadata.sections.technical?.subsections || []
     }
   ];

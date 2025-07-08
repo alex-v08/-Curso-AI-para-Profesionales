@@ -23,3 +23,8 @@ export {
   MultiAgentSwarmDemo,
   N8nFlowDemo
 } from '../AgentesInteligentes';
+
+// Componentes de n8n
+export { default as N8nNodeExplorer } from './N8nNodeExplorer';
+export { default as N8nFlowBuilder } from './N8nFlowBuilder';
+export { default as N8nWorkflowDemo } from './N8nWorkflowDemo';

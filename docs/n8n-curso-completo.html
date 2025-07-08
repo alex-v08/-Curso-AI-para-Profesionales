@@ -1,0 +1,872 @@
+<!DOCTYPE html><html><head>
+      <title>n8n-curso-completo</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:////home/alexv/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.8.18/crossnote/dependencies/katex/katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      <div>
+<h1 id="n8n-automatización-de-workflows">n8n: Automatización de Workflows </h1>
+<h2 id="curso-completo-de-teoría-y-práctica">Curso Completo de Teoría y Práctica </h2>
+<hr>
+<p><em>Versión 8.0.0 - Fundamentos de Machine Learning e IA</em><br>
+<em>Autor: Curso de Machine Learning</em><br>
+<em>Fecha: 10 de Junio del 2025</em></p>
+<hr>
+<h2 id="-tabla-de-contenidos">📋 Tabla de Contenidos </h2>
+<ol>
+<li><a href="#1-introducci%C3%B3n-a-n8n">Introducción a n8n</a></li>
+<li><a href="#2-conceptos-fundamentales-de-n8n">Conceptos Fundamentales</a></li>
+<li><a href="#3-tipos-de-nodos-en-n8n">Tipos de Nodos</a></li>
+<li><a href="#4-explorador-de-nodos-n8n">Explorador de Nodos</a></li>
+<li><a href="#5-flujo-de-datos-en-n8n">Flujo de Datos</a></li>
+<li><a href="#6-top-10-casos-de-uso-m%C3%A1s-populares">Casos de Uso Populares</a></li>
+<li><a href="#7-constructor-de-flujos-n8n">Constructor de Flujos</a></li>
+<li><a href="#8-configuraci%C3%B3n-de-credenciales">Configuración de Credenciales</a></li>
+<li><a href="#9-proyecto-pr%C3%A1ctico-1-email-autom%C3%A1tico">Proyecto Práctico 1: Email Automático</a></li>
+<li><a href="#10-proyecto-pr%C3%A1ctico-2-whatsapp-bot-con-ia">Proyecto Práctico 2: WhatsApp Bot con IA</a></li>
+<li><a href="#11-buenas-pr%C3%A1cticas-y-debugging">Buenas Prácticas y Debugging</a></li>
+<li><a href="#12-recursos-y-pr%C3%B3ximos-pasos">Recursos y Próximos Pasos</a></li>
+</ol>
+<hr>
+<h2 id="1-introducción-a-n8n">1. Introducción a n8n </h2>
+<h3 id="qué-es-n8n">¿Qué es n8n? </h3>
+<p><strong>n8n</strong> es una plataforma de automatización de workflows que permite conectar aplicaciones y automatizar procesos sin escribir código.</p>
+<p><strong>Definición:</strong> "n8n" = "nodemation" (node + automation)</p>
+<h3 id="características-principales">Características Principales </h3>
+<ul>
+<li><strong>🧩 Visual</strong>: Interfaz gráfica de arrastrar y soltar</li>
+<li><strong>💻 Flexible</strong>: Open source y extensible</li>
+<li><strong>⚡ Poderoso</strong>: 400+ integraciones nativas</li>
+</ul>
+<h3 id="casos-típicos-de-uso">Casos Típicos de Uso </h3>
+<ul>
+<li>📧 <strong>Email → Sheets</strong>: Automatizar respuestas y guardar logs</li>
+<li>📱 <strong>Form → WhatsApp</strong>: Notificaciones instantáneas</li>
+<li>🤖 <strong>AI → Respuesta</strong>: Procesamiento inteligente</li>
+<li>⏰ <strong>Timer → Acción</strong>: Tareas programadas</li>
+</ul>
+<hr>
+<h2 id="2-conceptos-fundamentales-de-n8n">2. Conceptos Fundamentales de n8n </h2>
+<h3 id="workflow-flujo-de-trabajo">Workflow (Flujo de Trabajo) </h3>
+<p>Un <strong>workflow</strong> es una secuencia de pasos automatizados que procesan datos y ejecutan acciones.</p>
+<h4 id="componentes-de-un-workflow">Componentes de un Workflow: </h4>
+<ul>
+<li><strong>Trigger</strong>: Inicia el workflow</li>
+<li><strong>Nodos</strong>: Procesan o transforman datos</li>
+<li><strong>Conexiones</strong>: Flujo de datos entre nodos</li>
+<li><strong>Ejecuciones</strong>: Instancias del workflow</li>
+</ul>
+<h4 id="ejemplo-de-workflow">Ejemplo de Workflow: </h4>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>Email nuevo → Extraer datos → Guardar en Sheets → Notificar por Slack
+</code></pre><h3 id="nodos-en-n8n">Nodos en n8n </h3>
+<p>Los <strong>nodos</strong> son los bloques de construcción de cualquier workflow en n8n.</p>
+<h4 id="tipos-principales">Tipos principales: </h4>
+<ul>
+<li><strong>Trigger Nodes</strong>: Inician workflows</li>
+<li><strong>Regular Nodes</strong>: Procesan datos</li>
+<li><strong>Core Nodes</strong>: Funciones básicas</li>
+</ul>
+<h4 id="ejemplos-por-categoría">Ejemplos por categoría: </h4>
+<ul>
+<li>📧 <strong>Comunicación</strong>: Gmail, Slack, Discord</li>
+<li>📊 <strong>Datos</strong>: Google Sheets, Airtable</li>
+<li>🤖 <strong>IA</strong>: OpenAI, Claude</li>
+<li>⚙️ <strong>Core</strong>: Set, IF, Function</li>
+</ul>
+<h3 id="anatomía-de-un-workflow">Anatomía de un Workflow </h3>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>[TRIGGER] → [PROCESAR] → [GUARDAR] → [NOTIFICAR]
+</code></pre><ol>
+<li><strong>TRIGGER</strong>: Detecta evento (email, webhook, timer)</li>
+<li><strong>PROCESAR</strong>: Transforma o analiza datos</li>
+<li><strong>GUARDAR</strong>: Almacena resultados</li>
+<li><strong>NOTIFICAR</strong>: Envía confirmación o alerta</li>
+</ol>
+<hr>
+<h2 id="3-tipos-de-nodos-en-n8n">3. Tipos de Nodos en n8n </h2>
+<h3 id="trigger-nodes">Trigger Nodes </h3>
+<p><em>Inician la ejecución del workflow</em></p>
+<h4 id="nodos-populares">Nodos Populares: </h4>
+<table>
+<thead>
+<tr>
+<th>Nodo</th>
+<th>Descripción</th>
+<th>Dificultad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Schedule Trigger</strong></td>
+<td>Ejecuta en horarios específicos</td>
+<td>Fácil</td>
+</tr>
+<tr>
+<td><strong>Webhook</strong></td>
+<td>Recibe datos HTTP externos</td>
+<td>Medio</td>
+</tr>
+<tr>
+<td><strong>Gmail Trigger</strong></td>
+<td>Detecta emails nuevos</td>
+<td>Fácil</td>
+</tr>
+<tr>
+<td><strong>Google Forms Trigger</strong></td>
+<td>Formulario enviado</td>
+<td>Fácil</td>
+</tr>
+</tbody>
+</table>
+<h3 id="regular-nodes">Regular Nodes </h3>
+<p><em>Procesan y transforman datos</em></p>
+<h4 id="nodos-de-comunicación">Nodos de Comunicación: </h4>
+<table>
+<thead>
+<tr>
+<th>Nodo</th>
+<th>Descripción</th>
+<th>Dificultad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Gmail</strong></td>
+<td>Envía emails</td>
+<td>Fácil</td>
+</tr>
+<tr>
+<td><strong>Google Sheets</strong></td>
+<td>Lee/escribe hojas</td>
+<td>Medio</td>
+</tr>
+<tr>
+<td><strong>WhatsApp</strong></td>
+<td>Business API</td>
+<td>Difícil</td>
+</tr>
+<tr>
+<td><strong>OpenAI</strong></td>
+<td>Procesa con IA</td>
+<td>Fácil</td>
+</tr>
+</tbody>
+</table>
+<h3 id="core-nodes-fundamentales">Core Nodes (Fundamentales) </h3>
+<h4 id="bloques-básicos">Bloques Básicos: </h4>
+<table>
+<thead>
+<tr>
+<th>Nodo</th>
+<th>Función</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Set</strong></td>
+<td>Modifica datos</td>
+<td>Cambiar formato, agregar campos</td>
+</tr>
+<tr>
+<td><strong>IF</strong></td>
+<td>Lógica condicional</td>
+<td>Filtrar por condiciones</td>
+</tr>
+<tr>
+<td><strong>Function</strong></td>
+<td>JavaScript custom</td>
+<td>Cálculos complejos</td>
+</tr>
+<tr>
+<td><strong>Filter</strong></td>
+<td>Filtra elementos</td>
+<td>Remover datos no deseados</td>
+</tr>
+<tr>
+<td><strong>Merge</strong></td>
+<td>Combina datos</td>
+<td>Unir información de múltiples fuentes</td>
+</tr>
+<tr>
+<td><strong>HTTP Request</strong></td>
+<td>Llamadas API</td>
+<td>Integrar servicios externos</td>
+</tr>
+</tbody>
+</table>
+<h3 id="regla-de-oro">Regla de Oro </h3>
+<blockquote>
+<p><strong>1 Trigger + N Nodos = 1 Workflow completo</strong></p>
+<p>Siempre empieza con un trigger, luego agrega los nodos necesarios</p>
+</blockquote>
+<hr>
+<h2 id="4-explorador-de-nodos-n8n">4. Explorador de Nodos n8n </h2>
+<h3 id="categorías-de-nodos">Categorías de Nodos </h3>
+<h4 id="-email--mensajería">📧 Email &amp; Mensajería </h4>
+<p><strong>Nodos más usados para comunicación:</strong></p>
+<ul>
+<li><strong>Gmail</strong>: Enviar/recibir emails (Fácil)</li>
+<li><strong>Email SMTP</strong>: Email genérico (Fácil)</li>
+<li><strong>Telegram</strong>: Bot de Telegram (Medio)</li>
+<li><strong>Discord</strong>: Webhooks Discord (Medio)</li>
+<li><strong>Slack</strong>: Notificaciones Slack (Fácil)</li>
+<li><strong>WhatsApp</strong>: Business API (Difícil)</li>
+</ul>
+<h4 id="-hojas-de-cálculo">📊 Hojas de Cálculo </h4>
+<p><strong>Manejo de datos tabulares:</strong></p>
+<ul>
+<li><strong>Google Sheets</strong>: Leer/escribir hojas (Medio)</li>
+<li><strong>Excel</strong>: Archivos Excel (Medio)</li>
+<li><strong>Airtable</strong>: Base de datos visual (Fácil)</li>
+<li><strong>CSV</strong>: Archivos CSV (Fácil)</li>
+</ul>
+<h4 id="-inteligencia-artificial">🤖 Inteligencia Artificial </h4>
+<p><strong>Procesamiento con IA:</strong></p>
+<ul>
+<li><strong>OpenAI</strong>: ChatGPT y DALL-E (Fácil)</li>
+<li><strong>Claude</strong>: Anthropic Claude (Fácil)</li>
+<li><strong>Google Gemini</strong>: Gemini AI (Fácil)</li>
+<li><strong>Hugging Face</strong>: Modelos ML (Medio)</li>
+<li><strong>ElevenLabs</strong>: Síntesis de voz (Medio)</li>
+</ul>
+<h4 id="-redes-sociales">📱 Redes Sociales </h4>
+<p><strong>Automatización de contenido:</strong></p>
+<ul>
+<li><strong>Twitter/X</strong>: Publicar tweets (Medio)</li>
+<li><strong>Facebook</strong>: Posts Facebook (Medio)</li>
+<li><strong>LinkedIn</strong>: Posts profesionales (Medio)</li>
+<li><strong>Instagram</strong>: Fotos y stories (Difícil)</li>
+<li><strong>YouTube</strong>: Subir videos (Difícil)</li>
+</ul>
+<h4 id="️-automatización">⚙️ Automatización </h4>
+<p><strong>Control del sistema:</strong></p>
+<ul>
+<li><strong>Schedule</strong>: Timer/Cron jobs (Fácil)</li>
+<li><strong>Webhook</strong>: Recibir datos HTTP (Medio)</li>
+<li><strong>Execute Command</strong>: Comandos sistema (Difícil)</li>
+<li><strong>SSH</strong>: Conexión remota (Difícil)</li>
+</ul>
+<h3 id="tips-para-principiantes">Tips para Principiantes </h3>
+<ul>
+<li>✅ <strong>Empieza Simple</strong>: Gmail + Google Sheets es la combinación más fácil</li>
+<li>🧪 <strong>Prueba Nodo a Nodo</strong>: Ejecuta cada paso individualmente</li>
+<li>📚 <strong>Lee la Documentación</strong>: Cada nodo tiene ejemplos detallados</li>
+<li>🔄 <strong>Usa Templates</strong>: n8n tiene plantillas prediseñadas</li>
+</ul>
+<hr>
+<h2 id="5-flujo-de-datos-en-n8n">5. Flujo de Datos en n8n </h2>
+<h3 id="cómo-fluyen-los-datos">¿Cómo fluyen los datos? </h3>
+<p>Los datos pasan de nodo en nodo como fichas de dominó, transformándose en cada paso.</p>
+<h3 id="estructura-de-datos">Estructura de Datos </h3>
+<h4 id="formato-json">Formato JSON </h4>
+<pre data-role="codeBlock" data-info="json" class="language-json json"><code><span class="token punctuation">{</span>
+  <span class="token property">"json"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"nombre"</span><span class="token operator">:</span> <span class="token string">"Juan"</span><span class="token punctuation">,</span>
+    <span class="token property">"email"</span><span class="token operator">:</span> <span class="token string">"juan@email.com"</span><span class="token punctuation">,</span>
+    <span class="token property">"edad"</span><span class="token operator">:</span> <span class="token number">25</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><h4 id="campos-principales">Campos principales: </h4>
+<ul>
+<li><strong>json</strong>: Datos principales del elemento</li>
+<li><strong>binary</strong>: Archivos (imágenes, PDFs, etc.)</li>
+</ul>
+<h3 id="acceso-a-datos">Acceso a Datos </h3>
+<h4 id="sintaxis-de-expresiones">Sintaxis de Expresiones: </h4>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Sintaxis</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Nodo Actual</strong></td>
+<td><code>{{ $json["campo"] }}</code></td>
+<td><code>{{ $json["nombre"] }}</code></td>
+</tr>
+<tr>
+<td><strong>Nodo Anterior</strong></td>
+<td><code>{{ $node["NombreNodo"].json["campo"] }}</code></td>
+<td><code>{{ $node["Gmail Trigger"].json["subject"] }}</code></td>
+</tr>
+<tr>
+<td><strong>Todos los Items</strong></td>
+<td><code>{{ $input.all() }}</code></td>
+<td>Para procesar listas</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ejemplo-email--sheets--whatsapp">Ejemplo: Email → Sheets → WhatsApp </h3>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>[Gmail Trigger] → [Google Sheets] → [WhatsApp]
+     ↓               ↓                ↓
+{                Guarda:           Mensaje:
+  "subject":     {{ $json["subject"] }}  "Nuevo pedido de 
+  "from":        {{ $json["from"] }}      {{ $node["Gmail Trigger"]
+}                                        .json["from"] }}"
+</code></pre><hr>
+<h2 id="6-top-10-casos-de-uso-más-populares">6. Top 10 Casos de Uso Más Populares </h2>
+<h3 id="-top-5---principiantes">🏆 Top 5 - Principiantes </h3>
+<h4 id="1--email-automático-fácil">1. 📧 Email Automático (FÁCIL) </h4>
+<p><strong>Flujo</strong>: Gmail → Respuesta → Sheets<br>
+<strong>Descripción</strong>: Responder emails automáticamente y guardar log</p>
+<h4 id="2--form--whatsapp-fácil">2. 📝 Form → WhatsApp (FÁCIL) </h4>
+<p><strong>Flujo</strong>: Google Forms → WhatsApp notificación<br>
+<strong>Descripción</strong>: Notificación instantánea de formularios</p>
+<h4 id="3--control-inventario-medio">3. 📦 Control Inventario (MEDIO) </h4>
+<p><strong>Flujo</strong>: Sheets + alertas + reportes<br>
+<strong>Descripción</strong>: Monitoreo automático de stock</p>
+<h4 id="4--cumpleaños-automático-fácil">4. 🎂 Cumpleaños Automático (FÁCIL) </h4>
+<p><strong>Flujo</strong>: Timer → Sheets → WhatsApp<br>
+<strong>Descripción</strong>: Felicitaciones automáticas programadas</p>
+<h4 id="5--ventas-tracker-medio">5. 💰 Ventas Tracker (MEDIO) </h4>
+<p><strong>Flujo</strong>: Webhook → Sheets → Email<br>
+<strong>Descripción</strong>: Seguimiento de ventas en tiempo real</p>
+<h3 id="-top-5---avanzados">🚀 Top 5 - Avanzados </h3>
+<h4 id="6--bot-whatsapp-ia-avanzado">6. 🤖 Bot WhatsApp IA (AVANZADO) </h4>
+<p><strong>Flujo</strong>: WhatsApp → OpenAI → Sheets → Respuesta<br>
+<strong>Descripción</strong>: Bot conversacional inteligente</p>
+<h4 id="7--social-media-ai-avanzado">7. 📱 Social Media AI (AVANZADO) </h4>
+<p><strong>Flujo</strong>: AI → Instagram + LinkedIn + X<br>
+<strong>Descripción</strong>: Gestión automática de redes sociales</p>
+<h4 id="8--e-commerce-automation-avanzado">8. 🛒 E-commerce Automation (AVANZADO) </h4>
+<p><strong>Flujo</strong>: Shopify → Stripe → CRM → Email<br>
+<strong>Descripción</strong>: Pipeline completo de ventas</p>
+<h4 id="9--business-intelligence-experto">9. 📊 Business Intelligence (EXPERTO) </h4>
+<p><strong>Flujo</strong>: APIs múltiples → Análisis → Dashboard<br>
+<strong>Descripción</strong>: Inteligencia empresarial automatizada</p>
+<h4 id="10--content-pipeline-experto">10. 🎨 Content Pipeline (EXPERTO) </h4>
+<p><strong>Flujo</strong>: Notion → AI → DALL-E → Social<br>
+<strong>Descripción</strong>: Creación automática de contenido</p>
+<h3 id="recomendación-de-aprendizaje">Recomendación de Aprendizaje </h3>
+<ol>
+<li><strong>Empieza con Email</strong>: Gmail + Sheets básico</li>
+<li><strong>Agrega WhatsApp</strong>: Notificaciones automáticas</li>
+<li><strong>Incluye IA</strong>: OpenAI para automatizar</li>
+</ol>
+<hr>
+<h2 id="7-constructor-de-flujos-n8n">7. Constructor de Flujos n8n </h2>
+<h3 id="pasos-para-crear-un-workflow">Pasos para Crear un Workflow </h3>
+<h4 id="1-selecciona-un-trigger">1. Selecciona un Trigger </h4>
+<p><strong>Pregunta</strong>: ¿Qué va a iniciar tu workflow?</p>
+<ul>
+<li>Gmail Trigger (emails nuevos)</li>
+<li>Schedule (tiempo específico)</li>
+<li>Webhook (datos externos)</li>
+<li>Google Forms (formulario enviado)</li>
+</ul>
+<h4 id="2-agrega-nodos">2. Agrega Nodos </h4>
+<p><strong>Pregunta</strong>: ¿Qué acciones quieres ejecutar?</p>
+<ul>
+<li>Procesar datos (Set, Function)</li>
+<li>Comunicar (Gmail, WhatsApp, Slack)</li>
+<li>Almacenar (Google Sheets, Base de datos)</li>
+</ul>
+<h4 id="3-conecta-los-nodos">3. Conecta los Nodos </h4>
+<p><strong>Define el flujo de datos</strong> entre componentes</p>
+<h4 id="4-configura-y-prueba">4. Configura y Prueba </h4>
+<p><strong>Ejecuta paso a paso</strong> antes del deployment</p>
+<h3 id="templates-rápidos">Templates Rápidos </h3>
+<h4 id="email-automático">Email Automático </h4>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>Gmail Trigger → IF (contiene "pedido") → Gmail Send + Google Sheets
+</code></pre><h4 id="whatsapp-bot-ia">WhatsApp Bot IA </h4>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>Webhook → OpenAI → WhatsApp Response + Google Sheets Log
+</code></pre><h3 id="errores-comunes">Errores Comunes </h3>
+<ul>
+<li>❌ <strong>Olvidar credenciales</strong>: Configurar Gmail, Sheets, etc.</li>
+<li>❌ <strong>No probar nodo a nodo</strong>: Ejecutar cada paso individualmente</li>
+<li>❌ <strong>Sintaxis incorrecta</strong>: Revisar las expresiones <code>{{ }}</code></li>
+<li>❌ <strong>No manejar errores</strong>: Usar "Continue on Fail"</li>
+</ul>
+<hr>
+<h2 id="8-configuración-de-credenciales">8. Configuración de Credenciales </h2>
+<h3 id="-configuración-paso-a-paso">🔐 Configuración Paso a Paso </h3>
+<p>La configuración de credenciales es lo más complicado para principiantes, pero esencial para cualquier workflow.</p>
+<h3 id="google-sheets-medio">Google Sheets (MEDIO) </h3>
+<h4 id="pasos-detallados">Pasos detallados: </h4>
+<ol>
+<li>
+<p><strong>Google Cloud Console</strong>:</p>
+<ul>
+<li>Crear proyecto nuevo</li>
+<li>Habilitar Google Sheets API</li>
+<li>Crear Service Account</li>
+</ul>
+</li>
+<li>
+<p><strong>Descargar JSON</strong>:</p>
+<ul>
+<li>Crear clave para Service Account</li>
+<li>Descargar archivo JSON</li>
+</ul>
+</li>
+<li>
+<p><strong>Compartir hoja</strong>:</p>
+<ul>
+<li>Copiar email del Service Account</li>
+<li>Compartir Google Sheet con ese email</li>
+<li>Dar permisos de Editor</li>
+</ul>
+</li>
+<li>
+<p><strong>En n8n</strong>:</p>
+<ul>
+<li>Pegar contenido del JSON</li>
+<li>Probar conexión</li>
+</ul>
+</li>
+</ol>
+<p>💡 <strong>Tip</strong>: El Service Account es como un "usuario robot" que puede acceder a tus hojas.</p>
+<h3 id="gmail-fácil">Gmail (FÁCIL) </h3>
+<h4 id="opción-1-app-password-recomendado">Opción 1: App Password (Recomendado) </h4>
+<ol>
+<li>
+<p><strong>Activar 2FA</strong>:</p>
+<ul>
+<li>Ir a Google Account Security</li>
+<li>Activar verificación en 2 pasos</li>
+</ul>
+</li>
+<li>
+<p><strong>Crear App Password</strong>:</p>
+<ul>
+<li>Buscar "App passwords"</li>
+<li>Crear password para "n8n"</li>
+<li>Copiar password generado</li>
+</ul>
+</li>
+<li>
+<p><strong>En n8n</strong>:</p>
+<ul>
+<li>Email: <a href="mailto:tu@gmail.com">tu@gmail.com</a></li>
+<li>Password: app password (no tu password normal)</li>
+</ul>
+</li>
+</ol>
+<h4 id="opción-2-oauth2">Opción 2: OAuth2 </h4>
+<p>Más seguro pero más complejo. Requiere configurar OAuth en Google Cloud Console.</p>
+<p>⚠️ <strong>Importante</strong>: Nunca uses tu contraseña normal de Gmail.</p>
+<h3 id="whatsapp-business-difícil">WhatsApp Business (DIFÍCIL) </h3>
+<h4 id="pasos-para-whatsapp-business-api">Pasos para WhatsApp Business API: </h4>
+<ol>
+<li>
+<p><strong>Meta Developer</strong>:</p>
+<ul>
+<li>Crear cuenta en <a href="http://developers.facebook.com">developers.facebook.com</a></li>
+<li>Crear nueva App</li>
+<li>Agregar producto WhatsApp</li>
+</ul>
+</li>
+<li>
+<p><strong>Configurar número</strong>:</p>
+<ul>
+<li>Verificar número de teléfono</li>
+<li>Obtener Phone Number ID</li>
+<li>Generar Access Token</li>
+</ul>
+</li>
+<li>
+<p><strong>En n8n</strong>:</p>
+<ul>
+<li>Phone Number ID</li>
+<li>Access Token</li>
+<li>Webhook URL (para recibir)</li>
+</ul>
+</li>
+</ol>
+<p>💰 <strong>Costo</strong>: WhatsApp Business API tiene costos por mensaje enviado.</p>
+<h3 id="openai-fácil">OpenAI (FÁCIL) </h3>
+<h4 id="configuración-simple">Configuración simple: </h4>
+<ol>
+<li>Ir a <a href="http://platform.openai.com">platform.openai.com</a></li>
+<li>API Keys → Create new</li>
+<li>Copiar clave (sk-...)</li>
+<li>Pegar en n8n</li>
+</ol>
+<p>💳 <strong>Requiere</strong>: Tarjeta de crédito para uso</p>
+<h3 id="buenas-prácticas-de-seguridad">Buenas Prácticas de Seguridad </h3>
+<ul>
+<li>✅ <strong>Nunca compartas</strong> tus API keys</li>
+<li>✅ <strong>Usa nombres</strong> descriptivos para credenciales</li>
+<li>✅ <strong>Prueba conexión</strong> antes de usar</li>
+<li>✅ <strong>Rota claves</strong> regularmente</li>
+</ul>
+<h3 id="orden-recomendado-para-aprender">Orden Recomendado para Aprender </h3>
+<ol>
+<li><strong>Gmail</strong> (App Password)</li>
+<li><strong>Google Sheets</strong> (Service Account)</li>
+<li><strong>OpenAI</strong> (API Key)</li>
+<li><strong>WhatsApp</strong> (Business API)</li>
+</ol>
+<hr>
+<h2 id="9-proyecto-práctico-1-email-automático">9. Proyecto Práctico 1: Email Automático </h2>
+<h3 id="-tu-primer-workflow-real">📧 Tu Primer Workflow Real </h3>
+<p><strong>Objetivo</strong>: Responder emails automáticamente y guardar log en Google Sheets</p>
+<h3 id="qué-vamos-a-hacer">¿Qué vamos a hacer? </h3>
+<p>Cuando llegue un email con "pedido" en el asunto:</p>
+<ol>
+<li>Responder automáticamente</li>
+<li>Guardar los datos en Google Sheets</li>
+</ol>
+<h3 id="por-qué-es-útil">¿Por qué es útil? </h3>
+<ul>
+<li>✅ Respuesta inmediata 24/7</li>
+<li>✅ Base de datos automática</li>
+<li>✅ Reduce trabajo manual</li>
+<li>✅ Mejora experiencia cliente</li>
+</ul>
+<h3 id="nodos-necesarios">Nodos Necesarios </h3>
+<ol>
+<li><strong>Gmail Trigger</strong> 🟢 - Detecta emails nuevos</li>
+<li><strong>IF Node</strong> 🔵 - ¿Contiene "pedido"?</li>
+<li><strong>Gmail Send</strong> 🟣 - Envía respuesta</li>
+<li><strong>Google Sheets</strong> 🟠 - Guarda registro</li>
+</ol>
+<h3 id="paso-a-paso-detallado">Paso a Paso Detallado </h3>
+<h4 id="paso-1-gmail-trigger">PASO 1: Gmail Trigger </h4>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>- Agregar Gmail Trigger
+- Configurar credenciales
+- Poll: Every 1 minute
+- Filter: is:unread
+- Probar ejecución
+</code></pre><h4 id="paso-2-if-node">PASO 2: IF Node </h4>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>- Condition: String
+- Value 1: {{ $json["subject"] }}
+- Operation: contains
+- Value 2: "pedido"
+- Probar con email real
+</code></pre><h4 id="paso-3-gmail-send">PASO 3: Gmail Send </h4>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>- To: {{ $json["from"]["value"][0]["address"] }}
+- Subject: "RE: {{ $json["subject"] }}"
+- Message: Plantilla de respuesta
+- Conectar desde IF → True
+</code></pre><h4 id="paso-4-google-sheets">PASO 4: Google Sheets </h4>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>- Operation: Append
+- Document ID: URL de tu sheet
+- Columns: Fecha, De, Asunto
+- Conectar en paralelo con Gmail
+</code></pre><h3 id="plantilla-de-email">Plantilla de Email </h3>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>Hola,
+
+Hemos recibido tu pedido correctamente.
+
+Número de orden: #{{ Math.floor(Math.random() * 10000) }}
+Asunto: {{ $node["Gmail Trigger"].json["subject"] }}
+
+Te contactaremos pronto con los detalles.
+
+Gracias por tu compra!
+
+Saludos,
+Equipo de Ventas
+</code></pre><h3 id="estructura-google-sheets">Estructura Google Sheets </h3>
+<table>
+<thead>
+<tr>
+<th>Fecha</th>
+<th>De</th>
+<th>Asunto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>{{ $now }}</code></td>
+<td><code>{{ $json["from"] }}</code></td>
+<td><code>{{ $json["subject"] }}</code></td>
+</tr>
+</tbody>
+</table>
+<p>💡 <strong>Tip</strong>: Crea las columnas antes en Google Sheets</p>
+<hr>
+<h2 id="10-proyecto-práctico-2-whatsapp-bot-con-ia">10. Proyecto Práctico 2: WhatsApp Bot con IA </h2>
+<h3 id="-bot-inteligente-de-whatsapp">🤖 Bot Inteligente de WhatsApp </h3>
+<p><strong>Objetivo</strong>: Crear un bot que responde mensajes automáticamente usando ChatGPT</p>
+<h3 id="funcionalidades-del-bot">Funcionalidades del Bot </h3>
+<ul>
+<li>🧠 <strong>IA Conversacional</strong>: Responde preguntas naturalmente usando ChatGPT</li>
+<li>📊 <strong>Base de Conocimiento</strong>: Guarda todas las conversaciones en Google Sheets</li>
+<li>⚡ <strong>Tiempo Real</strong>: Respuesta inmediata 24/7</li>
+<li>🎯 <strong>Contextual</strong>: Recuerda información del cliente</li>
+</ul>
+<h3 id="arquitectura-del-bot">Arquitectura del Bot </h3>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>WhatsApp Trigger → Procesar Mensaje → OpenAI (ChatGPT) → Guardar en Sheets
+                                                        ↓
+                                           Responder WhatsApp
+</code></pre><h3 id="configuración-técnica">Configuración Técnica </h3>
+<h4 id="whatsapp-trigger-setup">WhatsApp Trigger Setup </h4>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>Updates to listen for: message
+Additional Fields:
+- Include webhook validation
+- Message filters: text
+- Exclude: status messages
+</code></pre><h4 id="openai-configuration">OpenAI Configuration </h4>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>Resource: Chat
+Model: gpt-3.5-turbo
+Max Tokens: 150
+Temperature: 0.7
+System Message: "Eres un asistente útil
+de atención al cliente. Responde en 
+español de forma amigable y concisa."
+</code></pre><h3 id="flujo-de-datos">Flujo de Datos </h3>
+<h4 id="1-entrada-whatsapp">1. Entrada (WhatsApp) </h4>
+<pre data-role="codeBlock" data-info="json" class="language-json json"><code><span class="token punctuation">{</span>
+  <span class="token property">"from"</span><span class="token operator">:</span> <span class="token string">"+549123456789"</span><span class="token punctuation">,</span>
+  <span class="token property">"message"</span><span class="token operator">:</span> <span class="token string">"¿Cuál es el horario de atención?"</span><span class="token punctuation">,</span>
+  <span class="token property">"timestamp"</span><span class="token operator">:</span> <span class="token string">"14:30:45"</span>
+<span class="token punctuation">}</span>
+</code></pre><h4 id="2-procesamiento-openai">2. Procesamiento (OpenAI) </h4>
+<pre data-role="codeBlock" data-info="json" class="language-json json"><code><span class="token punctuation">{</span>
+  <span class="token property">"prompt"</span><span class="token operator">:</span> <span class="token string">"Responde sobre horarios de atención"</span><span class="token punctuation">,</span>
+  <span class="token property">"model"</span><span class="token operator">:</span> <span class="token string">"gpt-3.5-turbo"</span><span class="token punctuation">,</span>
+  <span class="token property">"response"</span><span class="token operator">:</span> <span class="token string">"Nuestro horario de atención es de lunes a viernes de 9:00 a 18:00 hs. ¿En qué más puedo ayudarte?"</span><span class="token punctuation">,</span>
+  <span class="token property">"tokens"</span><span class="token operator">:</span> <span class="token number">45</span>
+<span class="token punctuation">}</span>
+</code></pre><h4 id="3-log-google-sheets">3. Log (Google Sheets) </h4>
+<table>
+<thead>
+<tr>
+<th>Fecha</th>
+<th>Usuario</th>
+<th>Pregunta</th>
+<th>Respuesta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>14:30</td>
+<td>+549...</td>
+<td>Horario?</td>
+<td>Lun-Vie...</td>
+</tr>
+</tbody>
+</table>
+<h4 id="4-respuesta-whatsapp">4. Respuesta (WhatsApp) </h4>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>Para: +549123456789
+Mensaje: "Nuestro horario de atención es de lunes a viernes de 9:00 a 18:00 hs. ¿En qué más puedo ayudarte?"
+Estado: ✅ Enviado
+</code></pre><h3 id="consideraciones-técnicas">Consideraciones Técnicas </h3>
+<ul>
+<li>💳 <strong>OpenAI</strong>: Costo por token (~$0.001 por mensaje)</li>
+<li>⏱️ <strong>WhatsApp</strong>: Límites de velocidad</li>
+<li>🔒 <strong>Seguridad</strong>: Validar webhooks</li>
+<li>📊 <strong>Monitoreo</strong>: Logs detallados</li>
+</ul>
+<h3 id="métricas-del-workflow">Métricas del Workflow </h3>
+<ul>
+<li>⏱️ <strong>Tiempo Total</strong>: ~2 segundos</li>
+<li>💰 <strong>Costo OpenAI</strong>: $0.001 por mensaje</li>
+<li>📊 <strong>Eficiencia</strong>: 100% automatizado</li>
+</ul>
+<h3 id="mejoras-futuras">Mejoras Futuras </h3>
+<ul>
+<li>🧠 <strong>RAG</strong>: Base de conocimiento propia</li>
+<li>👤 <strong>CRM</strong>: Integrar datos del cliente</li>
+<li>📊 <strong>Analytics</strong>: Métricas avanzadas</li>
+<li>🎯 <strong>Intent</strong>: Clasificar tipos de consultas</li>
+</ul>
+<hr>
+<h2 id="11-buenas-prácticas-y-debugging">11. Buenas Prácticas y Debugging </h2>
+<h3 id="️-tips-de-experto">🛠️ Tips de Experto </h3>
+<h3 id="buenas-prácticas">Buenas Prácticas </h3>
+<h4 id="️-ejecución-paso-a-paso">▶️ Ejecución Paso a Paso </h4>
+<p>Siempre ejecuta cada nodo individualmente antes de conectar todo el workflow.</p>
+<h4 id="️-nombres-descriptivos">🏷️ Nombres Descriptivos </h4>
+<p>Usa nombres claros para nodos:</p>
+<ul>
+<li>"Gmail - Detectar Pedidos"</li>
+<li>"Sheets - Guardar Cliente"</li>
+<li>"WhatsApp - Notificar Venta"</li>
+</ul>
+<h4 id="️-manejo-de-errores">🛡️ Manejo de Errores </h4>
+<ul>
+<li>Activa "Continue on Fail" en nodos críticos</li>
+<li>Agrega nodos específicos para error handling</li>
+<li>Implementa retry logic para APIs externas</li>
+</ul>
+<h4 id="️-logs-detallados">👁️ Logs Detallados </h4>
+<ul>
+<li>Guarda logs de todas las ejecuciones</li>
+<li>Incluye timestamps y IDs únicos</li>
+<li>Registra tanto éxitos como errores</li>
+</ul>
+<h3 id="errores-más-comunes">Errores Más Comunes </h3>
+<h4 id="-credenciales-incorrectas">❌ Credenciales Incorrectas </h4>
+<p><strong>Problema</strong>: API keys, tokens y permisos mal configurados<br>
+<strong>Solución</strong>: Verificar credenciales y probar conexión</p>
+<h4 id="-sintaxis-de-expresiones">❌ Sintaxis de Expresiones </h4>
+<p><strong>Problema</strong>: Mal uso de <code>{{ $json["campo"] }}</code><br>
+<strong>Solución</strong>: Revisar sintaxis y estructura de datos</p>
+<h4 id="-rate-limits">❌ Rate Limits </h4>
+<p><strong>Problema</strong>: Demasiadas requests muy rápido<br>
+<strong>Solución</strong>: Agregar delays entre requests masivos</p>
+<h4 id="-data-mapping">❌ Data Mapping </h4>
+<p><strong>Problema</strong>: Datos no llegan entre nodos<br>
+<strong>Solución</strong>: Revisar estructura de datos en cada paso</p>
+<h3 id="herramientas-de-debugging">Herramientas de Debugging </h3>
+<h4 id="-execution-log">🐛 Execution Log </h4>
+<p>Revisa cada ejecución, datos de entrada y salida de cada nodo</p>
+<h4 id="️-execute-node">▶️ Execute Node </h4>
+<p>Ejecuta un solo nodo para probar su funcionamiento individualmente</p>
+<h4 id="-json-view">📋 JSON View </h4>
+<p>Inspecciona la estructura exacta de los datos en formato JSON</p>
+<h3 id="tips-de-performance">Tips de Performance </h3>
+<ul>
+<li>✅ <strong>Batching</strong>: Procesa múltiples items juntos</li>
+<li>✅ <strong>Caching</strong>: Evita llamadas API repetitivas</li>
+<li>✅ <strong>Filtros</strong>: Filtra datos temprano en el pipeline</li>
+<li>✅ <strong>Timeouts</strong>: Configura timeouts apropiados</li>
+</ul>
+<h3 id="seguridad">Seguridad </h3>
+<ul>
+<li>🔒 <strong>Never log</strong> API keys o passwords</li>
+<li>🔒 <strong>Webhook validation</strong>: Valida requests entrantes</li>
+<li>🔒 <strong>Rotate keys</strong>: Cambia credenciales regularmente</li>
+<li>🔒 <strong>Environment variables</strong>: Para datos sensibles</li>
+</ul>
+<h3 id="checklist-pre-producción">Checklist Pre-Producción </h3>
+<p><strong>Configuración:</strong></p>
+<ul>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox"> Todas las credenciales configuradas</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox"> Error handling implementado</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox"> Logs configurados apropiadamente</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox"> Pruebas con datos reales</li>
+</ul>
+<p><strong>Performance:</strong></p>
+<ul>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox"> Rate limits considerados</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox"> Webhooks validados</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox"> Monitoreo configurado</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox"> Backup/rollback plan</li>
+</ul>
+<hr>
+<h2 id="12-recursos-y-próximos-pasos">12. Recursos y Próximos Pasos </h2>
+<h3 id="-tu-viaje-con-n8n-continúa">🚀 Tu Viaje con n8n Continúa </h3>
+<h3 id="documentación-oficial">Documentación Oficial </h3>
+<h4 id="-recursos-principales">📖 Recursos Principales </h4>
+<ul>
+<li><strong><a href="http://docs.n8n.io">docs.n8n.io</a></strong>: Documentación completa</li>
+<li><strong><a href="http://n8n.io/academy">n8n.io/academy</a></strong>: Cursos estructurados</li>
+<li><strong><a href="http://n8n.io/templates">n8n.io/templates</a></strong>: Workflows pre-hechos</li>
+</ul>
+<h3 id="comunidad">Comunidad </h3>
+<h4 id="-canales-de-comunicación">💬 Canales de Comunicación </h4>
+<ul>
+<li><strong>Discord</strong>: Chat en tiempo real</li>
+<li><strong>Reddit r/n8n</strong>: Discusiones y tips</li>
+<li><strong>GitHub</strong>: Issues y contribuciones</li>
+</ul>
+<h3 id="video-tutoriales">Video Tutoriales </h3>
+<h4 id="-contenido-visual">🎥 Contenido Visual </h4>
+<ul>
+<li><strong>YouTube n8n</strong>: Canal oficial</li>
+<li><strong>Twitch Streams</strong>: Live coding sessions</li>
+<li><strong>Community Videos</strong>: Tutoriales de usuarios</li>
+</ul>
+<h3 id="tu-roadmap-de-aprendizaje">Tu Roadmap de Aprendizaje </h3>
+<h4 id="-principiante-0-2-meses">🌱 Principiante (0-2 meses) </h4>
+<ul>
+<li>✅ Gmail + Sheets básico</li>
+<li>✅ WhatsApp notificaciones</li>
+<li>✅ Triggers y filtros</li>
+<li>✅ 5-10 workflows simples</li>
+</ul>
+<h4 id="-intermedio-2-6-meses">🚀 Intermedio (2-6 meses) </h4>
+<ul>
+<li>⚡ OpenAI integration</li>
+<li>⚡ Complex IF conditions</li>
+<li>⚡ Error handling</li>
+<li>⚡ Custom functions</li>
+</ul>
+<h4 id="-avanzado-6-meses">🏆 Avanzado (6+ meses) </h4>
+<ul>
+<li>🔥 Custom nodes</li>
+<li>🔥 Multi-tenant setups</li>
+<li>🔥 Enterprise workflows</li>
+<li>🔥 Community contributions</li>
+</ul>
+<h3 id="proyectos-desafío">Proyectos Desafío </h3>
+<h4 id="-para-practicar">🏆 Para Practicar </h4>
+<p><strong>Social Media Manager</strong><br>
+<em>Dificultad: Intermedio</em><br>
+AI → Multiple platforms → Analytics</p>
+<p><strong>E-commerce Pipeline</strong><br>
+<em>Dificultad: Avanzado</em><br>
+Orders → Inventory → CRM → Support</p>
+<p><strong>Business Intelligence</strong><br>
+<em>Dificultad: Avanzado</em><br>
+Multi-API → Analysis → Dashboard</p>
+<p><strong>Custom Node Development</strong><br>
+<em>Dificultad: Experto</em><br>
+Create &amp; publish your own node</p>
+<h3 id="ideas-de-negocio">Ideas de Negocio </h3>
+<h4 id="-oportunidades-comerciales">💼 Oportunidades Comerciales </h4>
+<p><strong>Consultoría n8n</strong><br>
+Implementar workflows para empresas</p>
+<p><strong>Templates Premium</strong><br>
+Vender workflows especializados</p>
+<p><strong>Cursos/Coaching</strong><br>
+Enseñar n8n a otros</p>
+<p><strong>SaaS Integrations</strong><br>
+Servicios de automatización como servicio</p>
+<h3 id="estadísticas-del-curso">Estadísticas del Curso </h3>
+<h4 id="-lo-que-has-aprendido">📊 Lo que has aprendido: </h4>
+<ul>
+<li>✅ <strong>Conceptos básicos</strong> de n8n</li>
+<li>✅ <strong>Configuración</strong> de credenciales</li>
+<li>✅ <strong>Proyectos reales</strong> implementados</li>
+<li>✅ <strong>Buenas prácticas</strong> aplicadas</li>
+</ul>
+<p><strong>Duración total</strong>: 3-4 horas<br>
+<strong>Slides interactivos</strong>: 13<br>
+<strong>Proyectos prácticos</strong>: 2<br>
+<strong>Casos de uso cubiertos</strong>: 10+</p>
+<hr>
+<h2 id="-felicitaciones">🎉 ¡Felicitaciones! </h2>
+<h3 id="has-completado-el-curso-completo-de-n8n">Has completado el curso completo de n8n </h3>
+<p>Ahora tienes las herramientas para automatizar prácticamente cualquier proceso.</p>
+<h3 id="qué-sigue">¿Qué sigue? </h3>
+<ol>
+<li><strong>Practica</strong> con los proyectos sugeridos</li>
+<li><strong>Únete</strong> a la comunidad de n8n</li>
+<li><strong>Experimenta</strong> con casos de uso propios</li>
+<li><strong>Comparte</strong> tus workflows con otros</li>
+</ol>
+<h3 id="el-límite-es-tu-imaginación">El límite es tu imaginación </h3>
+<p>Con n8n puedes automatizar desde simples notificaciones hasta complejos sistemas empresariales. La clave está en empezar pequeño y ir escalando progresivamente.</p>
+<p><strong>¡Buena suerte en tu viaje de automatización!</strong> 🚀</p>
+<hr>
+<p><em>© 2025 - Curso de Machine Learning - Fundamentos de IA</em><br>
+<em>Este documento es parte del capítulo "n8n: Automatización de Workflows" del curso completo de Machine Learning e Inteligencia Artificial.</em></p>
+</div>
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

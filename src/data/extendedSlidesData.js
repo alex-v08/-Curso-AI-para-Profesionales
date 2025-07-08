@@ -122,7 +122,7 @@ export const extendedSlidesData = [
 
           <div className="glass-effect p-6 rounded-xl border-l-4 border-green-400">
             <div className="text-center mb-4">
-              <Icon name="check-circle" className="w-12 h-12 text-green-400 mx-auto mb-2" />
+              <Icon name="check" className="w-12 h-12 text-green-400 mx-auto mb-2" />
               <h4 className="text-xl font-bold text-white">Balance Perfecto</h4>
             </div>
             <p className="text-white/90 text-center mb-4">
