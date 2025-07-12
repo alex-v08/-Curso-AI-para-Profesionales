@@ -196,6 +196,20 @@ export default MiDemo;
 
 ## 🚀 Deployment
 
+### 🤖 Despliegue Automático (GitHub Actions)
+Este proyecto se despliega automáticamente en `http://144.91.119.20` cada vez que se hace push a la rama `main`.
+
+**Configuración:**
+- Workflow: `.github/workflows/deploy-server.yml`
+- Servidor: Ubuntu 20.04 con Nginx
+- Dominio: http://144.91.119.20
+
+**Cómo funciona:**
+1. Push a `main` → Activa el workflow
+2. Instala dependencias y construye la app
+3. Despliega automáticamente en el servidor
+4. Configura Nginx con cache optimizado
+
 ### Build de Producción
 ```bash
 npm run build
