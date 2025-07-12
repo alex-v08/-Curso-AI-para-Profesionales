@@ -6,8 +6,8 @@ Suite completa de presentaciones interactivas sobre **Inteligencia Artificial y 
 
 ## 🚀 Aplicaciones Disponibles
 
-### 1. 📊 Fundamentos de Machine Learning (`/`)
-Presentación principal con 18 slides sobre conceptos fundamentales:
+### 1. 📊 Inteligencia Artificial en los negocios (`/`)
+Presentación principal con 18 slides sobre IA aplicada a los negocios:
 - Introducción a la IA y tipos de inteligencia
 - Regresión lineal y múltiple
 - Algoritmos de optimización
@@ -128,7 +128,7 @@ npm test           # Ejecutar tests
 
 ## 📖 Contenido de las Presentaciones
 
-### 🔹 ML Fundamentos (18 slides)
+### 🔹 IA en los Negocios (18 slides)
 1. Introducción a la IA
 2. Tipos de IA y aplicaciones
 3. Machine Learning en negocios

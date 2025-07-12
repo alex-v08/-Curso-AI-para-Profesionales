@@ -120,7 +120,7 @@ function App() {
         <div className="text-center">
           <div className="loading-spinner mx-auto mb-4"></div>
           <h2 className="text-2xl font-bold text-white mb-2">Cargando Presentación</h2>
-          <p className="text-white/70">Fundamentos de Machine Learning</p>
+          <p className="text-white/70">Inteligencia Artificial en los negocios. De los datos a la innovación</p>
         </div>
       </div>
     );

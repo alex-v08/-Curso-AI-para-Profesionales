@@ -17,7 +17,7 @@ import { vibeCodingSlides } from './vibeCodingSlides';
 import { n8nSlides } from './n8nSlides';
 
 /**
- * Datos completos de la presentación - Fundamentos de Machine Learning e IA
+ * Datos completos de la presentación - Inteligencia Artificial en los negocios. De los datos a la innovación
  * ESTRUCTURA COMPLETA ACTUALIZADA:
  * 1. Paradigmas de Aprendizaje (0-6): Inspiración cerebral, supervisado, no supervisado
  * 2. Introducción a IA/ML (7-16): Conceptos generales, tipos de IA, casos de negocio
@@ -44,7 +44,7 @@ const baseSlidesData = [
   {
     id: 7,
     type: 'cover',
-    title: 'Fundamentos de Machine Learning',
+    title: 'Inteligencia Artificial en los negocios. De los datos a la innovación',
     subtitle: 'Aplicaciones Técnicas y Casos de Negocio',
     content: (
       <div className="ml-text-center ml-space-y-8 fade-in">
@@ -914,7 +914,7 @@ export const slidesData = [...paradigmasRenumbered, ...baseSlidesData, ...iaGene
 
 // Exportar también metadata útil
 export const presentationMetadata = {
-  title: "Fundamentos de Machine Learning e IA",
+  title: "Inteligencia Artificial en los negocios. De los datos a la innovación",
   subtitle: "Del Cerebro a la Innovación",
   totalSlides: paradigmasAprendizajeSlides.length + baseSlidesData.length + iaGenerativaSlides.length + lowCodeNoCodeSlides.length + agentesInteligentesSlides.length + vibeCodingSlides.length + n8nSlides.length + additionalSlidesData.length,
   
@@ -938,7 +938,7 @@ export const presentationMetadata = {
       slides: [7, 16], // Slides 7-16
       description: "Conceptos generales, tipos de IA y casos de negocio",
       subsections: [
-        { name: "Fundamentos de Machine Learning", slide: 7 },
+        { name: "Fundamentos de IA", slide: 7 },
         { name: "¿Qué es la Inteligencia Artificial?", slide: 8 },
         { name: "Tipos de IA según su Función", slide: 9 },
         { name: "Tipos de IA por Niveles de Inteligencia", slide: 10 },
@@ -1097,7 +1097,7 @@ export const presentationMetadata = {
     "🎯 13 slides interactivos con demos funcionales"
   ],
   
-  author: "Curso de Machine Learning",
+  author: "Curso de IA para Profesionales",
   date: "10 de Junio del 2025",
   version: "8.0.0 - ML, IA Generativa, Low-Code/No-Code, Agentes Inteligentes y n8n Workflow Automation Completo"
 };

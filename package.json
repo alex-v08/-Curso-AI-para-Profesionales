@@ -1,7 +1,7 @@
 {
-  "name": "presentacion-ml-clase2",
+  "name": "ia-negocios-presentacion",
   "version": "1.0.0",
-  "description": "Presentación interactiva sobre Fundamentos de Machine Learning - Proyecto React",
+  "description": "Inteligencia Artificial en los negocios. De los datos a la innovación - Proyecto React",
   "private": true,
   "homepage": ".",
   "dependencies": {
@@ -30,7 +30,7 @@
     "presentacion",
     "demos-interactivos"
   ],
-  "author": "Curso de Machine Learning",
+  "author": "Curso de IA para Profesionales",
   "license": "MIT",
   "eslintConfig": {
     "extends": [
