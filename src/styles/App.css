@@ -482,13 +482,34 @@ code {
     max-width: calc(100vw - 1rem);
   }
   
+  /* Hide slide indicators and labels on mobile */
   .slide-indicator {
-    width: 8px;
-    height: 8px;
+    display: none;
   }
   
-  .slide-indicator.active {
-    transform: scale(1.1);
+  /* Hide navigation labels on mobile */
+  .slide-navigation span {
+    display: none;
+  }
+  
+  /* Show only arrow buttons */
+  .slide-navigation button {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.25rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  
+  .slide-navigation button:hover {
+    opacity: 0.8;
+  }
+  
+  .slide-navigation button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
   }
 }
 
@@ -513,14 +534,14 @@ code {
     font-size: 0.75rem;
   }
   
-  .slide-indicator {
-    width: 6px;
-    height: 6px;
-  }
-  
+  /* Keep arrows visible on very small screens */
   .slide-navigation button {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1rem;
     padding: 0.25rem 0.5rem;
-    font-size: 0.75rem;
+    cursor: pointer;
   }
 }
 
