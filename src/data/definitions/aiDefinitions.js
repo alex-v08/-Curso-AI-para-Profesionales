@@ -238,6 +238,166 @@ export const aiDefinitions = {
       </div>
     ),
     type: 'ai'
+  },
+
+  // ===== MODEL CONTEXT PROTOCOL =====
+  
+  mcp: {
+    title: "Model Context Protocol (MCP)",
+    content: (
+      <div>
+        <p><strong>Definición:</strong> Estándar abierto desarrollado por Anthropic que permite a los asistentes de IA conectarse de forma segura con fuentes de datos externas y herramientas locales.</p>
+        
+        <h4>Componentes principales:</h4>
+        <ul>
+          <li>• <strong>Cliente MCP:</strong> Aplicación host (como Claude Desktop)</li>
+          <li>• <strong>Servidor MCP:</strong> Programa que expone recursos y herramientas</li>
+          <li>• <strong>Protocolo:</strong> Comunicación JSON-RPC 2.0</li>
+          <li>• <strong>Transporte:</strong> Stdio (local) o HTTP+SSE (remoto)</li>
+        </ul>
+        
+        <h4>Primitivas fundamentales:</h4>
+        <div className="space-y-2">
+          <div className="bg-purple-50 p-3 rounded">
+            <p><strong>🗂️ Resources:</strong> Datos estructurados (archivos, bases de datos, APIs)</p>
+          </div>
+          <div className="bg-blue-50 p-3 rounded">
+            <p><strong>🔧 Tools:</strong> Funciones ejecutables (crear archivo, enviar email)</p>
+          </div>
+          <div className="bg-green-50 p-3 rounded">
+            <p><strong>💬 Prompts:</strong> Plantillas reutilizables con contexto específico</p>
+          </div>
+        </div>
+        
+        <h4>Casos de uso típicos:</h4>
+        <ul>
+          <li>💻 <strong>Desarrollo:</strong> Acceso a repositorios Git, ejecución de comandos</li>
+          <li>📊 <strong>Datos:</strong> Consultas a bases de datos, análisis de archivos</li>
+          <li>☁️ <strong>Cloud:</strong> Integración con Google Drive, GitHub, Slack</li>
+          <li>🏢 <strong>Empresarial:</strong> Conexión con sistemas ERP, CRM, BI</li>
+        </ul>
+        
+        <div className="bg-yellow-50 p-4 rounded-lg mt-4">
+          <p><strong>Ventaja clave:</strong> MCP elimina la necesidad de integraciones personalizadas para cada herramienta, creando un ecosistema universal de conectividad para IA.</p>
+        </div>
+      </div>
+    ),
+    type: 'ai'
+  },
+
+  mcp_server: {
+    title: "Servidor MCP",
+    content: (
+      <div>
+        <p><strong>Definición:</strong> Programa ligero que expone recursos, herramientas y prompts a través del protocolo MCP estandardizado.</p>
+        
+        <h4>Características técnicas:</h4>
+        <ul>
+          <li>• <strong>Stateless:</strong> No mantiene estado entre solicitudes</li>
+          <li>• <strong>Aislado:</strong> Ejecuta en proceso separado por seguridad</li>
+          <li>• <strong>Agnóstico:</strong> Puede implementarse en cualquier lenguaje</li>
+          <li>• <strong>Declarativo:</strong> Describe capacidades mediante esquemas JSON</li>
+        </ul>
+        
+        <h4>Servidores oficiales populares:</h4>
+        <div className="grid grid-cols-2 gap-3">
+          <div className="bg-gray-50 p-3 rounded">
+            <p><strong>filesystem</strong></p>
+            <p className="text-sm text-gray-600">Acceso seguro a archivos locales</p>
+          </div>
+          <div className="bg-gray-50 p-3 rounded">
+            <p><strong>github</strong></p>
+            <p className="text-sm text-gray-600">Integración con repositorios</p>
+          </div>
+          <div className="bg-gray-50 p-3 rounded">
+            <p><strong>google-drive</strong></p>
+            <p className="text-sm text-gray-600">Acceso a Google Drive</p>
+          </div>
+          <div className="bg-gray-50 p-3 rounded">
+            <p><strong>slack</strong></p>
+            <p className="text-sm text-gray-600">Lectura de mensajes</p>
+          </div>
+        </div>
+        
+        <h4>Instalación típica:</h4>
+        <div className="bg-gray-900 text-green-400 p-3 rounded font-mono text-sm">
+          npm install -g @modelcontextprotocol/server-filesystem
+        </div>
+        
+        <h4>Seguridad:</h4>
+        <ul>
+          <li>🔒 <strong>Principio de menor privilegio:</strong> Solo acceso necesario</li>
+          <li>👁️ <strong>Auditoría:</strong> Logging de todas las operaciones</li>
+          <li>✅ <strong>Validación:</strong> Sanitización de entradas</li>
+          <li>⏱️ <strong>Límites:</strong> Timeouts y cuotas de recursos</li>
+        </ul>
+        
+        <div className="bg-blue-50 p-4 rounded-lg mt-4">
+          <p><strong>Ecosistema:</strong> La comunidad está desarrollando servidores para PostgreSQL, SQLite, Kubernetes, browsers y muchas otras herramientas.</p>
+        </div>
+      </div>
+    ),
+    type: 'ai'
+  },
+
+  json_rpc: {
+    title: "JSON-RPC 2.0",
+    content: (
+      <div>
+        <p><strong>Definición:</strong> Protocolo de llamada a procedimientos remotos sin estado que utiliza JSON para intercambiar datos. Base de comunicación del MCP.</p>
+        
+        <h4>Características del protocolo:</h4>
+        <ul>
+          <li>• <strong>Sin estado:</strong> Cada solicitud es independiente</li>
+          <li>• <strong>Bidireccional:</strong> Cliente y servidor pueden iniciar comunicación</li>
+          <li>• <strong>Tipado:</strong> Esquemas JSON para validación</li>
+          <li>• <strong>Estándar:</strong> RFC 7159 y especificación JSON-RPC 2.0</li>
+        </ul>
+        
+        <h4>Tipos de mensajes MCP:</h4>
+        <div className="space-y-2">
+          <div className="bg-blue-50 p-3 rounded">
+            <p><strong>initialize:</strong> Configuración inicial del servidor</p>
+          </div>
+          <div className="bg-green-50 p-3 rounded">
+            <p><strong>resources/list:</strong> Enumerar recursos disponibles</p>
+          </div>
+          <div className="bg-yellow-50 p-3 rounded">
+            <p><strong>tools/call:</strong> Ejecutar una herramienta específica</p>
+          </div>
+          <div className="bg-purple-50 p-3 rounded">
+            <p><strong>prompts/get:</strong> Obtener plantilla de prompt</p>
+          </div>
+        </div>
+        
+        <h4>Estructura de solicitud:</h4>
+        <div className="bg-gray-900 text-green-400 p-3 rounded font-mono text-sm">
+{`{
+  "jsonrpc": "2.0",
+  "id": "123",
+  "method": "tools/call",
+  "params": {
+    "name": "read_file",
+    "arguments": {
+      "path": "/workspace/data.txt"
+    }
+  }
+}`}
+        </div>
+        
+        <h4>Manejo de errores:</h4>
+        <ul>
+          <li>• <strong>Códigos estándar:</strong> -32600 a -32603 (JSON-RPC)</li>
+          <li>• <strong>Códigos MCP:</strong> -32000 a -32099 (específicos del protocolo)</li>
+          <li>• <strong>Respuestas graceful:</strong> Información detallada del error</li>
+        </ul>
+        
+        <div className="bg-green-50 p-4 rounded-lg mt-4">
+          <p><strong>Ventaja:</strong> JSON-RPC es maduro, ampliamente soportado y fácil de depurar, lo que hace MCP accesible a desarrolladores de todos los niveles.</p>
+        </div>
+      </div>
+    ),
+    type: 'ai'
   }
 };
 

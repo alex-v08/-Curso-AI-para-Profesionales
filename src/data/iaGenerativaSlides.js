@@ -2528,7 +2528,7 @@ def validate_email(email):
 // Insertamos las slides de Prompting después del slide 2 (índice 2)
 export const iaGenerativaSlides = [
   ...baseIaGenerativaSlides.slice(0, 3), // Slides 0-2 (hasta "Cómo funcionan los LLMs")
-  ...promptingSlides, // Nuevo capítulo completo de Prompting
+  ...promptingSlides, // Capítulo completo de Prompting
   ...baseIaGenerativaSlides.slice(3) // Resto de slides (desde el antiguo slide 3 en adelante)
 ];
 

@@ -31,15 +31,23 @@ function Sidebar({ slides, currentSlide, onSlideChange, isOpen, onToggle }) {
       name: 'IA Generativa',
       icon: 'magic',
       color: 'pink',
-      slides: slides.slice(17, 36), // Corregido: 19 slides de IA Generativa (17-35)
+      slides: slides.slice(17, 36), // 19 slides de IA Generativa (17-35)
       subsections: presentationMetadata.sections.iaGenerativa.subsections
+    },
+    {
+      id: 'mcp',
+      name: 'Model Context Protocol',
+      icon: 'network-wired',
+      color: 'indigo',
+      slides: slides.slice(36, 45), // 9 slides de MCP (36-44)
+      subsections: presentationMetadata.sections.mcp?.subsections || []
     },
     {
       id: 'lowCodeNoCode',
       name: 'Low-Code vs No-Code',
       icon: 'code',
       color: 'orange',
-      slides: slides.slice(36, 42), // 6 slides de Low-Code/No-Code (36-41)
+      slides: slides.slice(45, 51), // 6 slides de Low-Code/No-Code (45-50)
       subsections: presentationMetadata.sections.lowCodeNoCode?.subsections || []
     },
     {
@@ -47,7 +55,7 @@ function Sidebar({ slides, currentSlide, onSlideChange, isOpen, onToggle }) {
       name: 'Agentes Inteligentes',
       icon: 'robot',
       color: 'cyan',
-      slides: slides.slice(42, 61), // 19 slides de Agentes (42-60)
+      slides: slides.slice(51, 70), // 19 slides de Agentes (51-69)
       subsections: presentationMetadata.sections.agentesInteligentes?.subsections || []
     },
     {
@@ -55,7 +63,7 @@ function Sidebar({ slides, currentSlide, onSlideChange, isOpen, onToggle }) {
       name: 'Vibe Coding',
       icon: 'magic',
       color: 'purple',
-      slides: slides.slice(61, 69), // 8 slides de Vibe Coding (61-68)
+      slides: slides.slice(70, 78), // 8 slides de Vibe Coding (70-77)
       subsections: presentationMetadata.sections.vibeCoding?.subsections || []
     },
     {
@@ -63,7 +71,7 @@ function Sidebar({ slides, currentSlide, onSlideChange, isOpen, onToggle }) {
       name: 'n8n: Workflow Automation',
       icon: 'sitemap',
       color: 'indigo',
-      slides: slides.slice(69, 82), // 13 slides de n8n (69-81)
+      slides: slides.slice(78, 91), // 13 slides de n8n (78-90)
       subsections: presentationMetadata.sections.n8nWorkflows?.subsections || []
     },
     {
@@ -71,7 +79,7 @@ function Sidebar({ slides, currentSlide, onSlideChange, isOpen, onToggle }) {
       name: 'Aspectos Técnicos',
       icon: 'cogs',
       color: 'green',
-      slides: slides.slice(82), // Movido al final después de n8n (desde 82)
+      slides: slides.slice(91), // Movido al final después de n8n (desde 91)
       subsections: presentationMetadata.sections.technical?.subsections || []
     }
   ];

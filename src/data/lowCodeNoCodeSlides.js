@@ -7,7 +7,7 @@ import PlatformSelector from '../components/LowCodeNoCode/PlatformSelector';
 
 export const lowCodeNoCodeSlides = [
   {
-    id: 36,
+    id: 0,
     type: 'cover',
     title: 'Low-Code vs No-Code',
     content: (
@@ -44,7 +44,7 @@ export const lowCodeNoCodeSlides = [
   },
   
   {
-    id: 37,
+    id: 1,
     type: 'content',
     title: 'Definiciones Fundamentales',
     content: (
@@ -119,7 +119,7 @@ export const lowCodeNoCodeSlides = [
   },
   
   {
-    id: 38,
+    id: 2,
     type: 'content',
     title: 'Comparación Interactiva',
     content: (
@@ -150,7 +150,7 @@ export const lowCodeNoCodeSlides = [
   },
   
   {
-    id: 39,
+    id: 3,
     type: 'content',
     title: 'Ventajas y Casos de Uso',
     content: (
@@ -250,7 +250,7 @@ export const lowCodeNoCodeSlides = [
   },
   
   {
-    id: 40,
+    id: 4,
     type: 'content',
     title: 'Ejemplos de Plataformas',
     content: (
@@ -325,7 +325,7 @@ export const lowCodeNoCodeSlides = [
   },
   
   {
-    id: 41,
+    id: 5,
     type: 'content',
     title: '¿Cuándo Usar Cada Enfoque?',
     content: (

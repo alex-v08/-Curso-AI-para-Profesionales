@@ -11,6 +11,7 @@ import {
 import additionalSlidesData from './additionalSlidesData';
 import paradigmasAprendizajeSlides from './paradigmasAprendizajeSlides';
 import { iaGenerativaSlides } from './iaGenerativaSlides';
+import { mcpSlides } from './mcpSlides';
 import { lowCodeNoCodeSlides } from './lowCodeNoCodeSlides';
 import { agentesInteligentesSlides } from './agentesInteligentesSlides';
 import { vibeCodingSlides } from './vibeCodingSlides';
@@ -22,11 +23,12 @@ import { n8nSlides } from './n8nSlides';
  * 1. Paradigmas de Aprendizaje (0-6): Inspiración cerebral, supervisado, no supervisado
  * 2. Introducción a IA/ML (7-16): Conceptos generales, tipos de IA, casos de negocio
  * 3. IA Generativa (17-35): Fundamentos, LLMs, RAG, prompting, aplicaciones cotidianas
- * 4. Low-Code vs No-Code (36-41): Democratización del desarrollo, plataformas, comparación
- * 5. Agentes Inteligentes (42-60): Sistemas autónomos, MCP, n8n, automatización
- * 6. Vibe Coding (61-68): Desarrollo asistido por IA, herramientas, casos de uso
- * 7. n8n Workflow Automation (69-81): Curso completo de teoría y práctica
- * 8. Aspectos Técnicos (82+): Demos interactivos y aplicaciones adicionales
+ * 4. Model Context Protocol (36-44): MCP estándar, arquitectura, implementación, ecosistema
+ * 5. Low-Code vs No-Code (45-50): Democratización del desarrollo, plataformas, comparación
+ * 6. Agentes Inteligentes (51-69): Sistemas autónomos, automatización inteligente
+ * 7. Vibe Coding (70-77): Desarrollo asistido por IA, herramientas, casos de uso
+ * 8. n8n Workflow Automation (78-90): Curso completo de teoría y práctica
+ * 9. Aspectos Técnicos (91+): Demos interactivos y aplicaciones adicionales
  */
 
 // Función para renumerar slides y ajustar IDs
@@ -886,37 +888,41 @@ const paradigmasRenumbered = renumberSlides(paradigmasAprendizajeSlides, 0);
 // Renumerar slides de IA Generativa después del contenido base
 const iaGenerativaRenumbered = renumberSlides(iaGenerativaSlides, baseSlidesData.length + paradigmasRenumbered.length);
 
-// Renumerar slides de Low-Code/No-Code después de IA Generativa
-const lowCodeNoCodeRenumbered = renumberSlides(lowCodeNoCodeSlides, baseSlidesData.length + paradigmasRenumbered.length + iaGenerativaSlides.length);
+// Renumerar slides de MCP después de IA Generativa
+const mcpRenumbered = renumberSlides(mcpSlides, baseSlidesData.length + paradigmasRenumbered.length + iaGenerativaSlides.length);
+
+// Renumerar slides de Low-Code/No-Code después de MCP
+const lowCodeNoCodeRenumbered = renumberSlides(lowCodeNoCodeSlides, baseSlidesData.length + paradigmasRenumbered.length + iaGenerativaSlides.length + mcpSlides.length);
 
 // Renumerar slides de Agentes Inteligentes después de Low-Code/No-Code
-const agentesInteligentesRenumbered = renumberSlides(agentesInteligentesSlides, baseSlidesData.length + paradigmasRenumbered.length + iaGenerativaSlides.length + lowCodeNoCodeSlides.length);
+const agentesInteligentesRenumbered = renumberSlides(agentesInteligentesSlides, baseSlidesData.length + paradigmasRenumbered.length + iaGenerativaSlides.length + mcpSlides.length + lowCodeNoCodeSlides.length);
 
 // Renumerar slides de Vibe Coding después de Agentes Inteligentes
-const vibeCodingRenumbered = renumberSlides(vibeCodingSlides, baseSlidesData.length + paradigmasRenumbered.length + iaGenerativaSlides.length + lowCodeNoCodeSlides.length + agentesInteligentesSlides.length);
+const vibeCodingRenumbered = renumberSlides(vibeCodingSlides, baseSlidesData.length + paradigmasRenumbered.length + iaGenerativaSlides.length + mcpSlides.length + lowCodeNoCodeSlides.length + agentesInteligentesSlides.length);
 
 // Renumerar slides de n8n después de Vibe Coding
-const n8nRenumbered = renumberSlides(n8nSlides, baseSlidesData.length + paradigmasRenumbered.length + iaGenerativaSlides.length + lowCodeNoCodeSlides.length + agentesInteligentesSlides.length + vibeCodingSlides.length);
+const n8nRenumbered = renumberSlides(n8nSlides, baseSlidesData.length + paradigmasRenumbered.length + iaGenerativaSlides.length + mcpSlides.length + lowCodeNoCodeSlides.length + agentesInteligentesSlides.length + vibeCodingSlides.length);
 
 // Renumerar slides adicionales para que sigan después
-const additionalRenumbered = renumberSlides(additionalSlidesData, baseSlidesData.length + paradigmasRenumbered.length + iaGenerativaSlides.length + lowCodeNoCodeSlides.length + agentesInteligentesSlides.length + vibeCodingSlides.length + n8nSlides.length);
+const additionalRenumbered = renumberSlides(additionalSlidesData, baseSlidesData.length + paradigmasRenumbered.length + iaGenerativaSlides.length + mcpSlides.length + lowCodeNoCodeSlides.length + agentesInteligentesSlides.length + vibeCodingSlides.length + n8nSlides.length);
 
 // Combinar todos los slides en el orden correcto:
 // 1. Paradigmas de Aprendizaje (0-6)
 // 2. Introducción IA/ML y Casos de Negocio (7-16) 
 // 3. IA Generativa (17-35)
-// 4. Low-Code vs No-Code (36-41)
-// 5. Agentes Inteligentes (42-60)
-// 6. Vibe Coding (61-68)
-// 7. n8n Workflow Automation (69-81)
-// 8. Aspectos Técnicos Adicionales (82+)
-export const slidesData = [...paradigmasRenumbered, ...baseSlidesData, ...iaGenerativaRenumbered, ...lowCodeNoCodeRenumbered, ...agentesInteligentesRenumbered, ...vibeCodingRenumbered, ...n8nRenumbered, ...additionalRenumbered];
+// 4. Model Context Protocol (36-44)
+// 5. Low-Code vs No-Code (45-50)
+// 6. Agentes Inteligentes (51-69)
+// 7. Vibe Coding (70-77)
+// 8. n8n Workflow Automation (78-90)
+// 9. Aspectos Técnicos Adicionales (91+)
+export const slidesData = [...paradigmasRenumbered, ...baseSlidesData, ...iaGenerativaRenumbered, ...mcpRenumbered, ...lowCodeNoCodeRenumbered, ...agentesInteligentesRenumbered, ...vibeCodingRenumbered, ...n8nRenumbered, ...additionalRenumbered];
 
 // Exportar también metadata útil
 export const presentationMetadata = {
   title: "Inteligencia Artificial en los negocios. De los datos a la innovación",
   subtitle: "Del Cerebro a la Innovación",
-  totalSlides: paradigmasAprendizajeSlides.length + baseSlidesData.length + iaGenerativaSlides.length + lowCodeNoCodeSlides.length + agentesInteligentesSlides.length + vibeCodingSlides.length + n8nSlides.length + additionalSlidesData.length,
+  totalSlides: paradigmasAprendizajeSlides.length + baseSlidesData.length + iaGenerativaSlides.length + mcpSlides.length + lowCodeNoCodeSlides.length + agentesInteligentesSlides.length + vibeCodingSlides.length + n8nSlides.length + additionalSlidesData.length,
   
   sections: {
     paradigmas: {
@@ -975,91 +981,107 @@ export const presentationMetadata = {
         { name: "Casos de Éxito y el Futuro de la IA Generativa", slide: 34 }
       ]
     },
+    mcp: {
+      name: "Model Context Protocol",
+      slides: [36, 44], // Slides 36-44
+      description: "MCP estándar, arquitectura cliente-servidor, implementación y ecosistema",
+      subsections: [
+        { name: "Model Context Protocol (MCP)", slide: 36 },
+        { name: "¿Qué es Model Context Protocol?", slide: 37 },
+        { name: "Arquitectura de MCP", slide: 38 },
+        { name: "Primitivas Fundamentales de MCP", slide: 39 },
+        { name: "Casos de Uso Empresariales", slide: 40 },
+        { name: "Implementación Básica de un Servidor MCP", slide: 41 },
+        { name: "Ecosistema y Servidores Disponibles", slide: 42 },
+        { name: "Mejores Prácticas y Seguridad", slide: 43 },
+        { name: "El Futuro de MCP", slide: 44 }
+      ]
+    },
     lowCodeNoCode: {
       name: "Low-Code vs No-Code",
-      slides: [36, 41], // Slides 36-41
+      slides: [45, 50], // Slides 45-50
       description: "Democratización del desarrollo, plataformas, comparación interactiva",
       subsections: [
-        { name: "Low-Code vs No-Code", slide: 36 },
-        { name: "Definiciones Fundamentales", slide: 37 },
-        { name: "Comparación Interactiva", slide: 38 },
-        { name: "Ventajas y Casos de Uso", slide: 39 },
-        { name: "Ejemplos de Plataformas", slide: 40 },
-        { name: "¿Cuándo Usar Cada Enfoque?", slide: 41 }
+        { name: "Low-Code vs No-Code", slide: 45 },
+        { name: "Definiciones Fundamentales", slide: 46 },
+        { name: "Comparación Interactiva", slide: 47 },
+        { name: "Ventajas y Casos de Uso", slide: 48 },
+        { name: "Ejemplos de Plataformas", slide: 49 },
+        { name: "¿Cuándo Usar Cada Enfoque?", slide: 50 }
       ]
     },
     agentesInteligentes: {
       name: "Agentes Inteligentes",
-      slides: [42, 60], // Slides de Agentes Inteligentes (ajustado)
+      slides: [51, 69], // Slides de Agentes Inteligentes (ajustado)
       description: "Sistemas autónomos, arquitecturas, MAS, MCP, n8n y automatización",
       subsections: [
-        { name: "Agentes Inteligentes y Sistemas Multiagente", slide: 42 },
-        { name: "¿Qué es un Agente Inteligente?", slide: 43 },
-        { name: "Ejemplos de Agentes en el Mundo Real", slide: 44 },
-        { name: "Tipos de Agentes y Arquitecturas", slide: 45 },
-        { name: "Arquitecturas Internas de Agentes", slide: 46 },
-        { name: "Demo: Arquitecturas de Agentes en Acción", slide: 47 },
-        { name: "Sistemas Multiagente (MAS)", slide: 48 },
-        { name: "Comunicación y Coordinación en MAS", slide: 49 },
-        { name: "Aplicaciones Reales de Sistemas Multiagente", slide: 50 },
-        { name: "Demo: Sistemas Multiagente en Acción", slide: 51 },
-        { name: "¿Qué es Model Context Protocol (MCP)?", slide: 52 },
-        { name: "Aplicaciones Prácticas del MCP", slide: 53 },
-        { name: "n8n: Automatización como Sistema de Agentes", slide: 54 },
-        { name: "Ejemplo Práctico: Flujo Automatizado en n8n", slide: 55 },
-        { name: "Demo: n8n como Sistema de Agentes", slide: 56 },
-        { name: "Casos de Uso Avanzados con n8n", slide: 57 },
-        { name: "Vibe Coding y Agentes: El Futuro del Desarrollo", slide: 58 },
-        { name: "El Futuro de los Agentes y Consideraciones Éticas", slide: 59 },
-        { name: "Recursos y Próximos Pasos", slide: 60 }
+        { name: "Agentes Inteligentes y Sistemas Multiagente", slide: 51 },
+        { name: "¿Qué es un Agente Inteligente?", slide: 52 },
+        { name: "Ejemplos de Agentes en el Mundo Real", slide: 53 },
+        { name: "Tipos de Agentes y Arquitecturas", slide: 54 },
+        { name: "Arquitecturas Internas de Agentes", slide: 55 },
+        { name: "Demo: Arquitecturas de Agentes en Acción", slide: 56 },
+        { name: "Sistemas Multiagente (MAS)", slide: 57 },
+        { name: "Comunicación y Coordinación en MAS", slide: 58 },
+        { name: "Aplicaciones Reales de Sistemas Multiagente", slide: 59 },
+        { name: "Demo: Sistemas Multiagente en Acción", slide: 60 },
+        { name: "Agentes y Automatización Inteligente", slide: 61 },
+        { name: "Casos de Uso Avanzados", slide: 62 },
+        { name: "n8n: Automatización como Sistema de Agentes", slide: 63 },
+        { name: "Ejemplo Práctico: Flujo Automatizado", slide: 64 },
+        { name: "Demo: Agentes en Acción", slide: 65 },
+        { name: "Casos de Uso Avanzados", slide: 66 },
+        { name: "Agentes y el Futuro del Desarrollo", slide: 67 },
+        { name: "El Futuro de los Agentes y Consideraciones Éticas", slide: 68 },
+        { name: "Recursos y Próximos Pasos", slide: 69 }
       ]
     },
     vibeCoding: {
       name: "Vibe Coding",
-      slides: [61, 68], // Slides 61-68
+      slides: [70, 77], // Slides 70-77
       description: "Desarrollo asistido por IA, herramientas modernas y democratización del software",
       subsections: [
-        { name: "Vibe Coding: El Futuro del Desarrollo", slide: 61 },
-        { name: "¿Qué es Vibe Coding?", slide: 62 },
-        { name: "¿Cómo Funciona Vibe Coding?", slide: 63 },
-        { name: "Herramientas de Vibe Coding", slide: 64 },
-        { name: "Casos de Uso y Ejemplos Reales", slide: 65 },
-        { name: "Beneficios y Democratización del Desarrollo", slide: 66 },
-        { name: "Limitaciones y Mejores Prácticas", slide: 67 },
-        { name: "El Futuro del Vibe Coding", slide: 68 }
+        { name: "Vibe Coding: El Futuro del Desarrollo", slide: 70 },
+        { name: "¿Qué es Vibe Coding?", slide: 71 },
+        { name: "¿Cómo Funciona Vibe Coding?", slide: 72 },
+        { name: "Herramientas de Vibe Coding", slide: 73 },
+        { name: "Casos de Uso y Ejemplos Reales", slide: 74 },
+        { name: "Beneficios y Democratización del Desarrollo", slide: 75 },
+        { name: "Limitaciones y Mejores Prácticas", slide: 76 },
+        { name: "El Futuro del Vibe Coding", slide: 77 }
       ]
     },
     n8nWorkflows: {
       name: "n8n: Automatización de Workflows",
-      slides: [69, 81], // Slides 69-81
+      slides: [78, 90], // Slides 78-90
       description: "Curso completo de n8n: teoría, práctica, casos de uso y proyectos reales",
       subsections: [
-        { name: "n8n: Automatización de Workflows", slide: 69 },
-        { name: "¿Qué es n8n?", slide: 70 },
-        { name: "Conceptos Fundamentales de n8n", slide: 71 },
-        { name: "Tipos de Nodos en n8n", slide: 72 },
-        { name: "Explorador de Nodos n8n", slide: 73 },
-        { name: "Flujo de Datos en n8n", slide: 74 },
-        { name: "Top 10 Casos de Uso Más Populares", slide: 75 },
-        { name: "Constructor de Flujos n8n", slide: 76 },
-        { name: "Configuración de Credenciales", slide: 77 },
-        { name: "Proyecto Práctico 1: Email Automático", slide: 78 },
-        { name: "Proyecto Práctico 2: WhatsApp Bot con IA", slide: 79 },
-        { name: "Buenas Prácticas y Debugging", slide: 80 },
-        { name: "Recursos y Próximos Pasos", slide: 81 }
+        { name: "n8n: Automatización de Workflows", slide: 78 },
+        { name: "¿Qué es n8n?", slide: 79 },
+        { name: "Conceptos Fundamentales de n8n", slide: 80 },
+        { name: "Tipos de Nodos en n8n", slide: 81 },
+        { name: "Explorador de Nodos n8n", slide: 82 },
+        { name: "Flujo de Datos en n8n", slide: 83 },
+        { name: "Top 10 Casos de Uso Más Populares", slide: 84 },
+        { name: "Constructor de Flujos n8n", slide: 85 },
+        { name: "Configuración de Credenciales", slide: 86 },
+        { name: "Proyecto Práctico 1: Email Automático", slide: 87 },
+        { name: "Proyecto Práctico 2: WhatsApp Bot con IA", slide: 88 },
+        { name: "Buenas Prácticas y Debugging", slide: 89 },
+        { name: "Recursos y Próximos Pasos", slide: 90 }
       ]
     },
     technical: {
       name: "Aspectos Técnicos",
-      slides: [82, 87], // Slides técnicos movidos al final (corregido)
+      slides: [91, 96], // Slides técnicos movidos al final (corregido)
       description: "Métricas, overfitting y demos avanzados",
       subsections: [
-        { name: "El Equilibrio Perfecto: Overfitting vs Underfitting", slide: 82 },
-        { name: "Métricas y Evaluación de Modelos", slide: 83 },
-        { name: "Metodología Práctica", slide: 84 },
-        { name: "Ejemplo Práctico: Predicción de Precios", slide: 85 },
-        { name: "Casos de Negocio: De la Teoría a la Práctica", slide: 86 },
-        { name: "Conclusiones y Próximos Pasos", slide: 87 }
+        { name: "El Equilibrio Perfecto: Overfitting vs Underfitting", slide: 91 },
+        { name: "Métricas y Evaluación de Modelos", slide: 92 },
+        { name: "Metodología Práctica", slide: 93 },
+        { name: "Ejemplo Práctico: Predicción de Precios", slide: 94 },
+        { name: "Casos de Negocio: De la Teoría a la Práctica", slide: 95 },
+        { name: "Conclusiones y Próximos Pasos", slide: 96 }
       ]
     }
   },
