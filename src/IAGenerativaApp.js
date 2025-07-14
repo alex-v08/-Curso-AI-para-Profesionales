@@ -158,21 +158,21 @@ function IAGenerativaApp() {
         <div className="presentation-controls">
           <button
             onClick={() => setShowProgress(!showProgress)}
-            className="control-btn"
+            className="edu-btn-nav"
             title={showProgress ? "Ocultar progreso" : "Mostrar progreso"}
           >
             <Icon name={showProgress ? "eye-slash" : "eye"} className="w-5 h-5" />
           </button>
           <button
             onClick={toggleFullscreen}
-            className="control-btn"
+            className="edu-btn-nav"
             title="Pantalla completa (F)"
           >
             <Icon name={isFullscreen ? "compress" : "expand"} className="w-5 h-5" />
           </button>
           <button
             onClick={() => window.location.reload()}
-            className="control-btn"
+            className="edu-btn-nav"
             title="Reiniciar presentación"
           >
             <Icon name="redo" className="w-5 h-5" />
@@ -220,7 +220,7 @@ function IAGenerativaApp() {
                 </div>
                 
                 {/* Contenido del slide */}
-                <div className="slide-content">
+                <div className="slide-content edu-space-y-6">
                   {slide.content}
                 </div>
               </div>
@@ -234,7 +234,7 @@ function IAGenerativaApp() {
               <button
                 onClick={prevSlide}
                 disabled={currentSlide === 0}
-                className={`btn-secondary ${currentSlide === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                className={`edu-btn-nav ${currentSlide === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
                 title="Slide anterior (←)"
               >
                 <Icon name="chevron-left" className="w-4 h-4 mr-2" />
@@ -277,7 +277,7 @@ function IAGenerativaApp() {
               <button
                 onClick={nextSlide}
                 disabled={currentSlide === iaGenerativaSlidesData.length - 1}
-                className={`btn-secondary ${
+                className={`edu-btn-nav ${
                   currentSlide === iaGenerativaSlidesData.length - 1 ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
                 title="Siguiente slide (→ o Espacio)"
@@ -291,9 +291,9 @@ function IAGenerativaApp() {
           {/* Barra de progreso */}
           {showProgress && (
             <div className="fixed bottom-0 left-0 right-0 z-40">
-              <div className="h-1 bg-black/20">
+              <div className="edu-progress">
                 <div
-                  className="h-1 bg-gradient-to-r from-purple-400 to-pink-500 transition-all duration-300"
+                  className="edu-progress-bar transition-all duration-300"
                   style={{
                     width: `${((currentSlide + 1) / iaGenerativaSlidesData.length) * 100}%`
                   }}

@@ -223,7 +223,7 @@ function App() {
               </div>
               
               {/* Contenido del slide */}
-              <div className="slide-content max-w-5xl mx-auto">
+              <div className="slide-content max-w-5xl mx-auto edu-space-y-8">
                 {slide.content}
               </div>
             </div>

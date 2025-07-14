@@ -43,9 +43,10 @@
 /* Enhanced title styles inspired by chatbot design */
 .enhanced-title-chatbot {
   background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.95) 0%, 
-    rgba(255, 255, 255, 0.85) 50%, 
-    rgba(240, 248, 255, 0.9) 100%);
+    rgba(255, 255, 255, 1) 0%, 
+    rgba(255, 255, 255, 0.95) 30%,
+    rgba(220, 238, 255, 0.9) 70%,
+    rgba(255, 255, 255, 0.85) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -54,6 +55,7 @@
   text-shadow: 
     0 2px 4px rgba(0, 0, 0, 0.3),
     0 4px 8px rgba(0, 0, 0, 0.15),
+    0 0 30px rgba(16, 185, 129, 0.4),
     0 0 20px rgba(255, 255, 255, 0.2);
   
   font-weight: 700;
@@ -163,7 +165,7 @@
 
 /* Professional button styles from chatbot */
 .btn-chatbot-primary {
-  background: var(--primary-blue);
+  background: linear-gradient(135deg, #10b981, #059669);
   color: white;
   border: none;
   padding: 12px 24px;
@@ -173,7 +175,7 @@
   font-size: 16px;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.3);
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
   min-height: 44px; /* Touch-friendly */
 }
 
@@ -189,23 +191,25 @@
 }
 
 .btn-chatbot-secondary {
-  background: rgba(255, 255, 255, 0.9);
-  color: var(--text-primary);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(16, 185, 129, 0.2);
+  color: white;
+  border: 1px solid rgba(16, 185, 129, 0.4);
   padding: 10px 20px;
   border-radius: 20px;
   font-family: var(--font-system);
-  font-weight: 400;
+  font-weight: 500;
   font-size: 14px;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   min-height: 40px;
+  backdrop-filter: blur(10px);
 }
 
 .btn-chatbot-secondary:hover {
-  background: white;
+  background: rgba(16, 185, 129, 0.3);
   transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
+  border-color: rgba(16, 185, 129, 0.6);
 }
 
 /* University/academic professional styling */
